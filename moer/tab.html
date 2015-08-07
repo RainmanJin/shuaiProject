@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+  *{margin:0;padding:0;}
+  .tab-cur {color:#ff0;}
+  </style>
+</head>
+<body>
+  <div class="tab-slider">
+    <ul id="tab-btn">
+      <li>选项卡按钮1</li>
+      <li>选项卡按钮2</li>
+      <li>选项卡按钮3</li>
+      <li>选项卡按钮4</li>
+      <li>选项卡按钮5</li>
+    </ul>
+  </div>
+  <div class="tab-cont" id="tab-cont">
+    <div>我对应的是第1个选项卡按钮</div>
+    <div>我对应的是第2个选项卡按钮</div>
+    <div>我对应的是第3个选项卡按钮</div>
+    <div>我对应的是第4个选项卡按钮</div>
+    <div>我对应的是第5个选项卡按钮</div>
+  </div>
+  <script src="http://apps.bdimg.com/libs/jquery/1.10.0/jquery.min.js"></script>
+  <script>
+  var curNum = 4; //默认选中的选项卡
+  var tabCur = "tab-cur";  //Tab按钮选中的样式
+  $("#tab-btn li").eq(curNum).addClass(tabCur);
+  //$("#tab-cont div").css("display"."none");
+  $("#tab-cont div").eq(curNum).css("display","block");
+  $("#tab-cont div").eq(curNum).siblings().css("display","none");
+  $("#tab-btn li").each(function(n){
+    $(this).click(function(){
+      if($(this).hasClass(tabCur) == false){
+        $(this).addClass(tabCur).andSelf().siblings().removeClass(tabCur);
+        $("#tab-cont div").css("display","none");
+        $("#tab-cont div").eq(n).css("display","block");
+      }
+    })
+  })
+  </script>
+</body>
+</html>

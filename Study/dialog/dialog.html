@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>Moer Dialog</title>
+	<style>
+		*{margin:0;padding:0;font-family: "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, sans-serif;}
+		body{background:#eee;}
+		.mRecommendCont {width:240px;height:96px;line-height:96px;position:fixed;top:50%;left:50%;margin-left:-120px;margin-top:-50px;background:#fff;font-size:18px;color:#333;border-radius:4px;text-align:center;}
+		.mRecommendCont i {display:inline-block;width:30px;height:30px;margin-right:10px;background:url("recommendBg.png") no-repeat;position:relative;top:8px;}
+		.mPublishSucess {width:246px;height:91px;padding-top:25px;position:fixed;top:50%;left:50%;margin-left:-123px;margin-top:-58px;background:#fff;border-radius:4px;text-align:center;}
+		.mPublishSucess i {display:inline-block;width:30px;height:30px;margin-right:10px;background:url("recommendBg.png") no-repeat;position:relative;top:9px;}
+		.mPublishSucess p {margin-top:15px;color:#888;font-size:12px;}
+		.mPublishSucess p span {margin:0 4px;color:#e84c3d;}
+		.mDeleteCont {width:340px;height:166px;position:fixed;top:50%;left:50%;margin-top:-83px;margin-left:-170px;z-index:9999;background:#fff;border-radius:4px;text-align:center;}
+		.mDeleteCont h1 {width:300px;margin:10px auto;line-height:30px;font-size:14px;font-weight:normal;color:#000;border-bottom:3px solid #eeeff2;text-align:left;}
+		.mDeleteCont h1 i {float:right;display:inline-block;width:15px;height:15px;margin-top:8px;margin-left:8px;position:relative;cursor:pointer;}
+		.mDeleteCont h1 i::before,
+		.mDeleteCont h1 i::after {content:" ";display:block;width:2px;height:15px;background:#565659;position:absolute;}
+		.mDeleteCont h1 i::before {top:0;left:45%;
+			transform:rotate(-45deg);
+			-ms-transform:rotate(-45deg);   /* IE 9+ */
+			-moz-transform:rotate(-45deg);  /* Firefox */
+			-webkit-transform:rotate(-45deg);  /* Safari Chrome */
+			-o-transform:rotate(-45deg);  /* Opera */
+		}
+		.mDeleteCont h1 i::after {top:0;left:45%;
+			transform:rotate(45deg);
+			-ms-transform:rotate(45deg);   /* IE 9+ */
+			-moz-transform:rotate(45deg);  /* Firefox */
+			-webkit-transform:rotate(45deg); /* Safari Chrome */
+			-o-transform:rotate(45deg);  /* Opera */
+		}
+		.mDeleteCont p {text-align:center;}
+		.mDeleteCont button {width:90px;height:30px;margin:15px 10px;font-size:14px;color:#fff;border:0;border-radius:4px;outline:none;cursor:pointer;}
+		.mDeleteCont .mDeleteCont-yes {background:#e84c3d;}
+		.mDeleteCont .mDeleteCont-no {background:#969ea1;}
+		.mRecommendList {width:200px;position:fixed;top:50%;left:50%;margin-top:-150px;margin-left:-100px;z-index:9999;background:#fff;border-radius:4px;text-align:center;}
+		.mRecommendList h1 {width:180px;margin:10px auto;line-height:30px;font-size:14px;font-weight:normal;color:#000;border-bottom:3px solid #eeeff2;text-align:left;}
+		.mRecommendList button {margin:15px 8px;outline:none;cursor:pointer;}
+		.mRecommendList .mRecommendList-yes {width:65px;height:30px;font-size:14px;color:#fff;border:0;border-radius:4px;background:#e84c3d;}
+		.mRecommendList .mRecommendList-yes:disabled {background:#d5d5d7;}
+		.mRecommendList .mRecommendList-no {height:30px;background:transparent;color:#999;font-size:14px;border:0;}
+		.mRecommendList div {text-align:left;margin:5px 12px;}
+		.mRecommendList input {position:relative;top:1px;}
+		.mRecommendList label {margin-left:5px;font-size:14px;color:#333;}
+		.moerFloat {width:100%;height:100%;position:fixed;top:0;left:0;background:rgba(0,0,0,.6);z-index:10;}
+	</style>
+</head>
+<body>
+	<button onclick="moerQa.recommend('啥玩意儿！',5)">推荐用</button>
+	<button onclick="moerQa.publishSucess('发表成功',3,'http://www.baidu.com')">发表成功后，带跳转</button>
+	<button onclick="moerQa.deleteAllDraft()">删除所有草稿</button>
+	<button onclick="moerQa.deleteThisDraft()">删除草稿</button>
+	<button onclick="moerQa.deleteCollection()">删除收藏</button>
+	<button onclick="moerQa.recommendTopic(true)">推荐到话题广场(已推)</button>
+	<button onclick="moerQa.recommendTopic(false)">推荐到话题广场(未推)</button>
+
+
+	<script src="jquery-1.9.0.min.js"></script>
+	<script src="moerQaDialog.js"></script>
+</body>
+</html>

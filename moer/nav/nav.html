@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="renderer" content="webkit">
+  <meta content="telephone=no" name="format-detection" />
+  <meta content="email=no" name="format-detection" />
+  <title>Document</title>
+
+  <style type="text/css">
+    *{margin:0;padding:0;}
+    html,body{width:100%;height:100%;overflow:hidden;}
+    .container{width:100%;height:100%;position:absolute;left:0;top:0%;}
+    .container .page{height:100%;position:relative;background:url(images/bg.png) no-repeat;overflow:hidden;}
+    .container .page img {max-width:100%;}
+    .container .page .stepimg {position:relative;}
+    .container .page .step11 {position:absolute;bottom:30px;right:20px;}
+    .container .page .stepimg12 {position:absolute;top:30%;left:30%;}
+    .container .page .step21 {margin-top:10px;margin-left:10px;}
+    .container .page .stepimg22 {left:20px;}
+    .container .step1-icon {position:absolute;bottom:65px;left:110px;}
+    .container .page .step31 {margin-top:10px;margin-left:10px;}
+    .container .page .stepimg32 {position:absolute;right:10px;bottom:10px;}
+    .container .step2-icon {position:absolute;bottom:130px;left:-5px;}
+    .container .page .step41 {margin-top:10px;margin-left:10px;}
+    .container .page .stepimg42 {left:40px;}
+    .container .step3-icon {position:absolute;bottom:200px;left:20px;}
+
+    .container .page0{background-position:left -400px;}
+    .container .page1{background-position:center -450px;}
+    .container .page2{background-position:center bottom;}
+    .container .page3{background-position:left -700px;}
+  </style>
+  <script src="jquery-1.11.1.min.js"></script>
+  <script src="jquery.touchSwipe.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(
+      function() {
+        var nowpage = 0;
+        //给最大的盒子增加事件监听
+        $(".container").swipe(
+          {
+            swipe:function(event, direction, distance, duration, fingerCount) {
+               if(direction == "up"){
+                nowpage = nowpage + 1;
+               }else if(direction == "down"){
+                nowpage = nowpage - 1;
+               }
+               if(nowpage > 3){
+                nowpage = 3;
+               }
+               if(nowpage < 0){
+                nowpage = 0;
+               }
+              $(".container").animate({"top":nowpage * -100 + "%"},400);
+              $(".page").eq(nowpage).addClass("cur").siblings().removeClass("cur");
+            }
+          }
+        );
+      }
+    );
+  </script>
+</head>
+<body onmousewheel="return false;">
+  <div class="container">
+    <div class="page page0 cur">
+      <div class="stepimg12"><img src="images/12.png" alt=""></div><div class="step11"><img src="images/11.png" alt=""></div>
+    </div>
+    <div class="page page1">
+      <div class="step21"><img src="images/21.png" alt=""></div><div class="stepimg stepimg22"><img src="images/22.png" alt=""><img class="step1-icon" src="images/23.png" alt=""></div>
+    </div>
+    <div class="page page2">
+      <div class="step31"><img src="images/31.png" alt=""></div><div class="stepimg stepimg32"><img src="images/32.png" alt=""><img class="step2-icon" src="images/33.png" alt=""></div>
+    </div>
+    <div class="page page3">
+      <div class="step41"><img src="images/41.png" alt=""></div><div class="stepimg stepimg42"><img src="images/42.png" alt=""><img class="step3-icon" src="images/43.png" alt=""></div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <!-- <link rel="stylesheet" href="main.css"> -->
+  <link rel="stylesheet" href="header.css">
+</head>
+<body>
+  <!--头部开始-->
+  <div class="header" id="header-cont">
+    <div class="header-box">
+      <a href=""><img class="logo" src="./images/logo.png"></a>
+      <div class="search">
+        <input class="search_text" id="search_text" name="searchName" type="text" style="color:#B2B2B2" value="搜索关键词 如股票" onfocus="if(this.value==&#39;搜索关键词 如股票&#39;){this.value=&#39;&#39;};this.style.color=&#39;black&#39;;" onblur="if(this.value==&#39;&#39;||this.value==&#39;搜索关键词 如股票&#39;){this.value=&#39;搜索关键词 如股票&#39;;this.style.color=&#39;#B2B2B2&#39;;}">
+        <input class="search_botton" id="search_botton" type="button">
+      </div>
+      <div class="header-nav">
+        <div class="header-nav-left">
+          <ul>
+            <li class="t1"><a href="http://moer.jiemian.com/stockInit.htm">自选股</a></li>
+            <li class="t2 nav-dropdown"><a href="http://moer.jiemian.com/scoop.htm">独家报道</a>
+              <div class="nav-sub">
+                <ul>
+                  <li><a href="">今日热门</a></li>
+                  <li><a href="">沪深</a></li>
+                  <li><a href="">港股</a></li>
+                  <li><a href="">全球</a></li>
+                  <li><a href="">更多</a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="t3"><a href="http://moer.jiemian.com/investment.htm">投资观点</a></li>
+            <li class="t4 nav-dropdown"><a href="http://moer.jiemian.com/marketDyna.htm">市场动态</a>
+              <div class="nav-sub">
+                <ul>
+                  <li><a href="">今日热门</a></li>
+                  <li><a href="">沪深</a></li>
+                  <li><a href="">港股</a></li>
+                  <li><a href="">全球</a></li>
+                  <li><a href="">更多</a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="t5 t5_1"><a href="http://moer.jiemian.com/authorarticle.htm">成为撰稿人</a></li>
+            <li class="t6">
+              <a href="javascript:;">
+                <div id="myscroll" class="cls_container">
+                  <table id="stockIndex" border="0" cellpadding="0" cellspacing="0">
+                    <tbody>
+                      <tr>
+                        <td class="up">上证指数 </td>
+                        <td>3279.533</td>
+                        <td class="red">+16.481</td>
+                        <td class="red">+0.51%</td>
+                      </tr>
+                      <tr>
+                        <td class="up">深证成指 </td>
+                        <td>11655.075</td>
+                        <td class="red">+128.852</td>
+                        <td class="red">+1.12%</td>
+                      </tr>
+                      <tr>
+                        <td class="up">沪深300 </td>
+                        <td>3530.822</td>
+                        <td class="red">+22.922</td>
+                        <td class="red">+0.65%</td>
+                      </tr>
+                      <tr>
+                        <td class="down">恒生指数</td>
+                        <td>24465.38</td>
+                        <td class="green">-237.40</td>
+                        <td class="green">-0.96%</td>
+                      </tr>
+                      <tr>
+                        <td class="down">标普指数</td>
+                        <td>2107.78</td>
+                        <td class="green">-9.61</td>
+                        <td class="green">-0.45%</td>
+                      </tr>
+                      <tr>
+                        <td class="down">纳斯达克</td>
+                        <td>4979.90</td>
+                        <td class="green">-28.19</td>
+                        <td class="green">-0.56%</td>
+                      </tr>
+                      <tr>
+                        <td class="down">道琼斯</td>
+                        <td>18203.37</td>
+                        <td class="green">-85.26</td>
+                        <td class="green">-0.47%</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </a>
+            </li>
+            <li class="t14"><div><input type="text" placeholder="搜索 股票/撰稿人/关键字"><button type="submit"></button></div></li>
+          </ul>
+        </div>
+        <div class="header-nav-right">
+          <ul>
+            <li class="t7"><a href="" target="_blank"></a></li>
+            <li class="t8"><a href="" target="_blank"></a></li>
+            <li class="t9">
+              <div class="qr_box2">
+                <img src="./images/QR.fw.png">
+              </div>
+            </li>
+            <li class="t13"><a href="javascript:;"><strong id="carCount" style="display: none;">0</strong></a></li>
+          </ul>
+          <div class="t12">
+            <div class="center_box" style="cursor: pointer;">
+              <img class="round_50" style="width:30px;height:30px;" src="./images/avatar_small.png">
+              <span>王王王王王<strong id="msgCount" style="display: none;">0</strong></span>
+            </div>
+            <ul class="header-dropdown">
+              <li><a href="">我的发布</a></li>
+              <li><a href="">订单管理</a></li>
+              <li><a href="">购买记录</a></li>
+              <li id="privateMsg"><a href="">私&nbsp;&nbsp;&nbsp;&nbsp;信</a></li>
+              <li id="sysMsg"><a href="">系统消息</a></li>
+              <li><a href="">账户设置</a></li>
+              <li><a href="javascript:;" exit="">退出帐号</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="fixed-right">
+      <div class="fixed-center">
+        <a href="" class="fixed-btn fixed-btn-weibo"></a>
+        <a href="" class="fixed-btn fixed-btn-weixin">
+          <div class="fixed-qr">
+            <img src="./images/QR.fw.png">
+          </div>
+        </a>
+      </div>
+      <div class="fixed-bottom">
+        <a href="" class="fixed-btn fixed-btn-jianyi"></a>
+        <a href="" class="fixed-btn fixed-btn-top"></a>
+      </div>
+    </div>
+  </div>
+  <div style="width:1180px;height:2000px;background:#ccc;margin:0 auto;"></div>
+  <script src="../jquery-1.9.0.min.js"></script>
+  <script>
+    $(window).scroll(function(){
+      var scrollTop = $(this).scrollTop();
+      if(scrollTop > 0 ){
+        $("#header-cont").addClass("header-min");
+      }else{
+        $("#header-cont").removeClass("header-min");
+      }
+    })
+  </script>
+</body>
+</html>
