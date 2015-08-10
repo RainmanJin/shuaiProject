@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="renderer" content="webkit">
+	<meta content="telephone=no" name="format-detection" />
+	<meta content="email=no" name="format-detection" />
+	<title>摩尔股票</title>
+</head>
+<body>
+	<div>
+		<div id="line-Chart" style="background:rgba(255,255,0,.2);"></div>
+	</div>
+	<script src="jquery-1.9.0.min.js"></script>
+	<script>
+		function wResize() {
+			var width= $(window).width(); //获取窗体宽度
+			//			var height = $(window).height(); //获取窗体高度
+			var height = Math.floor(width*7/18);
+			//动态修改容器大小
+			$("#line-Chart").width(width).height(height);
+		}
+		$(document).ready(function(){
+			wResize();
+			//监听窗体大小变更事件
+			$(window).resize(wResize());
+			$(document).resize(wResize());
+		});
+		var stock_status = 1;
+		var past_back_price = 32.44;
+
+
+//		分时  fsStock();
+//		5日   fiveStock();
+//		日K   kChartsDay();
+//		周K   kChartsWeek();
+//		月K   kChartsMonth();
+
+
+	</script>
+	<script src="highstock.js"></script>
+	<script src="stock-chart.js"></script>
+	<script src="stock-5Day.js"></script>
+	<script src="kCharts-day.js"></script>
+	<script src="kCharts-week.js"></script>
+	<script src="kCharts-month.js"></script>
+</body>
+</html>

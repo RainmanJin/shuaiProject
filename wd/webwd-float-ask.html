@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+<head>
+  <meta charset="UTF-8">
+  <meta name="renderer" content="webkit">
+  <title>页面浮层</title>
+  <link rel="stylesheet" href="../moerStatics/css/main.css">
+  <link rel="stylesheet" href="./css/wenda/wenda.css">
+</head>
+<body>
+  <button id="show-wdpopup">显示浮层</button>
+  <div class="wdpopup" style="display:block;">
+    <div class="wdpopup-ask">
+      <div class="wdpopup-head">
+        <span class="wdpopup-off"></span>
+        <h3>提问</h3>
+      </div>
+      <div class="wdpopup-body">
+        <div class="wdpopup-title">
+          <p class="wdpopup-error">您还没有给问题添加问号</p>
+          <input type="text" class="" id="wdpopup-title" placeholder="写下你的问题" maxlength="50">
+          <p class="wdpopup-wordnum">最多可输入50字</p>
+        </div>
+        <div class="wdpopup-problem">
+          <h5>问题说明（可选）</h5>
+          <textarea class="" id="wdpopup-problem" placeholder="问题背景，条件等信息。" maxlength="500"></textarea>
+          <p>还可输入<span id="wdpopup-remainnum">500</span>字&nbsp;&nbsp;最多可输入500字</p>
+        </div>
+        <div class="wdpopup-stock">
+          <p>如果话题中涉及到个股也请在此添加个股标签</p>
+          <h5>添加股票(可选)：</h5>
+          <input type="text" class="" id="wdpopup-stock" placeholder="输入股票代码" maxlength="50">
+          <div class="wdpopup-select">
+            <ul id="wdpopup-select">
+              <li stocknum="深物业B(000001)">深物业B(000001)</li>
+              <li stocknum="深物业B(000002)">深物业B(000002)</li>
+              <li stocknum="深物业B(000003)">深物业B(000003)</li>
+              <li stocknum="深物业B(000004)">深物业B(000004)</li>
+              <li stocknum="深物业B(000005)">深物业B(000005)</li>
+              <li stocknum="深物业B(000006)">深物业B(000006)</li>
+              <li stocknum="深物业B(000007)">深物业B(000007)</li>
+              <li stocknum="深物业B(000008)">深物业B(000008)</li>
+              <li stocknum="深物业B(000009)">深物业B(000009)</li>
+              <li stocknum="深物业B(000010)">深物业B(000010)</li>
+              <li stocknum="深物业B(000011)">深物业B(000011)</li>
+              <li stocknum="深物业B(000012)">深物业B(000012)</li>
+              <li stocknum="深物业B(000013)">深物业B(000013)</li>
+              <li stocknum="深物业B(000014)">深物业B(000014)</li>
+              <li stocknum="深物业B(000015)">深物业B(000015)</li>
+              <li stocknum="深物业B(000016)">深物业B(000016)</li>
+              <li stocknum="深物业B(000017)">深物业B(000017)</li>
+              <li stocknum="深物业B(000018)">深物业B(000018)</li>
+              <li stocknum="深物业B(000019)">深物业B(000019)</li>
+              <li stocknum="深物业B(000020)">深物业B(000020)</li>
+              <li stocknum="深物业B(000021)">深物业B(000021)</li>
+              <li stocknum="深物业B(000022)">深物业B(000022)</li>
+              <li stocknum="深物业B(000023)">深物业B(000023)</li>
+              <li stocknum="深物业B(000024)">深物业B(000024)</li>
+              <li stocknum="深物业B(000025)">深物业B(000025)</li>
+              <li stocknum="深物业B(000026)">深物业B(000026)</li>
+              <li stocknum="深物业B(000027)">深物业B(000027)</li>
+              <li stocknum="深物业B(000028)">深物业B(000028)</li>
+              <li stocknum="深物业B(000029)">深物业B(000029)</li>
+              <li stocknum="深物业B(000030)">深物业B(000030)</li>
+              <li stocknum="什么股票(010001)">什么股票(010001)</li>
+              <li stocknum="什么股票(020002)">什么股票(020002)</li>
+              <li stocknum="什么股票(030003)">什么股票(030003)</li>
+              <li stocknum="什么股票(040004)">什么股票(040004)</li>
+              <li stocknum="什么股票(050005)">什么股票(050005)</li>
+              <li stocknum="什么股票(060006)">什么股票(060006)</li>
+              <li stocknum="什么股票(070007)">什么股票(070007)</li>
+              <li stocknum="什么股票(080008)">什么股票(080008)</li>
+              <li stocknum="什么股票(090009)">什么股票(090009)</li>
+              <li stocknum="什么股票(100010)">什么股票(100010)</li>
+              <li stocknum="什么股票(110011)">什么股票(110011)</li>
+              <li stocknum="什么股票(120012)">什么股票(120012)</li>
+              <li stocknum="什么股票(130013)">什么股票(130013)</li>
+              <li stocknum="什么股票(140014)">什么股票(140014)</li>
+              <li stocknum="什么股票(150015)">什么股票(150015)</li>
+              <li stocknum="什么股票(160016)">什么股票(160016)</li>
+              <li stocknum="什么股票(170017)">什么股票(170017)</li>
+              <li stocknum="什么股票(180018)">什么股票(180018)</li>
+              <li stocknum="什么股票(190019)">什么股票(190019)</li>
+              <li stocknum="什么股票(200020)">什么股票(200020)</li>
+              <li stocknum="什么股票(210021)">什么股票(210021)</li>
+              <li stocknum="什么股票(220022)">什么股票(220022)</li>
+              <li stocknum="不知道A(001001)">不知道A(001001)</li>
+              <li stocknum="不知道A(002002)">不知道A(002002)</li>
+              <li stocknum="不知道A(003003)">不知道A(003003)</li>
+              <li stocknum="不知道A(004004)">不知道A(004004)</li>
+              <li stocknum="不知道A(005005)">不知道A(005005)</li>
+              <li stocknum="不知道A(006006)">不知道A(006006)</li>
+              <li stocknum="不知道A(007007)">不知道A(007007)</li>
+              <li stocknum="不知道A(008008)">不知道A(008008)</li>
+              <li stocknum="不知道A(009009)">不知道A(009009)</li>
+              <li stocknum="不知道A(010010)">不知道A(010010)</li>
+              <li stocknum="不知道A(600101)">不知道A(600101)</li>
+              <li stocknum="不知道A(600202)">不知道A(600202)</li>
+              <li stocknum="不知道A(600303)">不知道A(600303)</li>
+              <li stocknum="不知道A(600404)">不知道A(600404)</li>
+              <li stocknum="不知道A(600505)">不知道A(600505)</li>
+              <li stocknum="不知道A(600606)">不知道A(600606)</li>
+              <li stocknum="不知道A(600707)">不知道A(600707)</li>
+              <li stocknum="不知道A(600808)">不知道A(600808)</li>
+              <li stocknum="不知道A(600909)">不知道A(600909)</li>
+              <li stocknum="添加股票不知道(401001)">添加股票不知道(401001)</li>
+              <li stocknum="添加股票不知道(402002)">添加股票不知道(402002)</li>
+              <li stocknum="添加股票不知道(403003)">添加股票不知道(403003)</li>
+              <li stocknum="添加股票不知道(404004)">添加股票不知道(404004)</li>
+              <li stocknum="添加股票不知道(405005)">添加股票不知道(405005)</li>
+              <li stocknum="添加股票不知道(406006)">添加股票不知道(406006)</li>
+              <li stocknum="添加股票不知道(407007)">添加股票不知道(407007)</li>
+              <li stocknum="添加股票不知道(408008)">添加股票不知道(408008)</li>
+              <li stocknum="添加股票不知道(409009)">添加股票不知道(409009)</li>
+              <li stocknum="添加股票不知道(410010)">添加股票不知道(410010)</li>
+              <li stocknum="添加股票不知道(411011)">添加股票不知道(411011)</li>
+              <li stocknum="添加股票不知道(412012)">添加股票不知道(412012)</li>
+              <li stocknum="添加股票不知道(413013)">添加股票不知道(413013)</li>
+              <li stocknum="添加股票不知道(414014)">添加股票不知道(414014)</li>
+              <li stocknum="添加股票不知道(415015)">添加股票不知道(415015)</li>
+              <li stocknum="添加股票不知道(416016)">添加股票不知道(416016)</li>
+              <li stocknum="添加股票不知道(417017)">添加股票不知道(417017)</li>
+              <li stocknum="添加股票不知道(418018)">添加股票不知道(418018)</li>
+              <li stocknum="添加股票不知道(419019)">添加股票不知道(419019)</li>
+              <li stocknum="添加股票不知道(420020)">添加股票不知道(420020)</li>
+              <li stocknum="添加股票不知道(420021)">添加股票不知道(420021)</li>
+              <li stocknum="添加股票不知道(420022)">添加股票不知道(420022)</li>
+              <li stocknum="添加股票不知道(420023)">添加股票不知道(420023)</li>
+            </ul>
+          </div>
+          <div class="wdpopup-span" id="wdpopup-span">
+          </div>
+          <p class="wdpopup-error">最多只能选择5只股票</p>
+        </div>
+        <div class="wdpopup-topic">
+          <h5>添加话题：</h5>
+          <p>至少添加一个话题</p>
+          <div class="wdpopup-topic-list" id="wdpopup-list">
+            <span value="买什么">买什么</span>
+            <span value="卖吗">卖吗</span>
+            <span value="跌了">跌了</span>
+            <span value="题材">题材</span>
+            <span value="逻辑">逻辑</span>
+            <span value="介入点">介入点</span>
+            <span value="目标位">目标位</span>
+            <span value="减仓">减仓</span>
+            <span value="增仓">增仓</span>
+            <span value="调仓">调仓</span>
+            <span value="打底">打底</span>
+            <span value="出货">出货</span>
+            <span value="上市公司">上市公司</span>
+            <span value="公告">公告</span>
+            <span value="重组">重组</span>
+            <span value="高运转">高运转</span>
+            <span value="大盘">大盘</span>
+            <span value="美股">美股</span>
+            <span value="港股">港股</span>
+            <span value="沪深">沪深</span>
+            <span value="宏观">宏观</span>
+            <span value="策略">策略</span>
+            <span value="中小板">中小板</span>
+            <span value="新三板">新三板</span>
+            <span value="创业板">创业板</span>
+            <span value="理财">理财</span>
+            <span value="基金">基金</span>
+            <span value="停牌">停牌</span>
+            <span value="涨停">涨停</span>
+            <span value="跌停">跌停</span>
+            <span value="资金">资金</span>
+          </div>
+          <p class="wdpopup-error">最多可添加5个话题</p>
+        </div>
+      </div>
+      <div class="wdpopup-foot">
+        <div class="wdpopup-anonymous">
+          <input type="checkbox" id="wdpopup-anonymous"><label for="wdpopup-anonymous">匿名</label>
+        </div>
+        <button type="button" class="wdpopup-submit" id="wdpopup-submit">发布</button>
+        <a href="javascript:void(0)" class="wdpopup-cancel">取消</a>
+      </div>
+    </div>
+  </div>
+  <script src="./js/jquery-1.9.0.min.js"></script>
+  <script>
+  $("#show-wdpopup").click(function(){
+    
+  });
+  // 监控input、textarea输入
+  (function($){
+    $.fn.watch = function(callback){
+      return this.each(function(){
+        //缓存以前的值
+        $.data(this,'originVal',$(this).val());
+        //event
+        $(this).on('keyup paste',function(){
+            var originVal = $(this,'originVal');
+            var currentVal = $(this).val();
+            if (originVal !== currentVal){
+              $.data(this,'originVal',$(this).val());
+              callback(currentVal);
+            };
+        });
+      });
+    };
+  })(jQuery);
+  function validate(){
+    var titleLength = $("#wdpopup-title").val().length;
+    var titleLast = $("#wdpopup-title").val().charAt((titleLength-1));
+    if(titleLast == "?" || titleLast == "？"){
+      $("#wdpopup-title").siblings(".wdpopup-error").hide();
+    }else{
+      $("#wdpopup-title").siblings(".wdpopup-error").show();
+    }
+  };
+  $("#wdpopup-title").blur(function(){
+    validate();
+  });
+  $("#wdpopup-problem").watch(function(value){
+    $("#wdpopup-remainnum").html(500-value.length);
+  });
+  $(document).on("click","#wdpopup-list span",function(){
+    if($(this).hasClass("select") == false){
+      if($(this).siblings(".select").length < 5){
+        $(this).addClass("select");
+      }else{
+        $(this).parent().next().show();
+      }
+    }else{
+      $(this).removeClass("select");
+      $(this).parent().next().hide();
+    }
+  });
+  $("#wdpopup-stock").watch(function(value){
+    $(".wdpopup-select").show();
+    $("#wdpopup-select li").hide();
+    $("#wdpopup-select li[stocknum*="+ value +"]").show();
+    if($("#wdpopup-select li[stocknum*="+ value +"]").length < 1){
+      $("#wdpopup-select").append("<li stocknum=''>暂无股票代码</li>").show();
+    }
+  });
+  $(document).on("click","#wdpopup-select li",function(){
+    $(".wdpopup-select").hide();
+    $("#wdpopup-stock").val("");
+    if($("#wdpopup-span span").length < 5){
+      $(this).remove();
+      var stockNum = $(this).attr("stocknum");
+      if(stockNum != ""){
+        $("#wdpopup-span").append("<span value='" + stockNum + "'><u>" + stockNum + "</u><i></i></span>");
+      }
+    }else{
+      $("#wdpopup-span").next().show();
+    }
+  });
+  $(document).on("click","#wdpopup-span span i",function(){
+    $(this).parent().remove();
+    $("#wdpopup-span").next().hide();
+  });
+  $(document).on("click","#wdpopup-submit",function(){
+    var wdTitle = $("#wdpopup-title").val(); //标题
+    var wdProblem = $("#wdpopup-problem").val(); //问题内容
+    var wdStock = ""; //相关股票代码
+    var wdTopic = ""; //相关话题
+    var wdAnonymous; //是否匿名
+    $("#wdpopup-span span").each(function(){
+      wdStock += $(this).attr("value")+",";
+    });
+    $("#wdpopup-list .select").each(function(){
+      wdTopic += $(this).attr("value")+",";
+    });
+    if($("#wdpopup-anonymous").is(":checked")){
+      wdAnonymous = 1;
+    }else{
+      wdAnonymous = 0;
+    };
+    console.info("标题：,,"+wdTitle+",,,,,问题内容：,,"+wdProblem+",,,,,相关股票：,,"+wdStock+",,,,,相关话题：,,"+wdTopic+",,,,,匿名为1不匿为0,,"+wdAnonymous);
+    validate();
+    if(wdTitle != "" || wdProblem != ""){
+      console.log("1");
+    }else{
+      console.log("2");
+    }
+  });
+  $(document).on("click",".wdpopup-cancel,span.wdpopup-off",function(){
+    $(".wdpopup").remove();
+  });
+  </script>
+</body>
+</html>

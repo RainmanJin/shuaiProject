@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>自选股最终页</title>
+  <link rel="stylesheet" href="./css/optionalStock.css">
+</head>
+<body>
+  <div class="container">
+    <div class="stock-cont">
+      <div class="stock-info">
+        <div class="info-title">
+          <button type="button" class="zxg-btn btn-style-1">添加到分组</button>
+          <h1><span>600539</span>狮头股份</h1>
+          <p>公司是经山西省人民政府晋政函[1999]第64号文批准...<span class="updown"></span></p>
+        </div>
+        <div class="info-data">
+          <table>
+            <tbody>
+              <tr>
+                <td width="">昨收</td>
+                <td width="140">成交量（万手）</td>
+                <td width="125">换手率</td>
+                <td width="110">最高</td>
+                <td width="150">总市值（亿）</td>
+                <td width="115">振幅</td>
+              </tr>
+              <tr>
+                <td>9.50</td>
+                <td>7.81</td>
+                <td>3.40%</td>
+                <td class="font-red">9.53</td>
+                <td>20.93</td>
+                <td>20.93</td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr>
+                <td>今开</td>
+                <td>成交额（亿）</td>
+                <td>市净率</td>
+                <td>最低</td>
+                <td>流通市值</td>
+                <td>市盈率</td>
+              </tr>
+              <tr>
+                <td>9.50</td>
+                <td>0.72</td>
+                <td>4.22</td>
+                <td class="font-green">8.87</td>
+                <td>20.93</td>
+                <td>20.93</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="info-stockprice">
+          <div class="info-price"> <!-- <div class="info-price font-red"> -->
+            <h2>12.34</h2>
+            <p><span>-0.03</span><span>-0.26%</span></p>
+          </div>
+          <div class="info-datetime"><span>交易中</span><time>北京时间 2015-03-19 18:39:00</time></div>
+          <div class="info-news"><span class=""></span><a href="" title="">2014年年度业绩预亏暨公司股票可能被实施...</a></div>
+        </div>
+      </div>
+      <div class="info-chart">
+        <div class="line-chart" id="lineChart">
+        </div>
+      </div>
+    </div>
+    <div class="stock-left">
+      <div class="stock-relation">
+        <div class="stock-relation-tab">
+          <h3 class="cur">主力资金</h3>
+          <h3>公告</h3>
+          <h3>相关投资观点</h3>
+          <h3>相关独家报道</h3>
+        </div>
+      </div>
+    </div>
+    <div class="stock-right"></div>
+  </div>
+  
+  <script src="./js/jquery-1.9.0.min.js"></script>
+  <script src="./js/highstock.js"></script>
+  <script src="./js/stock-chart.js"></script>
+</body>
+</html>

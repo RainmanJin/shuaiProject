@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <title>530成长测试，你成了股神还是韭菜？</title>
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="format-detection" content="email=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="keywords" content="股票,基金,期货,概念,行情,拉升,重组,借壳,庄股,高送转,定增,价值,估值" />
+  <meta name="description" content="摩尔金融是全球最精准的中文金融平台，涵盖A股，美股,港股,分级,基金,宏观,债券,AH,期货,信托，包括概念,行情,拉升,重组,借壳,庄股,高送转,定增,价值,估值等。" />
+  <link rel="shortcut icon" type="image/x-icon" href="./images/share530.ico" />
+  <link rel="apple-touch-icon-precomposed" href="./images/share530.png">
+  <link rel="stylesheet" href="./css/moer530.css">
+</head>
+<body>
+    <img src="./images/share530.png" style="width:1px;height:1px;display:block;position:relative;z-index:-1;">
+    <div id="loading" class="page">
+      <div class="spinner">
+        <div class="spinner-container container1">
+          <div class="circle1"></div>
+          <div class="circle2"></div>
+          <div class="circle3"></div>
+          <div class="circle4"></div>
+        </div>
+        <div class="spinner-container container2">
+          <div class="circle1"></div>
+          <div class="circle2"></div>
+          <div class="circle3"></div>
+          <div class="circle4"></div>
+        </div>
+        <div class="spinner-container container3">
+          <div class="circle1"></div>
+          <div class="circle2"></div>
+          <div class="circle3"></div>
+          <div class="circle4"></div>
+        </div>
+      </div>
+    </div>
+  <div class="container weibo" id="container">
+    <div class="page page-0 show">
+      <span class="start"></span>
+    </div>
+    <div class="page page-1 hide">
+      <span class="q1-yes"></span>
+      <span class="q1-no"></span>
+    </div>
+    <div class="page page-2 hide">
+      <span class="q2-yes"></span>
+      <span class="q2-no"></span>
+    </div>
+    <div class="page page-3 hide">
+      <span class="q3-1"></span>
+      <span class="q3-2"></span>
+      <span class="q3-3"></span>
+      <span class="q3-4"></span>
+    </div>
+    <div class="page page-4 hide">
+      <span class="q4-1"></span>
+      <span class="q4-2"></span>
+    </div>
+    <div class="page page-5 hide answer">
+      <span class="share"></span>
+      <span class="join"></span>
+    </div>
+    <div class="page page-6 hide answer">
+      <span class="share"></span>
+      <span class="join"></span>
+    </div>
+    <div class="page page-7 hide answer">
+      <span class="share"></span>
+      <span class="zan"></span>
+    </div>
+    <div class="page page-8 hide answer">
+      <span class="share"></span>
+      <span class="zan"></span>
+    </div>
+    <div class="page page-9 hide answer">
+      <span class="share"></span>
+      <span class="zan"></span>
+    </div>
+    <div class="page page-10 hide answer">
+      <span class="share"></span>
+      <span class="zan"></span>
+    </div>
+    <div class="page page-11 hide answer">
+      <span class="share"></span>
+      <span class="zan"></span>
+    </div>
+    <div class="page page-12 hide answer">
+      <span class="share"></span>
+      <span class="join"></span>
+    </div>
+    <div class="page page-13 hide answer">
+      <span class="share"></span>
+      <span class="join"></span>
+    </div>
+    <div class="page page-14 hide answer">
+      <span class="share"></span>
+      <span class="zan"></span>
+    </div>
+    <div class="page page-15 hide answer">
+      <span class="share"></span>
+      <span class="zan"></span>
+    </div>
+    <div class="page page-16 hide answer">
+      <span class="share"></span>
+      <span class="join"></span>
+    </div>
+    <div class="page page-17 hide answer">
+      <span class="share"></span>
+      <span class="zan"></span>
+    </div>
+    <div class="page page-18 hide answer">
+      <span class="share"></span>
+      <span class="zan"></span>
+    </div>
+    <div class="page page-19 hide answer">
+      <span class="share"></span>
+      <span class="join"></span>
+    </div>
+    <div class="page page-20 hide answer">
+      <span class="share"></span>
+      <span class="join"></span>
+    </div>
+    <div class="page page-21 hide">
+      <span class="q5-1"></span>
+      <span class="q5-2"></span>
+      <span class="q5-3"></span>
+      <span class="q5-4"></span>
+    </div>
+    <div class="page page-22 hide">
+      <span class="q6-1"></span>
+      <span class="q6-2"></span>
+      <span class="q6-3"></span>
+      <span class="q6-4"></span>
+    </div> 
+    <div class="audio-cont" id="audiobtn" onclick="stop()">
+      <audio src="./audio/shuaicongge.mp3" loop autoplay="autoplay" id="audio" volume="0.1"></audio>
+    </div>
+  </div>
+  <script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script>
+  var audio = document.getElementById('audio');
+  $("#audio").ready(function() {
+    $("#loading").hide();
+      audio.play();
+  });
+  audio.volume = 0.1;
+  function stop(){
+    if(audio.paused){
+      audio.play();
+      $("#audiobtn").removeClass("audio-cont1").addClass("audio-cont");
+      return;
+    }
+    audio.pause();
+    $("#audiobtn").removeClass("audio-cont").addClass("audio-cont1");
+  }
+  $(".container,.page").width($(window).width()).height($(window).height());
+  if($(window).width()>768){
+    $(".container,.page").width(480).height($(window).height());
+    $(".container").css("margin","0 auto");
+  }
+  var ans = "";
+  $(".start").click(function(){
+    $(".page-0").hide();
+    $(".page-1").show();
+  });
+  $(".q1-yes").click(function(){
+    $(".page-1").hide();
+    $(".page-2").show();
+    ans += 1;
+  });
+  $(".q1-no").click(function(){
+    $(".page-1").hide();
+    $(".page-21").show();
+    ans += 2;
+  });
+  $(".q2-yes").click(function(){
+    $(".page-2").hide();
+    $(".page-4").show();
+    ans += 1;
+  });
+  $(".q2-no").click(function(){
+    $(".page-2").hide();
+    $(".page-3").show();
+    ans += 2;
+  });
+  $(".q4-1").click(function(){
+    $(".page-4").hide();
+    $(".page-3").show();
+    ans += 1;
+  });
+  $(".q4-2").click(function(){
+    $(".page-4").hide();
+    $(".page-3").show();
+    ans += 2;
+  });
+  $(".q5-1,.q5-2,.q5-3,.q5-4").click(function(){
+    $(".page-21").hide();
+    $(".page-22").show();
+    ans += 1;
+  });
+  $(".q6-1,.q6-2,.q6-3,.q6-4").click(function(){
+    $(".page-22").hide();
+    $(".page-3").show();
+    ans += 1;
+  });
+  $(".q3-1").click(function(){
+    $(".page-3").hide();
+    ans += 1;
+    result(ans);
+  });
+  $(".q3-2").click(function(){
+    $(".page-3").hide();
+    ans += 2;
+    result(ans);
+  });
+  $(".q3-3").click(function(){
+    $(".page-3").hide();
+    ans += 3;
+    result(ans);
+  });
+  $(".q3-4").click(function(){
+    $(".page-3").hide();
+    ans += 4;
+    result(ans);
+  });
+  function result(ans){
+    var n = parseInt(ans);
+    switch(n){
+      case 2111:
+        $(".page-12").show();
+        $("title").html("【"+$("title").html()+"】"+"我是股市新韭菜！修炼尚未到位，同志还须努力！你呢？");
+        break;
+      case 2112:
+        $(".page-9").show();
+        $("title").html("【"+$("title").html()+"】"+"我是理财能手，修炼尚未到位~你呢？");
+        break;
+      case 2113:
+        $(".page-10").show();
+        $("title").html("【"+$("title").html()+"】"+"我是理财专家，修炼尚未到位~你呢？");
+        break;
+      case 2114:
+        $(".page-11").show();
+        $("title").html("【"+$("title").html()+"】"+"我是未来股神，努力跟上牛市的步伐！你呢？");
+        break;
+      case 1111:
+        $(".page-6").show();
+        $("title").html("【"+$("title").html()+"】"+"我是淡定巴菲特，关灯吃面，求安慰~你呢？");
+        break;
+      case 1112:
+        $(".page-5").show();
+        $("title").html("【"+$("title").html()+"】"+"我是淡定巴菲特，哭晕在厕所里~你呢？");
+        break;
+      case 1113:
+        $(".page-7").show();
+        $("title").html("【"+$("title").html()+"】"+"我是淡定巴菲特，下一个股神就是我！你呢？");
+        break;
+      case 1114:
+        $(".page-8").show();
+        $("title").html("【"+$("title").html()+"】"+"duang~duang~新一代股神有木有？！你呢？");
+        break;
+      case 1121:
+        $(".page-13").show();
+        $("title").html("【"+$("title").html()+"】"+"我是老韭菜，被割求安慰~你呢？");
+        break;
+      case 1122:
+        $(".page-16").show();
+        $("title").html("【"+$("title").html()+"】"+"嘘，好险，老韭菜差点被割！你呢？");
+        break;
+      case 1123:
+        $(".page-15").show();
+        $("title").html("【"+$("title").html()+"】"+"老韭菜要翻身啦！你呢？");
+        break;
+      case 1124:
+        $(".page-14").show();
+        $("title").html("【"+$("title").html()+"】"+"韭菜变股神，新一代股神有木有？！你呢？");
+        break;
+      case 121:
+        $(".page-19").show();
+        $("title").html("【"+$("title").html()+"】"+"逃顶王哭晕在厕所~你呢？");
+        break;
+      case 122:
+        $(".page-20").show();
+        $("title").html("【"+$("title").html()+"】"+"逃顶王关灯吃面，求安慰~你呢？");
+        break;
+      case 123:
+        $(".page-18").show();
+        $("title").html("【"+$("title").html()+"】"+"我是逃顶王，下一个股神就是我！你呢？");
+        break;
+      case 124:
+        $(".page-17").show();
+        $("title").html("【"+$("title").html()+"】"+"我是逃顶王~ 蜕变成股神！你呢？");
+        break;
+      default:
+        break;
+    }
+  }
+  $(".zan,.join").click(function(){
+    window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx3494adeeee1d6202&redirect_uri=http://moer.jiemian.com/wapIndex.htm&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
+  })
+  </script>
+</body>
+</html>

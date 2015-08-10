@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8">
+	<title>ECharts</title>
+</head>
+<body>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="main" style="height:400px"></div>
+<div id="main1" style="height:200px"></div>
+<!-- ECharts单文件引入 -->
+<script src="jquery-1.9.0.min.js"></script>
+<script src="echarts-all.js"></script>
+<script type="text/javascript">
+	Date.prototype.format = function(format) {
+		var date = {
+			"M+": this.getMonth() + 1,
+			"d+": this.getDate(),
+			"h+": this.getHours(),
+			"m+": this.getMinutes(),
+			"s+": this.getSeconds(),
+			"q+": Math.floor((this.getMonth() + 3) / 3),
+			"S+": this.getMilliseconds()
+		};
+		if (/(y+)/i.test(format)) {
+			format = format.replace(RegExp.$1, (this.getFullYear() + '').substr(4 - RegExp.$1.length));
+		}
+		var k;
+		for (k in date) {
+			if (new RegExp("(" + k + ")").test(format)) {
+				format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? date[k] : ("00" + date[k]).substr(("" + date[k]).length));
+			}
+		}
+		return format;
+	};
+
+	$.ajax({
+		url: "1438847596710.json",
+		async: false,
+		success: function (data) {
+			var xtime = [];
+			var yvalue = [];
+			var yesterday = [];
+			var ybar = [];
+			for (var i = 0; i < data.length; i++) {
+				var xdate = new Date();
+				xdate.setTime(Number(data[i][0]));
+				xdate = xdate.format('h:m');
+				xtime.push(
+					xdate
+//					data[i][0]
+				);
+				yvalue.push(
+					data[i][1]
+				);
+				yesterday.push(
+					data[i][2]
+				);
+				ybar.push(
+					data[i][3]
+				);
+			}
+//console.log(xtime);
+//console.log(xdate);
+			var option;
+			var option1;
+			option = {
+				tooltip : {
+					show:true,
+					trigger: 'axis'
+				},
+				legend: {
+					show:false,
+					data:['最高','最低']
+				},
+				toolbox: {
+					show : false,
+					feature : {
+						mark : {show: true},
+						dataView : {readOnly:false},
+						magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+						restore : {show: true},
+						saveAsImage : {show: true}
+					}
+				},
+				calculable : true,
+				dataZoom : {
+					show : false
+//					realtime : true,
+//					start : 40,
+//					end : 60
+				},
+				xAxis : [
+					{
+						type : 'category',
+						scale:true,
+//						boundaryGap : true,
+						data : function (){
+//							date.setTime(Number(xtime[0][0]));
+							return xtime;
+						}(),
+						axisTick:{
+//							interval:
+						},
+						axisLabel:{
+							interval:70
+						}
+					}
+				],
+				yAxis : [
+					{
+						type : 'value',
+						scale:true,
+						boundaryGap: [0, 0]
+					}
+				],
+				series : [
+					{
+						name:'分时图',
+						type:'line',
+						itemStyle: {normal: {areaStyle: {type: 'default'}}},
+						data:function (){
+							console.log(yvalue);
+							return yvalue;
+						}(),
+						symbol: "none"
+					},
+					{
+						name:'分时图',
+						type:'line',
+//						itemStyle: {normal: {areaStyle: {type: 'default'}}},
+						data:function (){
+							return yesterday;
+						}(),
+						symbol: "none"
+					}
+				]
+			};
+			option1 = {
+				title:{
+					show:false
+				},
+				tooltip : {
+					show:false,
+					trigger: 'axis'
+				},
+				legend: {
+					show:false,
+					data:['最高','最低']
+				},
+				toolbox: {
+					show : false,
+					feature : {
+						mark : {show: true},
+						dataView : {readOnly:false},
+						magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+						restore : {show: true},
+						saveAsImage : {show: true}
+					}
+				},
+				calculable : true,
+				dataZoom : {
+					show : false,
+					realtime : true
+//					start : 40,
+//					end : 60
+				},
+//				timeline:{
+//					data : function (){
+//						return xtime;
+//					}()
+//				},
+				xAxis : [
+					{
+						show:false,
+						type : 'category',
+						boundaryGap : true,
+						data : function (){
+							return xtime;
+						}()
+					}
+				],
+				yAxis : [
+					{
+						type : 'value',
+						scale:true,
+						boundaryGap: [0.01, 0.01]
+					}
+				],
+				series : [
+					{
+						name: "成交量",
+						type: 'bar',
+						data: function (){
+							return ybar;
+						}(),
+						barWidth: 1
+					}
+				]
+			};
+			var myChart = echarts.init(document.getElementById('main'));
+			var myChart1 = echarts.init(document.getElementById('main1'));
+			myChart.setOption(option);
+			myChart1.setOption(option1);
+			myChart.connect([myChart, myChart1]);
+			myChart1.connect([myChart1, myChart]);
+		}
+	});
+</script>
+</body>

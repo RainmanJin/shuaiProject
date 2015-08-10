@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <button onclick="jsClockGMT()">time</button>
+  <div id="clock0"></div>
+  <script src="prototype.js"></script>
+  <script src="NTP.js"></script>
+  <script language="javascript">
+    NTP.sync();
+  </script>
+  <script>
+    function jsClockGMT(){
+       // Copyright 1999 - 2001 by Ray Stott
+      if (!document.getElementById('clock0')) {
+      return;
+      }
+      gmtMS = NTP.fixTime(); // offset for how bad our clock is off zulu to zulu
+      var gmtTime =  new Date(gmtMS); // build a new object so we get the right txt back
+
+      var monthNames = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
+      var hour = gmtTime.getHours();
+      var minute = gmtTime.getMinutes();
+      var second = gmtTime.getSeconds();
+      var year = gmtTime.getFullYear();
+      var month = monthNames[gmtTime.getMonth()];
+      var day = gmtTime.getDate();
+      var temp = day + " " + month + " " + year;
+      temp += " " + ((hour < 10) ? "0" : "") + hour;
+      temp += ((minute < 10) ? ":0" : ":") + minute;
+      temp += ((second < 10) ? ":0" : ":") + second;
+      temp += " Z ";
+      document.getElementById('clock0').innerHTML = temp;
+      setTimeout("jsClockGMT()",1000);
+    }
+  </script>
+</body>
+</html>

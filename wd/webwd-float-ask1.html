@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN" ng-app>
+<head>
+  <meta charset="UTF-8">
+  <meta name="renderer" content="webkit">
+  <title>页面浮层</title>
+  <link rel="stylesheet" href="../moerStatics/css/main.css">
+  <link rel="stylesheet" href="./css/wenda/wenda.css">
+  <script src="./js/jquery-1.9.0.min.js"></script>
+  <script src="./js/angular-1.0.1.min.js"></script>
+</head>
+<body>
+  {{text}}
+  <button id="show-wdpopup" onclick="">显示浮层</button>
+  <script>
+  $("#show-wdpopup").click(function(){
+    var wdPopupAsk = "<div class='wdpopup'><div class='wdpopup-ask'><div class='wdpopup-head'><span class='wdpopup-off'></span><h3>提问</h3></div><div class='wdpopup-body'><div class='wdpopup-title'><p class='wdpopup-error'>您还没有给问题添加问号</p><input type='text' class=' id='wdpopup-title' placeholder='写下你的问题' maxlength='50'><p class='wdpopup-wordnum'>最多可输入50字</p></div><div class='wdpopup-problem'><h5>问题说明（可选）</h5><textarea class=' id='wdpopup-problem' placeholder='问题背景，条件等信息。' maxlength='500'></textarea><p>还可输入<span id='wdpopup-remainnum'>500</span>字&nbsp;&nbsp;最多可输入500字</p></div><div class='wdpopup-stock'><p>如果话题中涉及到个股也请在此添加个股标签</p><h5>添加股票(可选)：</h5><input type='text' class=' id='wdpopup-stock' placeholder='输入股票代码' maxlength='50' ng-model='text'><div class='wdpopup-select'><ul id='wdpopup-select'><li stocknum='600421'>600421</li></ul></div><div class='wdpopup-span' id='wdpopup-span'></div><p class='wdpopup-error'>最多只能选择5只股票</p></div><div class='wdpopup-topic'><h5>添加话题：</h5><p>至少添加一个话题</p><div class='wdpopup-topic-list' id='wdpopup-list'></div><p class='wdpopup-error'>最多可添加5个话题</p></div></div><div class='wdpopup-foot'><div class='wdpopup-anonymous'><input type='checkbox' id='wdpopup-anonymous'><label for='wdpopup-anonymous'>匿名</label></div><button type='button' class='wdpopup-submit' id='wdpopup-submit'>发布</button><a href='javascript:void(0)' class='wdpopup-cancel'>取消</a></div></div></div>";
+    $("body").append(wdPopupAsk);
+  });
+  // 监控input、textarea输入
+  (function($){
+    $.fn.watch = function(callback){
+      return this.each(function(){
+        //缓存以前的值
+        $.data(this,'originVal',$(this).val());
+        //event
+        $(this).on('keyup paste',function(){
+          var originVal = $(this,'originVal');
+          var currentVal = $(this).val();
+          if (originVal !== currentVal){
+            $.data(this,'originVal',$(this).val());
+            callback(currentVal);
+          };
+        });
+      });
+    };
+  })(jQuery);
+  function validate(){
+    var titleLength = $("#wdpopup-title").val().length;
+    var titleLast = $("#wdpopup-title").val().charAt((titleLength-1));
+    if(titleLast == "?" || titleLast == "？"){
+      $("#wdpopup-title").siblings(".wdpopup-error").hide();
+    }else{
+      $("#wdpopup-title").siblings(".wdpopup-error").show();
+    }
+  };
+  $(document).on("blur","#wdpopup-title",function(){
+    validate();
+  });
+  $("#wdpopup-problem").watch(function(value){
+    $("#wdpopup-remainnum").html(500-value.length);
+  });
+  $(document).on("click","#wdpopup-list span",function(){
+    if($(this).hasClass("select") == false){
+      if($(this).siblings(".select").length < 5){
+        $(this).addClass("select");
+      }else{
+        $(this).parent().next().show();
+      }
+    }else{
+      $(this).removeClass("select");
+      $(this).parent().next().hide();
+    }
+  });
+  $("#wdpopup-stock").watch(function(value){
+    $(".wdpopup-select").show();
+    $("#wdpopup-select li").hide();
+    $("#wdpopup-select li[stocknum*="+ value +"]").show();
+    if($("#wdpopup-select li[stocknum*="+ value +"]").length < 1){
+      $("#wdpopup-select").append("<li stocknum=''>暂无股票代码</li>").show();
+    }
+  });
+  $(document).on("click","#wdpopup-select li",function(){
+    $(".wdpopup-select").hide();
+    $("#wdpopup-stock").val("");
+    if($("#wdpopup-span span").length < 5){
+      $(this).remove();
+      var stockNum = $(this).attr("stocknum");
+      if(stockNum != ""){
+        $("#wdpopup-span").append("<span value='" + stockNum + "'><u>" + stockNum + "</u><i></i></span>");
+      }
+    }else{
+      $("#wdpopup-span").next().show();
+    }
+  });
+  $(document).on("click","#wdpopup-span span i",function(){
+    $(this).parent().remove();
+    $("#wdpopup-span").next().hide();
+  });
+  $(document).on("click","#wdpopup-submit",function(){
+    var wdTitle = $("#wdpopup-title").val(); //标题
+    var wdProblem = $("#wdpopup-problem").val(); //问题内容
+    var wdStock = ""; //相关股票代码
+    var wdTopic = ""; //相关话题
+    var wdAnonymous; //是否匿名
+    $("#wdpopup-span span").each(function(){
+      wdStock += $(this).attr("value")+",";
+    });
+    $("#wdpopup-list .select").each(function(){
+      wdTopic += $(this).attr("value")+",";
+    });
+    if($("#wdpopup-anonymous").is(":checked")){
+      wdAnonymous = 1;
+    }else{
+      wdAnonymous = 0;
+    };
+    console.info("标题：,,"+wdTitle+",,,,,问题内容：,,"+wdProblem+",,,,,相关股票：,,"+wdStock+",,,,,相关话题：,,"+wdTopic+",,,,,匿名为1不匿为0,,"+wdAnonymous);
+    validate();
+    if(wdTitle != "" || wdProblem != ""){
+      console.log("1");
+    }else{
+      console.log("2");
+    }
+  });
+  $(document).on("click",".wdpopup-cancel",function(){
+    $(".wdpopup").remove();
+  });
+  </script>
+</body>
+</html>

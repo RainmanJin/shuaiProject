@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>列表 卡片</title>
+  <link rel="stylesheet" href="./css/optionalStock.css">
+</head>
+<body>
+  <div class="container">
+    <div class="stock-index">
+      <div class="stock-green">
+        <em></em>
+        <h3>上证指数</h3>
+        <h4><span></span>17849.04</h4>
+        <h5><span>-0.71%</span><span>-121%</span></h5>
+      </div>
+      <div class="stock-red">
+        <em></em>
+        <h3>深证指数</h3>
+        <h4><span></span>17849.04</h4>
+        <h5><span>+0.71%</span><span>+121%</span></h5>
+      </div>
+      <div class="stock-green">
+        <em></em>
+        <h3>创业板指数</h3>
+        <h4><span></span>17849.04</h4>
+        <h5><span>-0.71%</span><span>-121%</span></h5>
+      </div>
+      <div class="stock-green">
+        <em></em>
+        <h3>沪深300</h3>
+        <h4><span></span>17849.04</h4>
+        <h5><span>-0.71%</span><span>-121%</span></h5>
+      </div>
+      <div class="stock-green">
+        <em></em>
+        <h3>恒生指数</h3>
+        <h4><span></span>17849.04</h4>
+        <h5><span>-0.71%</span><span>-121%</span></h5>
+      </div>
+      <div class="stock-green">
+        <em></em>
+        <h3>道琼斯指数</h3>
+        <h4><span></span>17849.04</h4>
+        <h5><span>-0.71%</span><span>-121%</span></h5>
+      </div>
+      <div class="stock-green">
+        <em></em>
+        <h3>纳斯达克</h3>
+        <h4><span></span>17849.04</h4>
+        <h5><span>-0.71%</span><span>-121%</span></h5>
+      </div>
+    </div>
+    <div class="stock-group">
+      <div class="group-tab">
+        <a href="javascript:void(0)">添加分组</a>
+        <div class="cur">
+          <em></em>
+          <h3>分组1</h3>
+        </div>
+        <div>
+          <em></em>
+          <h3>分组分组2</h3>
+        </div>
+      </div>
+      <div class="add-stock">
+        <div class="add-input">
+          <input type="text" placeholder="输入股票名称/代码/首字母">
+          <button type="button">添加股票</button>
+        </div>
+        <div class="add-tab">
+          <div class="addtab-card addtab-cur">
+            卡片
+            <span class="span-card">
+              <u> </u>
+              <i> </i>
+              <s> </s>
+            </span>
+          </div>
+          <div class="addtab-list">
+            列表
+            <span class="span-list">
+              <u></u>
+              <i></i>
+              <s></s>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="stocklist-list">
+        <table cellpadding="0" cellspacing="0" border="0" id="example">
+          <thead>
+            <tr>
+              <td width="110">股票代码</td>
+              <td width="100">股票名称</td>
+              <td width="80">当前价</td>
+              <td width="85">涨跌额</td>
+              <td width="85">涨跌幅</td>
+              <td width="120">成交量(万手)</td>
+              <td width="80">换手率</td>
+              <td width="80">昨收价</td>
+              <td width="80">今开盘</td>
+              <td width="100">市值(亿)</td>
+              <td width="70">市盈率</td>
+              <td width="100">关注时价格</td>
+              <td width="70">编辑</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="stock-green">
+              <td><em>600539</em></td>
+              <td>狮头股份</td>
+              <td><span>9.50</span></td>
+              <td><span>+0.53</span></td>
+              <td><span>5.91%</span></td>
+              <td>14.95</td>
+              <td>6.50%</td>
+              <td>8.96</td>
+              <td>8.93</td>
+              <td>1654.15</td>
+              <td>0.00</td>
+              <td>9.02</td>
+              <td></td>
+            </tr>
+            <tr class="stock-red">
+              <td><em>600539</em></td>
+              <td>狮头股份</td>
+              <td><span>9.50</span></td>
+              <td><span>+0.53</span></td>
+              <td><span>5.91%</span></td>
+              <td>14.95</td>
+              <td>6.50%</td>
+              <td>8.96</td>
+              <td>8.93</td>
+              <td>1654.15</td>
+              <td>0.00</td>
+              <td>9.02</td>
+              <td></td>
+            </tr>
+            <tr class="stock-green">
+              <td><em>600539</em></td>
+              <td>狮头股份</td>
+              <td><span>9.50</span></td>
+              <td><span>+0.53</span></td>
+              <td><span>5.91%</span></td>
+              <td>14.95</td>
+              <td>6.50%</td>
+              <td>8.96</td>
+              <td>8.93</td>
+              <td>1654.15</td>
+              <td>0.00</td>
+              <td>9.02</td>
+              <td></td>
+            </tr>
+            <tr class="stock-red">
+              <td><em>600539</em></td>
+              <td>狮头股份</td>
+              <td><span>9.50</span></td>
+              <td><span>+0.53</span></td>
+              <td><span>5.91%</span></td>
+              <td>14.95</td>
+              <td>6.50%</td>
+              <td>8.96</td>
+              <td>8.93</td>
+              <td>1654.15</td>
+              <td>0.00</td>
+              <td>9.02</td>
+              <td></td>
+            </tr>
+            <tr class="stock-green">
+              <td><em>600539</em></td>
+              <td>狮头股份</td>
+              <td><span>9.50</span></td>
+              <td><span>+0.53</span></td>
+              <td><span>5.91%</span></td>
+              <td>14.95</td>
+              <td>6.50%</td>
+              <td>8.96</td>
+              <td>8.93</td>
+              <td>1654.15</td>
+              <td>0.00</td>
+              <td>9.02</td>
+              <td></td>
+            </tr>
+            <tr class="stock-red">
+              <td><em>600539</em></td>
+              <td>狮头股份</td>
+              <td><span>9.50</span></td>
+              <td><span>-0.321</span></td>
+              <td><span>5.91%</span></td>
+              <td>14.95</td>
+              <td>6.50%</td>
+              <td>8.96</td>
+              <td>8.93</td>
+              <td>1654.15</td>
+              <td>0.00</td>
+              <td>9.02</td>
+              <td></td>
+            </tr>
+            <tr class="stock-green">
+              <td><em>600539</em></td>
+              <td>狮头股份</td>
+              <td><span>9.50</span></td>
+              <td><span>+0.53</span></td>
+              <td><span>5.91%</span></td>
+              <td>14.95</td>
+              <td>6.50%</td>
+              <td>956</td>
+              <td>8.93</td>
+              <td>14.15</td>
+              <td>0.00</td>
+              <td>9.02</td>
+              <td></td>
+            </tr>
+            <tr class="stock-red">
+              <td><em>600539</em></td>
+              <td>狮头股份</td>
+              <td><span>9.50</span></td>
+              <td><span>+0.53</span></td>
+              <td><span>5.91%</span></td>
+              <td>14.95</td>
+              <td>6.90%</td>
+              <td>8.96</td>
+              <td>8.93</td>
+              <td>1654.15</td>
+              <td>0.00</td>
+              <td>9.02</td>
+              <td></td>
+            </tr>
+            <tr class="stock-green">
+              <td><em>600539</em></td>
+              <td>狮头股份</td>
+              <td><span>9.50</span></td>
+              <td><span>+0.53</span></td>
+              <td><span>5.91%</span></td>
+              <td>14.95</td>
+              <td>6.50%</td>
+              <td>8.96</td>
+              <td>8.13</td>
+              <td>1654.15</td>
+              <td>0.00</td>
+              <td>9.02</td>
+              <td></td>
+            </tr>
+            <tr class="stock-red">
+              <td><em>600539</em></td>
+              <td>狮头股份</td>
+              <td><span>9.50</span></td>
+              <td><span>+0.53</span></td>
+              <td><span>5.91%</span></td>
+              <td>14.95</td>
+              <td>6.50%</td>
+              <td>10.96</td>
+              <td>8.93</td>
+              <td>1654.15</td>
+              <td>0.00</td>
+              <td>9.02</td>
+              <td></td>
+            </tr>
+            <tr class="stock-red">
+              <td><em>600539</em></td>
+              <td>狮头股份</td>
+              <td><span>9.50</span></td>
+              <td><span>+0.53</span></td>
+              <td><span>5.91%</span></td>
+              <td>14.95</td>
+              <td>6.50%</td>
+              <td>8.96</td>
+              <td>8.93</td>
+              <td>1654.15</td>
+              <td>10.00</td>
+              <td>9.02</td>
+              <td></td>
+            </tr>
+            <tr class="stock-red">
+              <td><em>600539</em></td>
+              <td>狮头股份</td>
+              <td><span>9.50</span></td>
+              <td><span>+0.53</span></td>
+              <td><span>5.91%</span></td>
+              <td>14.95</td>
+              <td>6.50%</td>
+              <td>8.96</td>
+              <td>8.93</td>
+              <td>1654.15</td>
+              <td>0.50</td>
+              <td>9.02</td>
+              <td></td>
+            </tr>
+            <tr class="stock-red">
+              <td><em>600539</em></td>
+              <td>狮头股份</td>
+              <td><span>9.80</span></td>
+              <td><span>+0.53</span></td>
+              <td><span>5.91%</span></td>
+              <td>14.95</td>
+              <td>6.50%</td>
+              <td>8.96</td>
+              <td>8.93</td>
+              <td>16564.15</td>
+              <td>0.00</td>
+              <td>9.02</td>
+              <td></td>
+            </tr>
+            <tr class="stock-green">
+              <td><em>600539</em></td>
+              <td>狮头股份</td>
+              <td><span>9.50</span></td>
+              <td><span>+0.53</span></td>
+              <td><span>5.91%</span></td>
+              <td>14.95</td>
+              <td>6.50%</td>
+              <td>8.916</td>
+              <td>18.93</td>
+              <td>1654.15</td>
+              <td>0.020</td>
+              <td>19.02</td>
+              <td></td>
+            </tr>
+            <tr class="stock-red">
+              <td><em>600539</em></td>
+              <td>狮头股份</td>
+              <td><span>95.50</span></td>
+              <td><span>+50.53</span></td>
+              <td><span>5.951%</span></td>
+              <td>154.95</td>
+              <td>6.550%</td>
+              <td>8.956</td>
+              <td>58.93</td>
+              <td>1654.15</td>
+              <td>0.00</td>
+              <td>9.02</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="stock-left">
+      <div class="stock-relation">
+        <div class="stock-relation-tab">
+          <h3 class="cur">相关投资观点</h3>
+          <h3>相关独家报道</h3>
+          <h3>我关注的撰稿人</h3>
+        </div>
+      </div>
+      <div class="stock-article-cont">
+        <!-- 股票列表页 文章列表开始 -->
+        <div class="stockarticle-list">
+          <div class="stock-avator">
+            <a href="">
+              <img src="./images/default-avatar.png" alt="">
+            </a>
+          </div>
+          <div class="stock-article">
+            <h2><a href="">前期文章收益汇总</a></h2>
+            <h3>
+              <span>西点老A</span>
+              <span><i></i>5小时前</span>
+              <span><i></i>456</span>
+              <span><i></i>159</span>
+              <span><i></i>357</span>
+            </h3>
+            <p>因为顶级的客户服务、多业态、全渠道的策略以及跟技术公司的密切合作，Nordstrom成了近年全美业绩最好的百货公司，而其股价在过去五年上涨了120%。</p>
+          </div>
+        </div>
+        <!-- 股票列表页 文章列表结束 -->
+        <!-- 股票列表页 文章列表开始 -->
+        <div class="stockarticle-list">
+          <div class="stock-avator">
+            <a href="">
+              <img src="./images/default-avatar.png" alt="">
+            </a>
+          </div>
+          <div class="stock-article">
+            <h2><a href="">前期文章收益汇总</a></h2>
+            <h3>
+              <span>西点老A</span>
+              <span><i></i>5小时前</span>
+              <span><i></i>456</span>
+              <span><i></i>159</span>
+              <span><i></i>357</span>
+            </h3>
+            <p>因为顶级的客户服务、多业态、全渠道的策略以及跟技术公司的密切合作，Nordstrom成了近年全美业绩最好的百货公司，而其股价在过去五年上涨了120%。</p>
+          </div>
+        </div>
+        <!-- 股票列表页 文章列表结束 -->
+        <!-- 股票列表页 文章列表开始 -->
+        <div class="stockarticle-list">
+          <div class="stock-avator">
+            <a href="">
+              <img src="./images/default-avatar.png" alt="">
+            </a>
+          </div>
+          <div class="stock-article">
+            <h2><a href="">前期文章收益汇总</a></h2>
+            <h3>
+              <span>西点老A</span>
+              <span><i></i>5小时前</span>
+              <span><i></i>456</span>
+              <span><i></i>159</span>
+              <span><i></i>357</span>
+            </h3>
+            <p>因为顶级的客户服务、多业态、全渠道的策略以及跟技术公司的密切合作，Nordstrom成了近年全美业绩最好的百货公司，而其股价在过去五年上涨了120%。</p>
+          </div>
+        </div>
+        <!-- 股票列表页 文章列表结束 -->
+        <!-- 股票列表页 文章列表开始 -->
+        <div class="stockarticle-list">
+          <div class="stock-avator">
+            <a href="">
+              <img src="./images/default-avatar.png" alt="">
+            </a>
+          </div>
+          <div class="stock-article">
+            <h2><a href="">前期文章收益汇总</a></h2>
+            <h3>
+              <span>西点老A</span>
+              <span><i></i>5小时前</span>
+              <span><i></i>456</span>
+              <span><i></i>159</span>
+              <span><i></i>357</span>
+            </h3>
+            <p>因为顶级的客户服务、多业态、全渠道的策略以及跟技术公司的密切合作，Nordstrom成了近年全美业绩最好的百货公司，而其股价在过去五年上涨了120%。</p>
+          </div>
+        </div>
+        <!-- 股票列表页 文章列表结束 -->
+      </div>
+    </div>
+    <div class="stock-right"></div>
+  </div>
+  <script src="./js/jquery-1.9.0.min.js"></script>
+  <script src="./js/highstock.js"></script>
+  <script src="./js/stock-chart.js"></script>
+  <script src="./js/jquery.dataTables.min.js"></script>
+  <script>
+  $(document).ready(function() {
+    $('#example').DataTable({
+      "bPaginate":false,
+      "bInfo": false,
+      "bFilter": false,
+      "bAutoWith": false,
+      "bJQueryUI": false, 
+    });
+  });
+  </script>
+</body>
+</html>
