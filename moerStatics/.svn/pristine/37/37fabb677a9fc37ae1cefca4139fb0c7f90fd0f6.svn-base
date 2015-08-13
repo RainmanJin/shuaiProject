@@ -1,0 +1,410 @@
+$(function() {
+  Highcharts.setOptions({
+      global: {
+          useUTC: false //关闭文件默认时区，采用数据时间显示
+      },
+      lang:{
+       contextButtonTitle:"图表导出菜单",
+       decimalPoint:".",
+       downloadJPEG:"下载JPEG图片",
+       downloadPDF:"下载PDF文件",
+       downloadPNG:"下载PNG文件",
+       downloadSVG:"下载SVG文件",
+       drillUpText:"返回 {series.name}",
+       loading:"加载中",
+       months:["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"],
+       noData:"没有数据",
+       numericSymbols: [ "千" , "兆" , "G" , "T" , "P" , "E"],
+       printChart:"打印图表",
+       resetZoom:"恢复缩放",
+       resetZoomTitle:"恢复图表",
+       shortMonths: [ "Jan" , "Feb" , "Mar" , "Apr" , "May" , "Jun" , "Jul" , "Aug" , "Sep" , "Oct" , "Nov" , "Dec"],
+       thousandsSep:",",
+       weekdays: ["星期一", "星期二", "星期三", "星期三", "星期四", "星期五", "星期六","星期天"]
+    }
+  });
+});
+function fsStock() {
+	$.getJSON("getStockTiming.json?stockcode="+stockcode+"&day=1", function (data) {
+		// split the data set into ohlc and volume
+		var date = new Date(data[0][0]);
+		var result = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
+		//上午开始时间
+		var minStr = result + " " + begin;
+		var d1 = new Date(minStr);
+		var minTime = d1.getTime();
+		//上午中间时间
+		var am_midStr = result + " " + am_mid;
+		var d2 = new Date(am_midStr);
+		var am_midTime = d2.getTime();
+		//上午结束时间
+		var am_lastStr = result + " " + am_last;
+		var d3 = new Date(am_lastStr)
+		var am_lastTime = d3.getTime();
+		//下午中间时间
+		var pm_midStr = result + " " + pm_mid;
+		var d4 = new Date(pm_midStr);
+		var pm_midTime = d4.getTime();
+		//下午结束时间
+		var maxStr = result + " " + end;
+		var d5 = new Date(maxStr);
+		var maxTime = d5.getTime();
+		var nowDate = data[0][1];
+		var ohlc = [],
+			test = [],
+			volume = [],
+			dataLength = data.length;
+		if (stock_status == 0) {
+			ohlc.push([
+				data[0][0], // the date  x
+				data[0][2]  // the data  y
+			]);
+			volume.push([
+				data[0][0], // the date	 x
+				data[0][2]	// the data  y
+			]);
+			test.push([
+				data[0][0], // the date	 x
+				0	// the data  y
+			])
+		} else {
+			for (i = 0; i < dataLength; i++) {
+				ohlc.push([
+					data[i][0], // the date  x
+					data[i][1]  // the data  y
+				]);
+				volume.push([
+					data[i][0], // the date	 x
+					data[dataLength - 1][2]	// the data  y
+				]);
+				var tdV = data[i][3];
+				if (i > 0) {
+					tdV = data[i][3] - data[i - 1][3];
+				}
+				if (tdV < 0) {
+					tdV = 0;
+				}
+				test.push([
+					data[i][0], // the date	 x
+					tdV	// the data  y
+				])
+			}
+		}
+		appendTimeMessage(ohlc,volume,data);
+		// set the allowed units for data grouping
+		var groupingUnits = [
+			['minute', [1]],
+			['hour', [1]],
+			['day', [1]],
+			['week', [1]]
+		];
+
+    // create the chart minute
+    $('#line-Chart').highcharts('StockChart', {
+      rangeSelector: {
+        buttons: [{
+          type: 'day',
+          count: 1,
+          text: '今日'
+        }
+        ],
+       buttonTheme:{
+		fill: 'none',
+		stroke: 'none',
+		'stroke-width': 0,
+		r: 0,
+		style:{
+			display: 'block',
+			color: '#6d6f71',
+			fontWeight: 'normal',
+			fontSize: '12px',
+			width: '100px',
+			height: '30px',
+			padding: '0 20px',
+			border: '1px solid #d5d7d9',
+			background: '#ff0000',
+			fill: 'none'
+		},
+		states: {
+			hover: {
+			},
+			select: {
+				fill: '#039',
+				style: {
+					color: 'white'
+				}
+			}
+		}
+	},
+	selected: 0,
+	enabled: true,
+	inputEnabled: false
+    },title: {
+        text: ''
+    }, chart: {
+        alignTicks: false,
+        type: 'line'
+			},plotOptions:{
+				//去掉分时线上的hover事件
+				series:{
+					states: {
+						hover: {
+							enabled: false
+						}
+					},
+					line: {
+						marker: {
+							enabled: false
+						}
+					},
+				}
+			},xAxis: {
+				endOnTick: true,
+				showFirstLabel: true,
+				showLastLabel:true,
+				scrollbar:{enabled:true},
+				labels: {
+					style: {         //字体样式
+						font: 'normal 5px Verdana, sans-serif'
+					},
+					formatter:function(){
+						var returnTime=Highcharts.dateFormat('%H:%M ', this.value);
+						if(returnTime=="11:30 ")
+						{
+							return "11:30/13:00";
+						}
+						return returnTime;
+					},
+				},
+				 tickPositioner:function(){
+						var testStr=[minTime,am_midTime,am_lastTime,pm_midTime,maxTime];
+						return testStr;
+					},
+				gridLineWidth: 1,
+
+    },
+    yAxis: [{
+    	plotLines:[{
+	        color:'red',           //线的颜色，定义为红色
+	        dashStyle:'ShortDot',     //默认值，这里定义为实线
+	        value:0,               //定义在那个值上显示标示线，这里是在x轴上刻度为3的值处垂直化一条线
+	        width:2                //标示线的宽度，2px
+	    }],
+	    categories: [nowDate],
+		minTickInterval:2.5,
+         labels: {
+        	 formatter:function(){
+        		
+              		var a = this.value/100;
+              		var b = -past_back_price*a;
+              		var c = past_back_price-b;
+              		var d = Math.round(c*100)/100
+              		return d;
+             },
+             style: {
+                 color: '#89A54E'
+             }
+         },
+        height: 210,
+        tickPixelInterval:60,
+        lineWidth: 0,
+        opposite: false, //y轴位置  left  right
+        offset: 0 //y轴与数据区位置
+       
+      },
+      {
+    	  labels: {
+    		  formatter:function(){
+    			  return (this.value > 0 ? ' + ' : '') + this.value + '%';
+    		  
+              },
+              style: {
+                  color: '#89A54E'
+              }
+          },
+          linkedTo: 0,
+          height: 210,
+          gridLineWidth:0,
+          tickPixelInterval: 60,
+          lineWidth: 2,
+          opposite: true, //y轴位置  left  right
+          offset: 1 //y轴与数据区位置
+      },
+      {
+        labels: {
+        	formatter:function(){
+        		return this.value/10000 + "万";
+           }, 	
+          style: {
+            color: '#000000'
+          }
+        },
+        title: {
+          text: ''
+        },
+        top: 265,
+        height: 50,
+        lineWidth: 2,
+        tickPixelInterval:25,
+        opposite: true, //y轴位置  left  right
+        offset: 0, //y轴与数据区位置
+      }],
+      series: [
+      {
+        type: 'spline',
+        name: '当前价格',
+        data: ohlc,
+        animation:true,
+        color: '#4572A7',
+        yAxis: 0,
+        compare: 'percent',
+        dataGrouping: {
+          units: groupingUnits
+        }
+      },{
+            type: 'column',
+            name: '成交量',
+            data: test,
+            yAxis: 2,
+            dataGrouping: {
+              units: groupingUnits
+            }
+          }],
+      credits: {
+        enabled:false
+      },
+      tooltip: {
+        enabled: true,
+        formatter: function() {
+          var s = '<b>' + Highcharts.dateFormat(' %Y-%m-%d %H:%M:%S', this.x) + '</b>';
+          $.each(this.points, function() {
+              s += '<br/>' + '<tspan  style="fill:' + this.series.color + ';" x="8" dy="16">●</tspan>' + this.series.name + ':' + Math.round(this.y*100)/100;
+          });
+          return s;
+        },
+//        crosshairs: [true, true],   /*x+y数据标尺*/
+        crosshairs: {
+          dashStyle: 'dash',
+          /*数据 标尺线样式*/
+          color: 'red'
+        }
+      },
+      /*下部时间拖拉选择*/
+      navigator: {
+          enabled: false, /*关闭时间选择*/
+          series:{
+        	  data:ohlc
+          },
+          baseseries: 10
+      },
+      scrollbar: {
+          enabled: false /*关闭下方滚动条*/
+      },
+      /*数据点设置*/
+      plotOptions: {
+        series: {
+          marker: {
+            enabled: false,
+            /*数据点是否显示*/
+            radius: 1,
+            /*数据点大小px*/
+            //fillColor:'#ff3300'                                /*数据点颜色*/
+          },
+          dataLabels: {
+            enabled: false,
+            /*在数据点上显示数值*/
+            format: '{y}'
+          },
+		  lineWidth:1,
+		  states:{
+		  		hover:{
+				lineWidth:1
+			}
+		  }
+          //enableMouseTracking: false   /*关闭tip层*/
+        }
+      },
+    });
+    function getForm(){
+        $.getJSON("getStockTiming.json?stockcode="+stockcode+"&day=1", function (data) {
+            var chart = $('#line-Chart').highcharts();
+            var index = data.length-1;
+//            console.log(data[index][0],data[index][1]);
+//            console.log(data[index][0],data[index][3]);
+            chart.series[0].addPoint([data[index][0],data[index][1],,data[index][2],data[index][3]],true,true);
+//            chart.series[1].addPoint([data[index][0],data[index][3]],true,true);
+        });
+    }
+
+    $(document).ready(function() {
+        //每隔20秒自动调用方法，实现图表的实时更新
+    	var mydate = new Date();
+		myHours = mydate.getHours();
+		if(stock_status != 0){
+			if((myHours>=9 && myHours<12 ) || (myHours>=13 && myHours<=15)){
+				alert(1223221321312);
+				window.setInterval(getForm,50000);
+			}
+		}
+    });
+  })
+}
+
+
+//数据补全
+function appendTimeMessage(ohlc,volume,data){
+	
+	var date=data[data.length-1][0];
+	var last_dataTime = new Date(date);
+	
+	//股票交易早上最后的时间
+	var am_lastTime=new Date(last_dataTime);
+	am_lastTime.setHours(11, 30, 0, 0);
+	//股票交易下午最后的时间
+	var pm_startTime=new Date(last_dataTime);
+	pm_startTime.setHours(13, 1, 0, 0);
+	var pm_lastTime=new Date(last_dataTime);
+	pm_lastTime.setHours(15, 0, 0, 0);
+	//把时间日期格式转化成utc格式
+	
+	function convertDateToUTC(date){
+		return Number(date);
+	}
+//如果获取的时间11：:30之前的计算
+	if(last_dataTime<am_lastTime){
+		var i=last_dataTime;
+		i.setMinutes((i.getMinutes()+1));
+		for(;i<=am_lastTime;i.setMinutes((i.getMinutes()+1)))
+		{
+			volume.push([
+							convertDateToUTC(i),// the date	 x
+							0	// the data  y
+						]);
+		}
+		i=pm_startTime;
+		for(;i<=pm_lastTime;i.setMinutes((i.getMinutes()+1)))
+		{
+			volume.push([
+							convertDateToUTC(i),// the date	 x
+							0	// the data  y
+						]);
+		}
+	}else if(last_dataTime<pm_lastTime){    //获取的时间下午13:00之后的计算
+		var i;
+		if(Number(last_dataTime)==Number(am_lastTime)){
+			i=pm_startTime;
+		}else{
+			i=last_dataTime;
+		}
+		i.setMinutes((i.getMinutes()+1));
+		for(;i<=pm_lastTime;i.setMinutes((i.getMinutes()+1)))
+		{
+			volume.push([
+							convertDateToUTC(i),// the date	 x
+							0	// the data  y
+						]);
+		}
+	}
+}
+
+fsStock();

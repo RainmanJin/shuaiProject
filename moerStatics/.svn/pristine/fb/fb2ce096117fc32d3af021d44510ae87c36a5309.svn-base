@@ -1,0 +1,310 @@
+function kChartsDay(){
+		$.getJSON("getStockDaily.json?stockcode="+stockcode, function (data) {
+			// split the data set into ohlc and volume
+			var ohlc = [];
+			var volume = [];
+			var MA5Array = [];
+			var MA10Array = [];
+			var MA20Array = [];
+			var MA30Array = [];
+			var dataLength = data.length;
+			var groupingUnits = [
+				['second', [1]],
+				['minute', [1]],
+				['hour', [1]],
+				['day', [1]],
+				['week', [1]],
+				['month', [1]],
+				['year', [1]]
+			];
+			var i = 0;
+			for (i; i < dataLength; i += 1) {
+				var date =data[i][0];//得出的UTC时间
+				var starttime = date.replace(new RegExp("-","gm"),"/");
+			    var starttimeHaoMiao = (new Date(starttime)).getTime(); //得到毫秒数
+				ohlc.push([
+					starttimeHaoMiao, // the date
+					data[i][1], // open
+					data[i][2], // high
+					data[i][3], // low
+					data[i][4]  // close
+				]);
+				volume.push([
+					starttimeHaoMiao, // the date
+					data[i][5]  // the volume
+				]);
+				if(i>=4){
+		             var ma5=0.00;
+		             for( var j=0;j<5;j++){
+		                 ma5+=parseFloat(data[i-j][4]);
+		             }
+		             MA5Array.push([
+		                  starttimeHaoMiao, // the date
+		                  parseFloat(ma5/5)
+		              ]);
+		         }
+		         if(i>=9){
+		             var ma10=0.00;
+		             for( var j=0;j<10;j++){
+		                 ma10+=parseFloat(data[i-j][4]);
+		             }
+		             MA10Array.push([
+		                 starttimeHaoMiao, // the date
+		                 parseFloat(ma10/10),
+		              ]);
+		         }
+		         if(i>=19){
+		             var ma20=0.00;
+		             for( var j=0;j<20;j++){
+		                 ma20+=parseFloat(data[i-j][4]);
+		             }
+		             MA20Array.push([
+		                         starttimeHaoMiao, // the date
+		                         parseFloat(ma20/20)
+		                 ]);
+		         } 
+		         if(i>=29){
+		             var ma30=0.00;
+		             for( var j=0;j<30;j++){
+		                 ma30+=parseFloat(data[i-j][4]);
+		             }
+		             MA30Array.push([
+		                         starttimeHaoMiao, // the date
+		                         parseFloat(ma30/30)
+		                 ]);
+		         }     
+			}
+			// create the chart
+			$('#kChart-day').highcharts('StockChart', {
+				rangeSelector: {
+					buttons: [{
+						type: 'all',
+						text: '全部'
+					},{
+						type: 'year',
+						count: 3,
+						text: '3年'
+					},{
+						type: 'year',
+						count: 1,
+						text: '1年'
+					},{
+						type: 'ytd',
+						text: '今年'
+					},{
+						type: 'month',
+						count: 6,
+						text: '6月'
+					},{
+						type: 'month',
+						count: 3,
+						text: '3月'
+					},{
+						type: 'month',
+						count: 1,
+						text: '1月'
+					}],
+					buttonTheme:{
+						fill: 'none',
+						stroke: 'none',
+						'stroke-width': 0,
+						r: 0,
+						style:{
+							display: 'block',
+							color: '#6d6f71',
+							fontWeight: 'normal',
+							fontSize: '12px',
+							width: '100px',
+							height: '30px',
+							padding: '0 20px',
+							border: '1px solid #d5d7d9',
+							background: '#ff0000',
+							fill: 'none'
+						},
+						states: {
+							hover: {
+							},
+							select: {
+								fill: '#039',
+								style: {
+									color: 'white'
+								}
+							}
+						}
+					},
+					selected: 6,
+					enabled: true,
+					inputEnabled: false
+				},
+				title: {
+					text: ''
+				},
+				xAxis: {
+					labels:{
+						formatter:function(){
+							var vDate=new Date(this.value);
+							return (vDate.getMonth()+1)+"."+vDate.getDate();
+						}
+					},
+					top:70,
+					tickPixelInterval: 100
+				},
+				yAxis: [{
+					labels: {
+//						align: 'right',
+//						x: -3
+					},
+					title: {
+						text: ''
+					},
+					height: 210,
+					tickPixelInterval: 40,
+					lineWidth: 2
+				},{
+					labels: {
+						formatter:function() {
+							return null;
+						}
+					},
+					title: {
+						text: ''
+					},
+					height: 210,
+					tickPixelInterval: 40,
+					lineWidth: 2
+				},{
+					labels: {
+						formatter:function() {
+							return null;
+						}
+					},
+					title: {
+						text: ''
+					},
+					height: 210,
+					tickPixelInterval: 40,
+					lineWidth: 2
+				},{
+					labels: {
+						formatter:function() {
+							return null;
+						}
+					},
+					title: {
+						text: ''
+					},
+					height: 210,
+					tickPixelInterval: 40,
+					lineWidth: 2
+				},{
+					labels: {
+						formatter:function() {
+							return null;
+						}
+					},
+					title: {
+						text: ''
+					},
+					height: 210,
+					tickPixelInterval: 40,
+					lineWidth: 2
+				},{
+					labels: {
+//						align: 'right',
+//						x: -3
+					},
+					title: {
+						text: ''
+					},
+					top: 262,
+					height: 60,
+					tickPixelInterval: 20,
+					offset: 0,
+					lineWidth: 2
+				}],
+
+				series: [{
+					type: 'candlestick',
+					name: '',
+					data: ohlc,
+					dataGrouping: {
+						units: groupingUnits
+					}
+				},{
+					type: 'line',
+					name: 'MA5',
+					data: MA5Array,
+					lineColor: '#D2691E',
+					yAxis: 1,
+					dataGrouping: {
+						units: groupingUnits
+					}
+				},{
+					type: 'line',
+					name: 'MA10',
+					data: MA10Array,
+					lineColor: '#6A5ACD',
+					yAxis: 2,
+					dataGrouping: {
+						units: groupingUnits
+					}
+				},{
+					type: 'line',
+					name: 'MA20',
+					data: MA20Array,
+					lineColor: '#4daf7b',
+					yAxis: 3,
+					dataGrouping: {
+						units: groupingUnits
+					}
+				},{
+					type: 'line',
+					name: 'MA30',
+					data: MA30Array,
+					lineColor: '#D02090',
+					yAxis: 4,
+					dataGrouping: {
+						units: groupingUnits
+					}
+				},{
+					type: 'column',
+					name: '成交量',
+					data: volume,
+					yAxis: 5,
+					dataGrouping: {
+						units: groupingUnits
+					}
+				}],
+
+				credits: {
+					enabled:false
+				},
+				scrollbar:{
+					height:15
+				},
+
+				navigator:{
+					height:25
+				},
+
+				plotOptions: {
+					candlestick: {
+						color: '#33AA11', //下降块颜色
+						lineColor: '#33AA11', //下降块线条颜色
+						upColor: '#DD2200', //上升块颜色
+						upLineColor: "#DD2200" //上升块线条颜色
+					},
+					series: {
+						marker: {
+							enabled: false,
+							states: {
+								hover: {
+									enabled: false
+								}
+							}
+						}
+					}
+				}
+			});
+		});
+	}

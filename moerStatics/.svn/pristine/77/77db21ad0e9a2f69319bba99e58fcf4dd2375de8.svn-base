@@ -1,0 +1,679 @@
+
+/**
+ * 存放本地缓存
+ */
+function setCache(key, value) {
+	// 如果value是一个对象类型,我们转化为json
+	if (typeof (value) == 'object') {
+		value = JSON.stringify(value);
+	}
+	try{
+		localStorage.setItem(key,value);
+	}catch (e) {
+		//alert("缓存爆满了!");
+	}
+}
+
+/**
+ * 获取本地缓存中的值
+ */
+function getCache(key) {
+	var value = localStorage.getItem(key);
+	// 如果value是一个对象类型,我们转化为json
+	if (typeof (value) == 'object') {
+		value = eval("(" + localStorage.getItem(key) + ")");
+	}
+	return value;
+}
+
+/**
+ * 删除缓存
+ */
+function removeLocalStorage(key) {
+	localStorage.removeItem(key);// 清除c的值
+}
+
+/**
+ * 删除所有缓存
+ */
+function removeLocalAll() {
+	localStorage.clear();
+}
+/** 是否是空 */
+function isEmpty(obj) {
+	if (!obj || obj == "" || obj == null) {
+		return true;
+	}
+	return false;
+}
+/**
+ * 将json转化为对象
+ * @param data
+ * @returns {Boolean}
+ */
+function parseObj(data){
+	var isobj = typeof(data) == "object" ;
+	// 非对象
+	if(!isEmpty(data) && !isobj) {
+		data = $.parseJSON(data);
+	}else if(isEmpty(data)){
+		data={};
+	}
+	return data;
+}
+/**
+ * 对象转化为json
+ * @param obj
+ * @return
+ */
+function objToJson(obj){
+	return JSON.stringify(obj);
+}
+/**
+ * 格式化时间 yyyy-MM-dd
+ * @param date
+ */
+function formatDate(date){
+	 var y = date.getFullYear();  
+	 var m = date.getMonth() + 1;  
+	 var d = date.getDate();  
+	 return y + '-' + (m < 10 ? '0' + m : m) + '-' + (d < 10 ? '0' + d : d);  
+}
+
+/**
+ * 格式化时间 yyyy-MM-dd HH:mm:ss
+ * @param date
+ */
+function formatTime(date){
+	 var y = date.getFullYear();  
+	 var m = date.getMonth() + 1;  
+	 var d = date.getDate();
+	 var hour = date.getHours();
+	 var minute = date.getMinutes();
+	 var second = date.getSeconds();
+	 return y + '-' + (m < 10 ? '0' + m : m) + '-' + (d < 10 ? '0' + d : d)+' '+(hour < 10 ? '0' + hour : hour)+':'+(minute < 10 ? '0' + minute : minute)+':'+(second < 10 ? '0' + second : second);  
+}
+
+/**
+ * 格式化时间 yyyy-MM-dd HH:mm
+ * @param date
+ */
+function formatTime2(date){
+	 var y = date.getFullYear();  
+	 var m = date.getMonth() + 1;  
+	 var d = date.getDate();
+	 var hour = date.getHours();
+	 var minute = date.getMinutes();
+	 return y + '-' + (m < 10 ? '0' + m : m) + '-' + (d < 10 ? '0' + d : d)+' '+(hour < 10 ? '0' + hour : hour)+':'+(minute < 10 ? '0' + minute : minute);  
+}
+
+//获取url参数
+function getQueryString(name) {
+	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+	var r = window.location.search.substr(1).match(reg);
+	if (r != null) return decodeURI(r[2]); return "";
+}
+
+
+//将多选框的值存成以','分隔的形式,字符串前后都加‘，’为区分相似dictionaryNo，如admin，administrator
+function getStr(item){
+	var str = "";
+	var checkedItem = $("#"+item+" :checked");
+	for (var i=0;i<checkedItem.length;i++) 
+		{ 
+			str+=",";
+			str+=checkedItem[i].getAttribute("value");
+		}
+		if(""!=str){
+			str+=",";
+		}
+		return str;
+}
+
+//根据数据库查询到的值，将对应的radio、checkebox设置为选中状态
+function setChecked(checkedItems){
+	//判断是否为空
+	if(!isEmpty(checkedItems)){
+		var items = checkedItems.split(',');
+		for(var i=0;i<items.length;i++){
+			$("#"+items[i]).prop('checked','checked');
+		}
+	}
+}
+
+/**
+ * 将字符串日期修改为时间类型
+ * @param strDate
+ * @returns {Date}
+ */
+function strToDate(strDate){
+	var d = new Date(Date.parse(strDate.replace(/-/g,   "/")));
+	return d;
+}
+
+
+
+/**
+ * ajax 跨域请求
+ */
+function _ajax(req_url, req_data ,sucFun){
+	$.ajax({
+        type : "get",
+        async : false,
+        url : req_url,
+        data : req_data,
+        cache : false, //默认值true
+        dataType : "jsonp",
+        jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(默认为:callback)
+        success : function(json){
+        	sucFun(json);
+        },
+        error:function(){
+            alert("erroe");
+        }
+    });
+}
+
+/**
+ * 处理数据变为新的数组
+ * @param data
+ * @param plaObj
+ * @returns {Array}
+ */
+ function loadComboData(data,plaObj){
+	var dataArr=new Array();
+	$.each(data, function(i, n){
+		dataArr.push(n);
+	});
+	if(plaObj){
+		dataArr.unshift(plaObj);
+	}
+	return dataArr;
+}
+ 
+ 
+ /**
+  * 将下标转化为Ascii的字符串
+  */
+ function indexForAscii(index){
+	 var indexA=65;//大写的A是65
+	 return String.fromCharCode(indexA+index);
+ }
+ /**
+  * 仅用于weibkite 内核浏览器调试用
+  */
+ function log(obj){
+//	 console.log(obj);
+ }
+ /**
+  * 替换数据
+  * @param str
+  * @returns
+  */
+ function replaceAll(allStr,oldStr,newStr)  
+ {  
+     if(allStr!=null){
+    	 allStr = allStr.replace(new RegExp(oldStr,"gm"),newStr);
+     }
+     return allStr;  
+ }  
+//结束时间是否大于开始时间
+ /**
+  * return 1:大于 0：等于 -1：小于
+  */
+function dataCompare(d1, d2) {
+ 	if(d1&&d2) {
+ 		d1 = new Date(Date.parse(d1.replace(/-/g,"/"))).getTime();
+ 		d2 = new Date(Date.parse(d2.replace(/-/g,"/"))).getTime();;
+ 		if(d1>d2){
+ 			return 1;
+ 		}else if(d2==d1){
+ 			return 0;
+ 		}else{
+ 			return -1;
+ 		}
+ 	}
+ 	return -1;
+ };
+//---------------2014-07-19 end --------------
+ 
+ /**
+  * POST提交方法
+  */
+ function post(URL, PARAMS) {        
+	    var form = document.createElement("form");        
+	    form.action = URL;        
+	    form.method = "post";        
+	    form.style.display = "none";        
+	    for (var x in PARAMS) {        
+	        var opt = document.createElement("input");  
+	        opt.type="hidden";
+	        opt.name = x;        
+	        opt.value = PARAMS[x];        
+	        // alert(opt.name)        
+	        form.appendChild(opt);        
+	    }        
+	    //document.body.appendChild(form);        
+	    form.submit();        
+	    //return form;        
+	} 
+ 
+ /** 
+  * 时间对象的格式化; 
+  */  
+ Date.prototype.format = function(fmt) 
+ { 
+   var o = { 
+     "M+" : this.getMonth()+1,                 //月份 
+     "d+" : this.getDate(),                    //日 
+     "h+" : this.getHours(),                   //小时 
+     "m+" : this.getMinutes(),                 //分 
+     "s+" : this.getSeconds(),                 //秒 
+     "q+" : Math.floor((this.getMonth()+3)/3), //季度 
+     "S"  : this.getMilliseconds()             //毫秒 
+   }; 
+   if(/(y+)/.test(fmt)) 
+     fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length)); 
+   for(var k in o) 
+     if(new RegExp("("+ k +")").test(fmt)) 
+   fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length))); 
+   return fmt; 
+ }
+ 
+//----begin-----------2014-11-17 一些查询的公共方法 1.判断是否登录 2.查询投资观点数量3.查询粉丝数量 4.查询关注数量 5.查询热股榜6.查询广告位 7.查询本周热门的文章10条 8.前台用户提交关注--------------
+ 
+ /**去登录页*/
+ function gotoLoginPage(){
+ 	//window.location.href="logindo.json";
+ }
+
+ /** 判断前台用户是否登录 */
+ function isWapUserLogin(){
+ 	return true;
+ }
+
+ /** 投资观点数量 */
+ function articleCount(userId){
+ 	
+ 	var count = 0;
+ 	var url = 'wapcommon_findArticleCount.json';
+ 	$.ajax({ url: url,
+ 		async:false, 
+ 		dataType:'json',
+ 		type: "POST",
+ 		data:{userId:userId},
+ 		success: function(data){
+ 		if(data){
+ 			if(data.success==true) {
+ 				count = data.data.count;
+ 			}
+ 		}
+      }});
+ 	return count;
+ }
+
+ /** 关注数量 follower_id=? */
+ function myAttentionsCount(userId){
+ 	var count = 0;
+ 	var url = 'wapcommon_findMyAttentionsCount.json';
+ 	$.ajax({ url: url,
+ 		async:false, 
+ 		dataType:'json',
+ 		type: "POST",
+ 		data:{userId:userId},
+ 		success: function(data){
+ 		if(data){
+ 			if(data.success==true) {
+ 				count = data.data.count;
+ 			}
+ 		}
+
+      }});
+ 	return count;
+ }
+
+ /** 粉丝数量 was_follower_id= ?*/
+ function myFansCount(userId){
+ 	
+ 	var count = 0;
+ 	var url = 'wapcommon_findMyFansCount.json';
+ 	$.ajax({ url: url,
+ 		async:false,
+ 		dataType:'json',
+ 		type: "POST",
+ 		data:{userId:userId},
+ 		success: function(data){
+ 		if(data){
+ 			if(data.success==true) {
+ 				count = data.data.count;
+ 			}
+ 		}
+
+      }});
+ 	return count;
+ }
+ 
+ /** 可使用优惠劵的数量 */
+ function myCouponCount(userId){
+ 	
+ 	var count = 0;
+ 	var url = 'wapcommon_findCouponCount.json';
+ 	$.ajax({ url: url,
+ 		async:false, 
+ 		dataType:'json',
+ 		type: "POST",
+ 		data:{userId:userId},
+ 		success: function(data){
+ 		if(data){
+ 			if(data.success==true) {
+ 				count = data.data.count;
+ 			}
+ 		}
+      }});
+ 	return count;
+ }
+ 
+ /** 查询热股榜 $div 代表是一个class或者id 比如（'.class','#id'...）*/
+ function findHotStockMsg($div,stockcode){
+	 if(!stockcode){stockcode=''};
+ 	var row = {};
+ 	var url = 'wapcommon_findHotStockMsg.json';
+ 	$.post(url,{'stockcode':stockcode},function(html){
+ 		$($div).html(html);
+ 		addClassStyle($div);
+ 		$('.nbl_memu li[stockcode='+stockcode+']').addClass("nbl_memu_select").siblings().removeClass();
+ 	});
+ 	return row;
+ }
+ //加载热股榜的样式
+ function addClassStyle($div){
+	 $(".nbl:gt(0)").hide();
+		$(".nbl_memu li").click(function(){
+			$(this).addClass("nbl_memu_select").siblings().removeClass();
+			var selContent=$(".nbl_memu li ").index(this);
+			findHotStockMsg($div,$(this).attr('stockcode'));
+			$(this).addClass("nbl_memu_select").siblings().removeClass();
+		})
+		$(".nbln:gt(0)").hide();
+		$(".nbln_memu li").click(function(){
+		$(this).addClass("nbln_memu_select").siblings().removeClass();
+			var selContent=j(".nbln_memu li ").index(this);
+			$(".nbln").eq(selContent).show().siblings().hide();
+		});
+		$(".nbln table tr:odd").each(function(index, element) {
+     	$(this).find("td").css("background","#F7F7F7");
+		});
+ }
+ /** 查询广告位 暂时查询一条，如果有位置限制 则把位置的参数传入  $div 代表是一个class或者id 比如（'.class','#id'...）*/
+ function findADPositionkMsg($div){
+ 	var mAdPosition = {};
+ 	var url = 'wapcommon_findADPositionkMsg.json';
+ 	$.post(url,{},function(html){
+ 		$($div).append(html);
+ 	});
+ }
+ 
+ /** 查询本周热门的文章10条-热门和=根据赞、评论、收藏、浏览量$div 代表是一个class或者id 比如（'.class','#id'...）*/
+ function findtWeekHotArticleList($div){
+ 	var hotArticleList = [];
+ 	var url = 'wapcommon_findtWeekHotArticleList.json';
+ 	$.post(url,{},function(html){
+ 		$($div).append(html);
+ 	});
+ 	return hotArticleList;
+ }
+ 
+ /**
+  *  前台用户提交关注（加关注 取消关注）
+  * @param attentionUser 被关注的人id
+  * @param isAdd 是加关注=true  取消关注=false  
+  * @param backFun 回调函数
+  * @return
+  */
+ function submitAttentions(attentionUser,isAdd,backFun){
+	 var param = {};
+	 param.attentionUser = attentionUser;
+	 param.isAdd = isAdd;
+ 	var url = 'frontattention.json';
+ 	$.ajax({ url: url,
+ 		async:false, 
+ 		dataType:'json',
+ 		data:param,
+ 		success: function(data){
+ 			//是否登录
+ 			if(data.errorCode!=-999){
+ 				if(data.success==false){
+ 					MOER.alertError(data.message);
+ 				}else{
+ 					//回调函数，自行处理
+ 	 				if(!isEmpty(backFun)){
+ 	 					backFun(data);
+ 	 				}
+ 				}
+ 			}else{
+ 				//登录框
+ 				login(window.location.href);
+ 			}
+      }});
+	}
+//------end---------2014-11-17 一些查询的公共方法 1.判断是否登录 2.查询投资观点数量3.查询粉丝数量 4.查询关注数量 5.查询热股榜6.查询广告位 7.查询本周热门的文章10条 8.前台用户提交关注--------------
+ /**
+ * 前台用
+ *字典下拉框中 no和name
+ * @param id combobx的Id
+ * @param NO 字典表对应的标示
+ */
+function setFrontNameNoByNo(selectId, NO,flag) {
+	var _url = 'wapcommon_findByNoList.json?id=' + NO;
+	//清空下拉列表的数据
+	$("#"+selectId).val("");
+	$("#"+selectId).html("<option value='' selected='selected'>加载中</option>");
+	$.post(_url,'',function(data){
+		$("#"+selectId).html("");
+		if(flag){
+			$("#"+selectId).html("<option value='' selected='selected'>请选择</option>");
+		}
+		if(!isEmpty(data)){
+			//获取数据
+			data = $.parseJSON(data);
+			$.each(data,function(i,n){
+				$("#"+selectId).append("<option value='"+n.sysDictionary_dictionaryNo+"'>"+n.sysDictionary_dictionaryName+"</option>");
+			});
+		}
+	});
+}
+
+/**
+ *字典下拉框中 no和name
+ * @param id combobx的Id
+ * @param NO 字典表对应的标示
+ */
+function setFrontStocks(selectId,flag) {
+	var _url =  'stock_findVstock.json';
+	//清空下拉列表的数据
+	$("#"+selectId).val("");
+	$("#"+selectId).html("<option value='' selected='selected'>加载中</option>");
+	$.post(_url,'',function(data){
+		$("#"+selectId).html("");
+		if(flag){
+			$("#"+selectId).html("<option value='' selected='selected'>请选择</option>");
+		}
+		if(!isEmpty(data)){
+			//获取数据
+			data = $.parseJSON(data);
+			$.each(data,function(i,n){
+				$("#"+selectId).append("<option value='"+n.sysDictionary_dictionaryNo+"'>"+n.sysDictionary_dictionaryName+"</option>");
+			});
+		}
+	});
+}
+
+/**
+ * 获取传入时间与当前时间差
+ * @param datetime
+ * @return
+ */
+function getTimeDiff(datetime,isformatDate){
+	var startDate= new Date(); 
+	var endDate= new Date(datetime); 
+	var df=(startDate.getTime()-endDate.getTime());
+	if(df===0){
+		return "刚刚";
+	}else if(Math.floor(df/1000)<60){
+		return Math.floor(df/1000)+"秒前";
+	}else if(Math.floor(df/1000/60)<60){
+		return Math.floor(df/1000/60)+"分钟前";
+	}else if(Math.floor(df/1000/60/60)<24){
+		return Math.floor(df/1000/60/60)+"小时前";
+	}else{
+		if(isformatDate){
+			return formatDate(endDate);
+		}else{
+			return formatTime2(endDate);
+		}
+		
+	}
+}
+
+//取出html代码中的内容
+function stripHTMLTag(str) {
+    str = new String(str);
+    // 去除HTML tag
+    str = str.replace(/<\/?[^>]*>/g,'');
+    // 去除行尾空白
+    str = str.replace(/[ | ]*\n/g,'\n');
+    // 去除多余空行
+    str = str.replace(/\n[\s| | ]*\r/g,'\n');
+    // 去掉&nbsp;
+    str = str.replace(/&nbsp;/ig,'');
+            
+    return str;
+}
+/**
+ * 获取html脚本中的第一个图片路径
+ * @param str
+ * @return
+ */
+function getImgSrc(str){
+	var matches = /src="(.*?)"/gi,results=null,i=len=0;
+	results=matches.exec(str);
+	if(results){
+		for(i=1,len=results.length;i<len;i++){
+			return results[i];
+		}
+	}
+}
+
+/**
+ * 公共弹窗
+ * @param tip
+ * @param message
+ * @return
+ */
+function MoerMessageAlert(tip,message){
+	MOER.alertSuccess(message);
+}
+
+
+/**
+ * 重写$.post方法，需要登录的ajax请求调用这个，可以处理公共的登录弹出，公共提交方法
+ * 
+ */
+$.loginPost=function(url,paramData,backFun){
+	//参数有效
+	if(isEmpty(paramData)){
+		paramData="";
+	}
+	//请求
+	$.post(url,paramData,function(data){
+		//是否已经登录,已经登录执行操作，未登录弹出登录窗口
+		if(webIslogin(data)){
+			backFun(data);
+		}
+	},'json');
+};
+
+/**
+ * 是否已经登录，未登录则弹出登录窗口,已经登录则返回true
+ * @param :data后台请求的返回值，用于判断是否需要登录的处理
+ */
+function webIslogin(data){
+	data = parseObj(data);
+	if(data.errorCode==-999){
+		login(window.location.href);
+		return false;
+	}else{
+		return true;
+	}
+	
+}
+
+/**
+ * 登录窗口
+ */
+function loginWin(){
+	MoerMessageAlert("","模拟登录");
+	location.href=webPath +"/tologin.htm";
+}
+
+function isLogin(){
+	 var _jm_ppt_id = $.cookie("_jm_ppt_id");
+	 if(isEmpty(_jm_ppt_id)){
+		 login(window.location.href);
+	 }else{
+		 return true;
+	 }	 
+}
+var urlArray= new Array();
+urlArray=document.domain.split(".");
+var rootDomain = urlArray[1]+'.'+urlArray[2];
+function login(backurl){
+	document.domain = rootDomain;
+	if(isEmpty(backurl)){
+        backurl = "http://moer.jiemian.com";
+//		backurl=window.location.href;
+    }
+	if(checkIsIphoneIpad()){
+		location.href="http://passport.jiemian.com?from=moer&backurl="+encodeURIComponent(backurl);
+	}else{
+		passport.sdk.login('moer',encodeURIComponent(backurl),'');
+//		$.mbox({
+//	        type: 2,		//iframe
+//	        title: '帐号登录',
+//	        maxmin: false,	 	//取消最大最小窗口按钮
+//	        shadeClose: false, //开启点击遮罩关闭层
+//	        area : ['660px' , '380px'],
+//	        offset : ['100px', ''],
+//			closeBtn: [1, true],
+//			passport.sdk.login('moer',encodeURIComponent(backurl),'');
+//	        iframe: {src: passport_url+'/user/loginbox?backurl='+encodeURIComponent(backurl)}
+//	    });
+	}
+}
+
+function logout(){
+	$.post("logoutdo.json", "", function(data){
+		if(data.success){
+			location.href=passport_url+'/wapi/logout.json?backurl='+encodeURIComponent(window.location.href);
+		}
+	},'json');
+}
+
+$(function(){
+	//将所有的a的href=""的替换为javascrit:;
+	$("a[href='']").attr("href","javascript:;");
+});
+
+//验证请求来源是否是ipad
+function checkIsIphoneIpad()
+{
+	var pda_user_agent_list = new Array("iPad", "iPhone","Linux");
+	var user_agent = navigator.userAgent.toString();
+	for (var i=0; i<pda_user_agent_list.length; i++) {
+		if (user_agent.indexOf(pda_user_agent_list[i]) >= 0) {
+			return true;
+		}
+	}
+	return false;
+}
+

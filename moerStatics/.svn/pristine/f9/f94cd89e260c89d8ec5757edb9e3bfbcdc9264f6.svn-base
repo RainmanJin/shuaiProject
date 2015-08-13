@@ -1,0 +1,167 @@
+.trigtab{
+	padding-top: 5px;
+	padding-left: 3px;
+	padding-right: 2px;
+	padding-bottom: 1px;
+	overflow:hidden;
+}
+.triggridtop {
+	padding-top: 5px;
+}
+.trigsearchtext {
+	width:100px;
+	border-color: #D4D4D4;
+	display: inline-block;
+	white-space: nowrap;
+	margin: 0;
+	padding: 0;
+	border-width: 1px;
+	border-style: solid;
+	overflow: hidden;
+	vertical-align: middle;
+	margin-bottom: 5px;
+	min-height: 21px
+}
+.trigsearchbigtext {
+	width:150px;
+}
+.trigwin {
+	width:400px;
+}
+.trigbigwin {
+	width:600px;
+}
+.trigbigerwin {
+	width:660px;
+}
+.trigshwin {
+	width:750px;
+}
+.trigmorebigwin {
+	width:800px;
+}
+.trigbigbigwin {
+	width:1000px;
+}
+
+.trigform {
+	padding:10px 20px 10px 40px;
+	/*background-color: ThreeDFace; */
+}
+.trigbigform {
+	padding:20px 40px 20px 80px;
+}
+.trigbigbigform {
+	padding:40px 80px 40px 160px;
+}
+.trigdisabletext {
+	background-color: #EEEEEE;
+	color:black;
+	
+}
+.trigdisableformtext {
+	background-color: #EEEEEE;
+	color:black;
+	width:200px;
+}
+.trigformtext {
+	width:200px;
+}
+
+.trigformtextdt {
+	width:204px;
+}
+
+.trigformmoretext {
+	width:380px;
+}
+.trigformbigtext {
+	width:400px;
+}
+
+.trigformbigtext-readonly {
+	width:400px;
+	background-color:#F1F1F1;
+}
+
+.trigformbigtextnew {
+	width:396px;
+}
+
+.trigformbigselect {
+	width:404px;
+}
+.trigformbigertext {
+	width:470px;
+}
+
+
+
+/**foot s */
+.buttons-foot {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	padding: 0px;
+	margin: 0px;
+	background-color: ThreeDFace;
+	border-top: 1px solid ThreeDLightShadow;
+	border-left: 1px solid ThreeDHighlight;
+	border-bottom: 1px solid ThreeDShadow;
+	border-right: 1px solid ThreeDShadow;
+	color: WindowText;
+}
+span.norm {
+	display: block;
+	border: 1px solid ThreeDFace;
+	border-color: ThreeDFace;
+}
+span.starttab {
+	display: block;
+	height: 16px;
+	width: 1px;
+	border-top: 1px solid ThreeDHighlight;
+	border-left: 1px solid ThreeDHighlight;
+	border-bottom: 1px solid ThreeDShadow;
+	border-right: 1px solid ThreeDShadow;
+}
+
+span.separator {
+	display: block;
+	height: 18px;
+	width: 0px;
+	border-top: 0px;
+	border-left: 1px solid ThreeDShadow;
+	border-bottom: 0px;
+	border-right: 1px solid ThreeDHighlight;
+}
+/**foot e */
+
+/**help s*/
+.trig-info{
+	font-family:'宋体';
+	background:#FFFEE6;
+	color:#8F5700;
+	padding:12px;
+	
+}
+.trig-tip{
+	width:24px;
+	height:16px;
+	float:left;
+}
+/** help e*/
+
+.trigdgheadermenu {
+	width:150px;
+}
+
+/** 主题选中 */
+.themechecked{
+	border:1px solid #FFCC66;
+}
+
+.menu2 {
+	float: left;
+	position: relative;
+	margin: 0;
+}

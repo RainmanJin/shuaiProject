@@ -1,0 +1,17 @@
+* {margin:0; padding:0; border:0;}
+a {text-decoration:none; color:#3c3c46;}
+
+body {
+    padding: 0px;
+}
+
+#item {margin-bottom:20px;}
+#pubdate {margin:3px 0 8px 0; font-style:oblique; font-size:14px; color:#666;}
+#content {line-height:24px; border-bottom:1px solid #ccc; padding-bottom:30px;}
+#content p {text-indent:2em; margin-top:20px;}
+
+.rss-body {
+    width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+}

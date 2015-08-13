@@ -1,0 +1,9 @@
+/**
+ * Created by wangshuai on 2015/8/9.
+ */
+
+header {width:100%;background:#eaeaea;border-bottom:1px solid #e2e2e2;overflow:hidden;}
+.header-cont {width:1190px;height:40px;line-height:40px;margin:0 auto;}
+.header-tel {padding-left:25px;margin-right:20px;display:inline-block;background:url("../images/call.png") no-repeat left center;color:#737373;}
+.header-wx {padding-left:25px;display:inline-block;background:url("../images/header-wx.png") no-repeat left center;color:#737373;}
+.header-user {float:right;}

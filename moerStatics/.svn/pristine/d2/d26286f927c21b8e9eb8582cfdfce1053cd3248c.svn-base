@@ -1,0 +1,408 @@
+$(document).ready(function(){
+    //推荐问题到首页
+    $(document).on("click","#recommendQuestionToIndex",function(){
+    	This=$(this);
+    	mQuestion_id=This.attr("mQuestion_id");
+    	type=This.attr("type");
+    	if(type==0){
+    	   url="recommendQuestionToIndex.json";  
+		   $.ajax({url: url,
+		   async:false,
+		   dataType:'json',
+		   type: "POST",
+		   data:{'mQuestion_id':mQuestion_id},
+		   success: function(data){
+		   if(data){
+		    if(data.success==true) {
+		    MOER.alertSuccess("推荐成功", 1);
+		    This.html("已推荐到首页");
+			This.attr("type","1");
+		    }else{
+		       alert("已有4个推荐问题，继续推荐之前请取消之前推荐的");
+		    }
+		    }
+		      }});
+    	}else{
+    	   url="cancelRecommendQuestionToIndex.json";
+			$.ajax({url: url,
+		   async:false,
+		   dataType:'json',
+		   type: "POST",
+		   data:{'mQuestion_id':mQuestion_id},
+		   success: function(data){
+		   if(data){
+		    if(data.success==true) {
+		    MOER.alertSuccess("取消成功", 1);
+		    This.html("推荐到首页");
+			This.attr("type","0");
+		    }else{
+		        alert("出错了");
+		       }
+		   }
+		      }});
+    	}
+
+    });
+    
+    //推荐到话题广场
+    $(document).on("click","#RecommendTopic",function(){
+        $(".moerFloat1").show();
+    });
+    //推荐或者取消推荐的按钮
+    $(document).on("click","#updateRecommendTopicId",function(){
+         This=$(this);
+         var mQuestion_id=This.attr("mQuestion_id");
+  		 var type= This.attr("type");
+  		 if(type==0){
+  		 var mQuestion_topicId=$("input[name=mRecommedRadio]:checked").val();
+         url="updateRecommendTopicId.json";  
+		 $.ajax({url: url,
+			   async:false,
+			   dataType:'json',
+			   type: "POST",
+			   data:{'mQuestion_id':mQuestion_id,'mQuestion_topicId':mQuestion_topicId},
+			   success: function(data){
+			   if(data){
+			    if(data.success==true) {
+			    $(".moerFloat1").hide();
+			    MOER.alertSuccess("推荐成功", 1);
+			    $("#RecommendTopic").html("取消推荐到话题广场");
+			    This.attr("type",1);
+			    This.html("取消推荐");
+			    }else{
+			        alert("出错了");
+			    }
+			    }
+		}});
+  		 }else{
+  		 var mQuestion_topicId="0";
+         url="updateRecommendTopicId.json";  
+		 $.ajax({url: url,
+			   async:false,
+			   dataType:'json',
+			   type: "POST",
+			   data:{'mQuestion_id':mQuestion_id,'mQuestion_topicId':mQuestion_topicId},
+			   success: function(data){
+			   if(data){
+			    if(data.success==true) {
+			    $(".moerFloat1").hide();
+			    MOER.alertSuccess("取消成功", 1);
+			    $("#RecommendTopic").html("推荐到话题广场");
+			    $("input[name=mRecommedRadio]:checked").attr("checked",false);
+			    This.attr("type",0);
+			    This.html("推荐");
+			    }else{
+			        alert("出错了");
+			    }
+			    }
+		}});
+  		 }
+  });
+  //推荐话题框上的取消
+  $(document).on("click",".mRecommendList-no",function(){
+		$(".moerFloat1").hide();
+  });
+  //删除问题
+  $(document).on("click","#deleteMQuestion",function(){
+   	This=$(this);
+   	mQuestion_id=This.attr("mQuestion_id");
+   	url="deleteMQuestion.json";
+		   $.ajax({url: url,
+		   async:false,
+		   dataType:'json',
+		   type: "POST",
+		   data:{'mQuestion_id':mQuestion_id},
+		   success: function(data){
+		   if(data){
+		    if(data.success==true) {
+			window.location.href="topicSquare.htm";
+		    }else{
+		        alert("出错了");
+		    }
+		    }
+		      }});
+   });
+  // Start 修改分类标签
+  $("#modifyLabel").click(function(){
+    $(".wdmodify-head span").remove();
+    $(".wdfinal-class a").each(function(n){
+      $("#wdcomplete-label").before("<span value='" + $(this).attr('value') + "' topicId='" + $(this).attr('topicId') + "'>"+ $(this).attr('value') +"<i></i></span>");
+    });
+    $("#wdmodify-class").show();
+    $(".wdfinal-head").hide();
+  })
+  $("#wdmodify-labels span").click(function(){
+    if($(this).hasClass("select") == true){
+      return false;
+    }
+    if($(".wdmodify-head span").length < 5 ){
+      $("#wdcomplete-label").before("<span value='" + $(this).attr('value') + "' topicId='" + $(this).attr('topicId') + "'>"+ $(this).attr('value') +"<i></i></span>");
+      $(this).addClass("select");
+    }else{
+      if($(".wdmodify-head p.font-red").length < 1){
+        $("#wdcomplete-label").after("<p class='font-red'>标签数量不能超过5个</p>");
+      }
+    }
+  })
+  $(document).on("click",".wdmodify-head span i",function(){
+    $("#wdmodify-labels span[value="+ $(this).parent().text() +"]").removeClass("select");
+    $("#wdcomplete-label").siblings(".font-red").remove();
+    $(this).parent().remove();
+  })
+  $("#wdcomplete-label").click(function(){
+	  var topicIds="";
+	  var length=$(".wdmodify-head span").length;
+	  $(".wdmodify-head span").each(function(i){
+		  if (i === length - 1){
+			  topicIds=topicIds+$(this).attr("topicId");
+		  }else{
+			  topicIds=topicIds+$(this).attr("topicId")+",";
+		  }
+	    }); 
+	  url="updateMQuestion.json";
+	 	$.ajax({url: url,
+	 		async:false, 
+	 		dataType:'json',
+	 		type: "POST",
+	 		data:{'mQuestion_topicId':topicIds,'mQuestion_id':questionId,"type":1},
+	 		success: function(data){
+	 		if(data){
+	 			if(data.success==true) {
+	 			    $(".wdfinal-class").html("");
+	 			    $(".wdmodify-head span").each(function(){
+	 			      $(".wdfinal-class").append("<a href='' value='" + $(this).attr('value') + "' topicId='" + $(this).attr('topicId') + "'>" + $(this).attr('value') + "</a>");
+	 			    })
+	 			    $("#wdmodify-class").hide();
+	 			    $(".wdfinal-head").show();
+	 			}else{
+	 				MOER.alertError(data.message,1);
+	 		    }
+	 		}
+	      }});
+  });
+  // End 修改分类标签
+
+  // Start 修改标题
+  $("#modifyTitle").click(function(){
+    $("#wdmodify-title textarea").html($(".wdfinal-title h1").text());
+    $(".wdfinal-title").hide();
+    $("#wdmodify-title").show();
+  })
+  $("#wdcomplete-title").click(function(){
+	var newTitle=$("#wdmodify-title textarea").val();
+	var titleLength =newTitle.length;
+    var titleLast = newTitle.charAt((titleLength-1));
+    if(titleLast== "？"|| titleLast == "?"){
+    }else{
+    	MOER.alertError("标题需要已？号结尾",1);
+    	return false;
+    }
+    if(titleLength<5||titleLength>51){
+    	MOER.alertError("标题需要在4到50个字",1);
+    	return false;
+    }
+    $(".wdfinal-title h1 a").html(newTitle);
+    url="updateMQuestion.json";
+ 	$.ajax({url: url,
+ 		async:false, 
+ 		dataType:'json',
+ 		type: "POST",
+ 		data:{'mQuestion_title':newTitle,'mQuestion_id':questionId,"type":2},
+ 		success: function(data){
+ 		if(data){
+ 			if(data.success==true) {
+ 				 $(".wdfinal-title").show();
+ 		    	  $("#wdmodify-title").hide();
+ 			}else{
+ 				MOER.alertError(data.message,1);
+ 		    }
+ 		}
+      }});
+  })
+  // End 修改标题
+  //点赞
+  $(document).on("click",".htpraise",function(){
+    if($(this).hasClass("select") == false){
+    var This=$(this);
+    var zanUser = $(this).parent().next().children("h3");
+    var answerId=$(this).attr("answerId");
+	url="saveMApplaudRel.json";
+	$.ajax({url: url,
+	   async:false, 
+	   dataType:'json',
+	   type: "POST",
+	   data:{'mApplaudRel_answerId':answerId},
+	   success: function(data){
+	   if(data){
+	    if(data.rs.success==true) {
+	    	This.addClass('select');
+	    	This.text(data.appluadCount);
+	    	var list=data.mApplaudRels;
+	    	var html ="";
+	    	$.each(list, function(i,mApplaudRels) {
+	    		if(i!=(list.length-1)){
+	    			html=html+mApplaudRels.applaudUserName+"、";
+	    		}else{
+	    			html=html+mApplaudRels.applaudUserName+"等人赞同";
+	    		}
+			});
+	    	zanUser.html();
+	    	zanUser.html(html);
+	    }else{
+	    	MOER.alertError(data.rs.message,1);
+	       }
+	   }
+	    }});
+    }else{
+      return false;
+    }
+  })
+  //取消赞
+  
+  $(document).on("click",".wdfinal-left .htdown",function(){
+    if($(this).siblings().hasClass("select") == true){
+    var This=$(this);
+    var zanUser = $(this).parent().next().children("h3");
+    var answerId=$(this).attr("answerId");
+	url="deleteMApplaudRel.json";
+	$.ajax({url: url,
+	   async:false, 
+	   dataType:'json',
+	   type: "POST",
+	   data:{'mApplaudRel_answerId':answerId},
+	   success: function(data){
+	   if(data){
+	    if(data.rs.success==true) {
+	    	This.siblings().removeClass("select");
+	    	This.siblings().text(data.appluadCount);
+	    	var list=data.mApplaudRels;
+	    	var html ="";
+	    	$.each(list, function(i,mApplaudRels) {
+	    		if(i!=(list.length-1)){
+	    			html=html+mApplaudRels.applaudUserName+"、";
+	    		}else{
+	    			html=html+mApplaudRels.applaudUserName+"等人赞同";
+	    		}
+			});
+	    	zanUser.html();
+	    	zanUser.html(html);
+	    }else{
+	    	MOER.alertError(data.rs.message,1);
+	       }
+	   }
+	    }});
+    }
+  });
+ //问答最终页的关注按钮
+$(document).on("click","#questionFollowButton",function(){
+ 		This=$(this);		
+ 		var mQuestionFollowRel_questionId=This.attr("mQuestionFollowRel_questionId");
+ 		if($(this).attr("attention") == "0"){
+ 			url="addMQuestionFollowRel.json";
+ 			$.ajax({url: url,
+ 			   async:false,
+ 			   dataType:'json',
+ 			   type: "POST",
+ 			   data:{'mQuestionFollowRel_questionId':mQuestionFollowRel_questionId},
+ 			   success: function(data){
+ 			   if(data){
+ 			    if(data.success==true) {
+ 					This.text("取消关注");
+ 					This.attr("attention","1");
+ 			    }else{
+ 			    		MOER.alertError(data.message,1);
+ 			    		if(data.errorCode==1){
+ 	 			    		This.text("取消关注");
+ 	 	 					This.attr("attention","1");	
+ 			    		}
+ 			       }
+ 			   }
+ 			   }});
+
+ 		}else{
+ 		url="deleteMQuestionFollowRel.json";
+ 			$.ajax({url: url,
+ 			   async:false,
+ 			   dataType:'json',
+ 			   type: "POST",
+ 			   data:{'mQuestionFollowRel_questionId':mQuestionFollowRel_questionId},
+ 			   success: function(data){
+ 			   if(data){
+ 			    if(data.success==true) {
+ 					This.text("关注问题");
+ 					This.attr("attention","0");
+ 			    }else{
+ 			    	MOER.alertError(data.message,1);
+ 			    	if(data.errorCode==1){
+ 				    	This.text("关注问题");
+ 	 					This.attr("attention","0");
+ 			    	}
+ 			       }
+ 			   }
+ 	}});	
+ 		}
+ });
+//问答最终页加载更多
+$(document).on("click",".loading-more-lg",function(){
+	var This=$(this);
+	var currentPage=This.attr("currentPage");
+	var totalnum=parseInt(This.attr("totalnum"));
+	var pagesize=parseInt(This.attr("pagesize"));
+	var lastPage=parseInt(currentPage)+1;
+	var mAnswer_questionId=This.attr("mAnswer_questionId");
+	url="showMainAnswerPageList.htm";
+	$.post(url,{"mAnswer_questionId":mAnswer_questionId,"page":lastPage},function(data){
+		$(".wdfinal-list .wdfinal-body:last").after(data);
+		This.attr("currentPage",lastPage);
+		if(((lastPage+1)*pagesize)>(totalnum+0.5)){
+			$(".loading-more-lg").hide();
+		}
+	});
+	
+});
+
+//删除答案
+$(document).on("click",".wdcontrol-delete",function(){
+	var This=$(this);
+  var mAnswer_id=$(this).attr("mAnswer_id");
+  url="deleteMAnswer.json";
+ 	$.ajax({url: url,
+ 	   async:false, 
+ 	   dataType:'json',
+ 	   type: "POST",
+ 	   data:{'mAnswer_id':mAnswer_id},
+ 	   success: function(data){
+ 	   if(data){
+ 	    if(data.success==true) {	  
+	  	This.parents(".wdfinal-body").remove();
+	  	//xiachao
+	  	$(".wdfinal-uereply").show();
+ 	    }else{
+ 	        MOER.alertError(data.message,1);
+ 	       }
+ 	   }
+ 	    }});
+});
+
+
+function shareSina(_moer_title,_moer_content,_moer_pic,data,url){
+	var _moer_url =  encodeURIComponent(window.location.href);
+	var _moer_share_title = '【'+_moer_title+'】'+ _moer_content;
+	if (!isEmpty(data))
+	{
+		_moer_share_title += '...@'+data;
+	}
+	if(!isEmpty(url)){
+		_moer_url=url;
+	}
+	var _moer_source = '';
+	var _moer_appkey = '435105312';
+	var _moer_ralateUid = '';
+
+	var _sina_url = 'http://service.weibo.com/share/share.php?title='+_moer_share_title+'&url='+_moer_url+'&source='+_moer_source+'&appkey='+_moer_appkey+'&searchPic=false&relateUid='+_moer_ralateUid+"&changweibo=yes";
+	if(!isEmpty(_moer_pic)){
+		_sina_url+='&pic='+_moer_pic;
+	}
+	window.open(_sina_url);
+}
+});
