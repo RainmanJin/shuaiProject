@@ -37,9 +37,9 @@
 	<div class="banner">
 		<div class="bannerSlider">
 			<ul>
-				<li><a href="#"><img src="./images/banner.png" alt=""/></a></li>
-				<li><a href="#"><img src="./images/banner.png" alt=""/></a></li>
-				<li><a href="#"><img src="./images/banner.png" alt=""/></a></li>
+				<li class="banner1" style="background-image:url('./images/banner.png');"><a href="#"></a></li>
+				<li class="banner2" style="background-image:url('./images/banner.png');"><a href="#"></a></li>
+				<li class="banner3" style="background-image:url('./images/banner.png');"><a href="#"></a></li>
 			</ul>
 			<a href="javascript:void(0);" class="unslider-arrow prev"></a>
 			<a href="javascript:void(0);" class="unslider-arrow next"></a>
@@ -252,8 +252,8 @@
 	<script src="./js/jquery-1.9.0.min.js"></script>
 	<script src="./js/unslider.min.js"></script>
 	<script>
-		var wWidth = $(window).width();
-		$(".banner,.banner-cont,.bannerSlider img").height(Math.round(wWidth/4.13));
+//		var wWidth = $(window).width();
+//		$(".banner,.banner-cont,.bannerSlider img").height(Math.round(wWidth/4.13));
 		$(function() {
 			$('.bannerSlider').unslider({
 				speed: 500,
