@@ -49,7 +49,7 @@ input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit
 .info-chart {overflow:hidden;width:1070px;margin:20px auto 0;padding-bottom:20px;}
 .stock-chartinfo {width:780px;height:400px;float:left;display:none;}
 
-.infoStock-mess {float:left;width:283px;padding-bottom:20px;border:1px solid #ededed;}
+.infoStock-mess {float:left;width:283px;padding-botton:20px;border:1px solid #ededed;}
 .infoStock-tab {width:100%;height:40px;border-bottom:1px solid #ededed;overflow:hidden;}
 .infoStock-tab div {float:left;width:100%;padding-left:20px;line-height:40px;border-top:4px solid #dcdce5;color:#1877b6;font-size:16px;text-align:left;cursor:pointer;}
 /*.infoStock-tab div.select,.infoStock-tab div:hover,.infoStock-tab div:active {border-top:4px solid #1877b6;color:#1877b6;}*/

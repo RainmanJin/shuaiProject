@@ -12,7 +12,9 @@
 		<div class="header-cont">
 			<span class="header-tel">4000-109-001</span>
 			<span class="header-wx">关注我们</span>
-			<div class="header-user"></div>
+			<div class="header-user">
+				<a href="#">注册</a>|<a href="#" class="header-login">登录</a>
+			</div>
 		</div>
 	</div>
 	<div class="nav-cont">
@@ -30,6 +32,29 @@
 				<li><a href="#">财富管理</a></li>
 				<li><a href="#">我的账户</a></li>
 			</ul>
+		</div>
+	</div>
+	<div class="banner">
+		<div class="bannerSlider">
+			<ul>
+				<li><a href="#"><img src="./images/banner.png" alt=""/></a></li>
+				<li><a href="#"><img src="./images/banner.png" alt=""/></a></li>
+				<li><a href="#"><img src="./images/banner.png" alt=""/></a></li>
+			</ul>
+			<a href="javascript:void(0);" class="unslider-arrow prev"></a>
+			<a href="javascript:void(0);" class="unslider-arrow next"></a>
+		</div>
+		<div class="banner-cont">
+			<div class="banner-user">
+				<h3>用户登录</h3>
+				<input type="text" class="frontlogin-user" name="frontlogin-user" placeholder="请输入用户名"/>
+				<input type="password" class="frontlogin-passwd" name="frontlogin-passwd" placeholder="请输入密码"/>
+				<button class="frontlogin-btn">登录</button>
+				<h5>
+					<a href="#">免费注册</a> |
+					<a href="#">忘记密码</a>
+				</h5>
+			</div>
 		</div>
 	</div>
 	<div class="front-cont">
@@ -169,5 +194,84 @@
 	<div class="front-process">
 		<a href="#">&nbsp;</a>
 	</div>
+	<div class="front-section">
+		<div>
+			<a href="#">
+				<img src="./images/section1.png" alt=""/>
+			</a>
+		</div>
+		<div>
+			<a href="#">
+				<img src="./images/section2.png" alt=""/>
+			</a>
+		</div>
+		<div>
+			<a href="#">
+				<img src="./images/section3.png" alt=""/>
+			</a>
+		</div>
+	</div>
+	<div class="front-partner">
+		<div class="fpartner-cont">
+			<ul>
+				<li>
+					<h1>合作伙伴</h1>
+				</li>
+				<li><a href=""><img src="./images/partner1.png" alt=""/></a></li>
+				<li><a href=""><img src="./images/partner1.png" alt=""/></a></li>
+				<li><a href=""><img src="./images/partner1.png" alt=""/></a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="footer">
+		<div class="footer-cont">
+			<div class="footer-left">
+				<ul class="footer-nav">
+					<li><a href="#">关于我们</a></li>
+					<li><a href="#">新手指引</a></li>
+					<li><a href="#">资费说明</a></li>
+					<li><a href="#">常见问题</a></li>
+					<li><a href="#">安全保障</a></li>
+				</ul>
+				<div class="footer-other">
+					<h4>关注我们
+						<img src="./images/footer-wx.png" alt=""/>
+					</h4>
+					<h4>客户端下载
+						<a href="#"><img src="./images/down-android.png" alt=""/></a>
+						<a href="#"><img src="./images/down-ios.png" alt=""/></a>
+					</h4>
+				</div>
+			</div>
+			<div class="footer-right">
+				<!--<h2>客服热线<span>工作日(8:00-21:00)</span></h2>-->
+				<!--<h3>4000-109-001</h3>-->
+			</div>
+		</div>
+	</div>
+	<script src="./js/jquery-1.9.0.min.js"></script>
+	<script src="./js/unslider.min.js"></script>
+	<script>
+		var wWidth = $(window).width();
+		$(".banner,.banner-cont,.bannerSlider img").height(Math.round(wWidth/4.13));
+		$(function() {
+			$('.bannerSlider').unslider({
+				speed: 500,
+				delay: 3000,
+				complete: function() {},
+				keys: true,
+				dots: true,
+				fluid: false
+			});
+			var unslider = $('.bannerSlider').unslider();
+
+			$('.unslider-arrow').click(function() {
+				var fn = this.className.split(' ')[1];
+
+				//  Either do unslider.data('unslider').next() or .prev() depending on the className
+				unslider.data('unslider')[fn]();
+			});
+		});
+	</script>
 </body>
 </html>
