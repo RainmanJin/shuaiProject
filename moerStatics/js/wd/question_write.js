@@ -18,13 +18,13 @@
 //  })(jQuery);
   function validate(){
     var titleLength = $("#wdpopup-title").val().length;
-    var titleLast = $("#wdpopup-title").val().charAt((titleLength-1));
-    if(titleLast == "?" || titleLast == "？"){
-      $("#wdpopup-title").siblings(".wdpopup-error").hide();
-    }else{
-      $("#wdpopup-title").siblings(".wdpopup-error").show();
-      return false;
-    }
+		var titleLast = $("#wdpopup-title").val().charAt((titleLength-1));
+		if(titleLast == "?" || titleLast == "？"){
+			$("#wdpopup-title").siblings(".wdpopup-error").hide();
+		}else{
+			$("#wdpopup-title").siblings(".wdpopup-error").show();
+			return false;
+		}
   };
   $(document).on("blur","#wdpopup-title",function(){
     validate();

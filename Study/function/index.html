@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>test-btn</title>
+  <script src="../dialog/jquery-1.9.0.min.js"></script>
+</head>
+<body>
+<button id="btn" class="btn">添加</button>
+
+<label for="formname">用户名</label><input type="text" class="formname" id="formname"/>
+<label for="formpwd">密码</label><input type="password" class="formpwd" id="formpwd"/>
+<button class="formbtn" id="formbtn">提交</button>
+
+<script src="function.js"></script>
+<script>
+  document.getElementById("formbtn").onclick = function(){
+    var vName = document.getElementById("formname").value;
+    var vPwd = document.getElementById("formpwd").value;
+    if(!moerValidate.wdtitle(vName)){
+      return false;
+    }
+    console.log("vname");
+    if(!moerValidate.userpwd(vPwd)){
+      return false;
+    }
+    console.log("vpwd");
+  };
+</script>
+</body>
+</html>
