@@ -4,11 +4,12 @@
 
 *{margin:0;padding:0;font-family:"Microsoft Yahei";}
 
-.businessCard {width:268px;height:162px;padding:17px 30px 25px 27px;background:url("./business-card.png") no-repeat;overflow:hidden;}
-.businessCard img {float:left;width:60px;height:60px;margin-right:10px;}
+.businessCard {width:268px;height:162px;padding:17px 30px 25px 27px;background:url("./business-card.png") no-repeat;overflow:hidden;position:absolute;}
+.businessCard img {float:left;width:60px;height:60px;margin-right:10px;border-radius:50%;}
 .bcard-user {height:60px;display:table-cell;vertical-align:middle;}
-.bcard-user h3 {font-size:14px;font-weight:bold;color:#535862;}
+.bcard-user h3 {font-size:14px;font-weight:bold;color:#535862;position:relative;top:4px;}
 .bcard-user h3 a {font-size:inherit;color:inherit;text-decoration:none;}
+.bcard-user h3 i{width:21px;height:20px;margin-left:5px;display:inline-block;background:url("./icon5.png") no-repeat -3px -600px;position:absolute;top:-2px;}
 .bcard-user p {margin-top:7px;font-size:12px;color:#838997;line-height:18px;}
 .business-message {margin-top:25px;}
 .business-message a {display:inline-block;width:75px;text-align:center;text-decoration:none;font-size:12px;color:#666;}
@@ -16,3 +17,4 @@
 .business-message strong {margin-top:5px;display:block;font-size:14px;font-weight:bolder;color:#34495e;}
 .businessCard button {width:73px;height:25px;margin-top:10px;border:1px solid #dcdadb;border-radius:3px;background-color:transparent;font-size:12px;color:#7c7c7c;cursor:pointer;outline:none;}
 .businessCard .bAttention {margin-left:45px;margin-right:10px;}
+.businessCard .bAttention.bAttention-n:hover {content:"取消关注";}
