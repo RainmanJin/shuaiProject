@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>animate-test</title>
+  <style>
+  *{margin:0;padding:0;}
+  div{width:500px;height:300px;background:#009bff;}
+  @keyframes navHeightMax {
+    form{height:300px;}
+    to{height:0;}
+  }
+  @keyframes navHeightMin {
+    form{height:0;}
+    to{height:300px;}
+  }
+  .min{animation: navHeightMax 1s;}
+  .max{animation: navHeightMin 1s;}
+  </style>
+</head>
+<body>
+  <div id="div"></div>
+  <button id="min">min</button>
+  <button id="max">max</button>
+  <script>
+    var min = document.getElementById("min");
+    var max = document.getElementById("max");
+    var div = document.getElementById("div");
+    var max1 = true;
+    max.addEventListener("click",function(){
+      div.className = "max";
+      var t = setTimeout(function(){
+        div.style.height = "300px";
+      },1000);
+    });
+    min.addEventListener("click",function(){
+      div.className = "min";
+      var t = setTimeout(function(){
+//        div.style.display = "none";
+        div.style.height = 0;
+      },1000);
+    });
+  </script>
+</body>
+</html>
