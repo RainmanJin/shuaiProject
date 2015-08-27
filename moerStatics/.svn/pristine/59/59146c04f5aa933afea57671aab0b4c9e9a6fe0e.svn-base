@@ -21,9 +21,7 @@ function showIdCard(obj,userId){
       card += "<a href='authorHome.htm?theId="+ userId +"' target='_blank'><img src='http://moerfile.jiemian.com/staticFile"+ data.head +"'></a>";
       card += "<div class='bcard-user'><h3><a href='authorHome.htm?theId="+ userId +"' target='_blank'>"+ data.name +"</a>";
       if(data.user_level == 2){
-        card += "<i class='cardv2'></i></h3>";
-      }else if(data.user_level == 3){
-        card += "<i class='cardv3'></i></h3>";
+        card += "<i></i></h3>";
       }else{
         card += "</h3>";
       }

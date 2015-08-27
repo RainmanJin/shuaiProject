@@ -2183,8 +2183,7 @@ td.usersysmsg-td p em {font-size:inherit;font-style:normal;margin-right:5px;colo
 .wdrightCard .businessCard .bcard-user {float:none;width:auto;height:60px;margin:0;display:table-cell;vertical-align:middle;}
 .wdrightCard .businessCard .bcard-user h3 {font-size:14px;font-weight:bold;color:#535862;position:relative;top:4px;}
 .wdrightCard .businessCard .bcard-user h3 a {font-size:inherit;color:inherit;text-decoration:none;}
-.wdrightCard .businessCard .bcard-user h3 i.cardv3{width:18px;height:12px;margin-left:5px;display:inline-block;background:url("../images/businesscard-icon.png") no-repeat center -38px;position:absolute;top:4px;}
-.wdrightCard .businessCard .bcard-user h3 i.cardv2{width:18px;height:12px;margin-left:5px;display:inline-block;background:url("../images/businesscard-icon.png") no-repeat center -5px;position:absolute;top:4px;}
+.wdrightCard .businessCard .bcard-user h3 i{width:18px;height:12px;margin-left:5px;display:inline-block;background:url("../images/businesscard-icon.png") no-repeat center -38px;position:absolute;top:4px;}
 .wdrightCard .businessCard .bcard-user p {margin-top:7px;font-size:12px;color:#838997;line-height:18px;}
 .wdrightCard .businessCard .business-message {margin-top:25px;}
 .wdrightCard .businessCard .business-message a {display:inline-block;width:75px;text-align:center;text-decoration:none;font-size:12px;color:#666;}
