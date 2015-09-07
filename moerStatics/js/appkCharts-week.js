@@ -89,7 +89,7 @@ function kChartsWeek() {
 				}, {
 					type: 'year',
 					count: 1,
-					text: '1年'
+					text: '1年' 
 				}, {
 					type: 'ytd',
 					text: '今年'
@@ -102,35 +102,8 @@ function kChartsWeek() {
 					count: 3,
 					text: '3月'
 				}],
-				buttonTheme: {
-					fill: 'none',
-					stroke: 'none',
-					'stroke-width': 0,
-					r: 0,
-					style: {
-						display: 'block',
-						color: '#6d6f71',
-						fontWeight: 'normal',
-						fontSize: '12px',
-						width: '100px',
-						height: '30px',
-						padding: '0 20px',
-						border: '1px solid #d5d7d9',
-						background: '#ff0000',
-						fill: 'none'
-					},
-					states: {
-						hover: {},
-						select: {
-							fill: '#039',
-							style: {
-								color: 'white'
-							}
-						}
-					}
-				},
-				selected: 3,
-				enabled: false,
+				selected: 2,
+				enabled: true,
 				inputEnabled: false
 			},
 			title: {

@@ -137,7 +137,7 @@ function kChartsDay(){
 						}
 					},
 					selected: 5,
-					enabled: false,
+					enabled: true,
 					inputEnabled: false
 				},
 				title: {

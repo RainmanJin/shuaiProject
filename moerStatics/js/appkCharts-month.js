@@ -100,7 +100,6 @@ function kChartsMonth() {
 					'stroke-width': 0,
 					r: 0,
 					style: {
-						display: 'block',
 						color: '#6d6f71',
 						fontWeight: 'normal',
 						fontSize: '12px',
@@ -110,19 +109,10 @@ function kChartsMonth() {
 						border: '1px solid #d5d7d9',
 						background: '#ff0000',
 						fill: 'none'
-					},
-					states: {
-						hover: {},
-						select: {
-							fill: '#039',
-							style: {
-								color: 'white'
-							}
-						}
 					}
 				},
-				selected: 1,
-				enabled: false,
+				selected: 3,
+				enabled: true,
 				inputEnabled: false
 			},
 			title: {
