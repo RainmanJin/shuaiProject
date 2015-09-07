@@ -110,7 +110,7 @@ a {text-decoration:none;}
 .aside-stock .asidestock-form .asidestock-input input::-moz-placeholder {color:#9fa7ac;}
 .aside-stock .asidestock-form .asidestock-input input:-ms-input-placeholder {color:#9fa7ac;}
 .aside-stock .asidestock-form button {margin-left:10px;width:90px;height:30px;border:0;border-radius:3px;font-size:12px;color:#fff;background:#e6461a;}
-  /*** 热门问答 ***/
+/*** 热门问答 ***/
 .aside-block-cont {margin-top:38px;}
 .aside-wd {width:100%;}
 .aside-wd li {padding:10px 0;border-bottom:1px solid #ececec;}
@@ -119,9 +119,11 @@ a {text-decoration:none;}
 .aside-wd p {line-height:20px;margin-bottom:5px;}
 .aside-wd p a {font-size:14px;color:#4d5557;}
 .aside-wd span {font-size:12px;color:#9ea7ae;}
-.aside-wd img {float:right;width:25px;height:25px;margin-left:7px;border-radius:50%;}
+.aside-wd .moerUsercard {float:right;width:25px;height:25px;margin-left:7px;}
+.aside-wd img {width:25px;height:25px;border-radius:50%;}
 /*** 热门文章 ***/
 .aside-block-article {}
+.aside-block-article:before,.aside-block-article:after {content:" ";display:block;clear:both;}
 .aside-article {width:100%;}
 .aside-article .asidearticle-first {width:400px;height:228px;font-size:0;}
 .aside-article .asidearticle-first img {width:400px;height:228px;}
@@ -130,5 +132,37 @@ a {text-decoration:none;}
 .aside-article li:last-child {border:0;}
 .aside-article em {display:inline-block;height:18px;line-height:18px;padding:0 8px;font-size:12px;font-style:normal;color:#e6461a;border:1px solid #e6461a;border-radius:3px;}
 .aside-article span {margin-left:8px;font-size:12px;color:#9fa7ac;line-height:20px;}
-.aside-article p {margin-top:3px;}
+.aside-article p {margin-top:3px;white-space:nowrap;}
 .aside-article p a {font-size:14px;color:#4d5559;}
+/*** 收益排行 ***/
+.asideblock-ranking {}
+.asideblock-ranking:before,.asideblock-ranking:after {content:" ";display:block;clear:both;}
+.aside-ranking {}
+.aside-ranking li {}
+.aside-ranking .asiderank-avatar {float:left;margin-right:10px;}
+.aside-ranking .asiderank-avatar img {width:40px;height:40px;border-radius:50%;}
+.aside-ranking .asiderank-msg {float:left;width:310px;border-bottom:1px solid #dededf;}
+.aside-ranking .asiderank-msg h2 {font-weight:normal;line-height:20px;}
+.aside-ranking .asiderank-msg h2 a {font-size:14px;color:#4d5559;}
+.aside-ranking .asiderank-msg p {}
+.aside-ranking .asiderank-msg p a {font-size:12px;color:#9fa7ac}
+.aside-ranking .asiderank-msg p span {font-size:12px;color:#9fa7ac;}
+.aside-ranking .asiderank-msg p span:before {content:" ";display:inline-block;width:3px;height:3px;background:#9fa7ac;border-radius:50%;}
+.aside-ranking .asiderank-msg p em {float:right;font-size:14px;font-style:normal;font-weight:bolder;font-family:Arial,sans-serif;color:#e8451a;}
+.aside-ranking .asiderank-msg p em i {font-size:12px;font-style:normal;color:inherit;}
+.aside-ranking .asiderank-msg {}
+/*** 市场动态财经要闻 ***/
+.asideblock-news {}
+.asideblock-news:before,.asideblock-news:after {content:" ";display:block;clear:both;}
+.aside-news {}
+/*** 热门撰稿人 ***/
+.asideblock-copywriter {}
+.asideblock-copywriter:before,.asideblock-copywriter:after {content:" ";display:block;clear:both;}
+.aside-copywriter {}
+.aside-copywriter li {float:left;width:60px;margin:19px 40px 0 0;}
+.aside-copywriter li:nth-child(4n) {margin-right:0;}
+.aside-copywriter li img {width:60px;height:60px;border-radius:50%;}
+.aside-copywriter li img:hover,.aside-copywriter li img:active {width:54px;height:54px;border:3px solid #fff;box-shadow:1px 1px 3px 2px rgba(0,0,0,.4);}
+.aside-copywriter li div {}
+.aside-copywriter li p {white-space:nowrap;}
+.aside-copywriter li p a {font-size:14px;color:#4d5559;}
