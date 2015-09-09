@@ -1,0 +1,16 @@
+{
+  "data":{
+    "name":"我是用户名hellow",
+    "head":"/O/d22a1d6c156fc70a7de03f966a6a4f20.png",
+    "user_level":"1",
+    "persion_describe":"",
+    "fans":"19",
+    "follow":"61",
+    "wd":10,
+    "articleCount":"0",
+    "attention":0
+  },
+  "success":true,
+  "errorCode":0,
+  "message":""
+}
