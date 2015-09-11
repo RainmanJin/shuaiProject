@@ -7,7 +7,7 @@
     },
     "dqs":{
       "index_name":"道琼斯",
-      "change_rate":"2.42",
+      "change_rate":"-2.42",
       "current_point":"16492.68"
     },
     "hengsheng":{
@@ -17,7 +17,7 @@
     },
     "hs":{
       "index_name":"沪深300",
-      "change_rate":"1.96",
+      "change_rate":"-1.96",
       "current_point":"3399.305"
     },
     "nsdk":{
@@ -29,14 +29,9 @@
       "index_name":"标普指数",
       "change_rate":"2.51",
       "current_point":"1969.41"
-    },
-    "shangzheng":{
-      "index_name":"上证指数",
-      "change_rate":"2.29",
-      "current_point":"3243.089"
     }
   },
-  "success":false,
+  "success": true,
   "errorCode":0,
   "message":""
 }

@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="moerApp">
 <head>
   <meta charset="UTF-8">
   <title>摩尔新首页</title>
   <link rel="stylesheet" href="./css/newindex.css"/>
+  <script src="./js/jquery-1.9.0.min.js"></script>
+  <script src="./js/angular.min.js"></script>
+  <script src="./js/controller.js"></script>
 </head>
 <body>
   <div class="header">
@@ -647,42 +650,13 @@
           <h1>我的自选股</h1>
         </div>
         <div class="aside-stock">
-          <div class="asidestock-index">
+          <div class="asidestock-index" ng-controller="stockIndex">
             <ul>
-              <li>
-                <h5>上证指数</h5>
-                <h3>3951.45</h3>
-                <p class="asidestock-red"><span>+10.76%</span><span>+2684.12</span></p>
-              </li>
-              <li>
-                <h5>上证指数</h5>
-                <h3>3951.45</h3>
-                <p class="asidestock-green"><span>-10.76%</span><span>-2684.12</span></p>
-              </li>
-              <li>
-                <h5>上证指数</h5>
-                <h3>3951.45</h3>
-                <p class="asidestock-red"><span>+10.76%</span><span>+2684.12</span></p>
-              </li>
-              <li>
-                <h5>上证指数</h5>
-                <h3>3951.45</h3>
-                <p class="asidestock-red"><span>+10.76%</span><span>+2684.12</span></p>
-              </li>
-              <li>
-                <h5>上证指数</h5>
-                <h3>3951.45</h3>
-                <p class="asidestock-green"><span>-10.76%</span><span>-2684.12</span></p>
-              </li>
-              <li>
-                <h5>上证指数</h5>
-                <h3>3951.45</h3>
-                <p class="asidestock-red"><span>+10.76%</span><span>+2684.12</span></p>
-              </li>
-              <li>
-                <h5>上证指数</h5>
-                <h3>3951.45</h3>
-                <p class="asidestock-red"><span>+10.76%</span><span>+2684.12</span></p>
+              <li ng-repeat="v in stockdp">
+                <h5>{{v.index_name}}</h5>
+                <h3>{{v.current_point}}</h3>
+                <p ng-if="v.change_rate > 0" class="asidestock-red"><span>{{v.change_rate}}%</span><span>+2684.12</span></p>
+                <p ng-if="v.change_rate < 0" class="asidestock-green"><span>{{v.change_rate}}%</span><span>+2684.12</span></p>
               </li>
             </ul>
             <div class="asidestock-indexmore"></div>
