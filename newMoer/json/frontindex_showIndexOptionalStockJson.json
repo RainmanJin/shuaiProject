@@ -1,0 +1,33 @@
+{
+  "data": {
+    "51185": {
+      "change_amount": "-0.04",
+      "mOptionalStockSub_id": 51185,
+      "mOptionalStockSub_createUserId": "100808726",
+      "stockCode": "000001",
+      "stockName": "平安银行",
+      "current_price": "12.23",
+      "mOptionalStockSub_extend1": "LABEL_AGU",
+      "mOptionalStockSub_createTime": "2015-05-19 19:15:07",
+      "mOptionalStockSub_mosId": 11443,
+      "mOptionalStockSub_stockNo": "sz000001",
+      "change_fudu": "-0.33%"
+    },
+    "68895": {
+      "change_amount": "+0.15",
+      "mOptionalStockSub_id": 68895,
+      "mOptionalStockSub_createUserId": "100808726",
+      "stockCode": "601218",
+      "stockName": "吉鑫科技",
+      "current_price": "7.71",
+      "mOptionalStockSub_extend1": "LABEL_AGU",
+      "mOptionalStockSub_createTime": "2015-06-15 09:54:46",
+      "mOptionalStockSub_mosId": 11443,
+      "mOptionalStockSub_stockNo": "sh601218",
+      "change_fudu": "+1.98%"
+    }
+  },
+  "success": true,
+  "errorCode": 0,
+  "message": ""
+}

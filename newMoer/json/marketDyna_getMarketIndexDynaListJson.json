@@ -1,0 +1,24 @@
+{
+  "data": {
+    "total": 30,
+    "list": [
+      {
+        "marketDynamic_content": "证监会网站9月8日发布公告称，世纪星源、驰宏锌锗、新嘉联发行股份购买资产获证监会通过。",
+        "marketDynamic_createUserName": "葛鹏",
+        "pubTime": "2015-09-08",
+        "marketDynamic_mainLabelCode": "",
+        "marketDynamic_createTime": "2015-09-08 19:45:04",
+        "marketDynamic_extend1": "个股",
+        "marketDynamic_title": "证监会：驰宏锌锗等发行股份购买资产获通过",
+        "marketDynamic_subLabel": "",
+        "marketDynamic_pubTime": "2015-09-08 19:45:04",
+        "marketDynamic_isPub": "Y",
+        "marketDynamic_id": 11483,
+        "marketDynamic_pubUserName": "葛鹏"
+      }
+    ]
+  },
+  "success": false,
+  "errorCode": 0,
+  "message": ""
+}

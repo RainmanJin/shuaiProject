@@ -653,16 +653,16 @@
           <div class="asidestock-index" ng-controller="stockIndex">
             <ul>
               <li ng-repeat="v in stockdp">
-                <h5>{{v.index_name}}</h5>
-                <h3>{{v.current_point}}</h3>
-                <p ng-if="v.change_rate > 0" class="asidestock-red"><span>{{v.change_rate}}%</span><span>+2684.12</span></p>
-                <p ng-if="v.change_rate < 0" class="asidestock-green"><span>{{v.change_rate}}%</span><span>+2684.12</span></p>
+                <h5 ng-bind="v.index_name"></h5>
+                <h3 ng-bind="v.current_point"></h3>
+                <p ng-if="v.change_rate > 0" class="asidestock-red"><span>{{v.change_rate}}%</span><span ng-bind="v.current_point * v.change_rate / 100 | number : 2"></span></p>
+                <p ng-if="v.change_rate < 0" class="asidestock-green"><span>{{v.change_rate}}%</span><span>{{v.current_point * v.change_rate / 100 | number : 2}}</span></p>
               </li>
             </ul>
             <div class="asidestock-indexmore"></div>
           </div>
           <div class="asidestock-my">
-            <div class="aside-tab aside-tab-4">
+            <div class="aside-tab aside-tab-4" ng-controller="stockMy">
               <a class="on" href="javascript:void(0);">我的自选股1</a>
               <a href="javascript:void(0);">我的自选股2</a>
               <a href="javascript:void(0);">我的自选股3</a>

@@ -6,13 +6,13 @@ var app = angular.module("moerApp",[]);
 //自选股大盘指数 JSON
 app.controller("stockIndex",function($scope,$http){
   $scope.stockdp = [];
-  $http.get("./json/wapcommon_findStockIndexJson.json").success(function(data){
-    if(data.success == true){
-      data = eval(data);
-      var data1 = data.data;
+  $http.get("./json/wapcommon_findStockIndexJson.json").success(function(result){
+    if(result.success == true){
+      result = eval(result);
+      var data = result.data;
       var n = 0;
-      for(var i in data1){
-        $scope.stockdp[n] = data1[i];
+      for(var i in data){
+        $scope.stockdp[n] = data[i];
         n++;
       }
     }
@@ -22,21 +22,21 @@ app.controller("stockIndex",function($scope,$http){
   })
 });
 
-//文章收益排行榜 JSON
-app.controller("articleRanking",function($scope,$http){
-  $scope.hotArticle = [];
-  $http.get("./json/frontindex_articleRankingJson.json").success(function(data){
-    if(data.success == true){
-      data = eval(data);
-      var data1 = data.data;
+//自选股组合 JSON
+app.controller("stockMy",function($scope,$http){
+  $scope.stockMy = [];
+  $http.get("./json/frontindex_showOptionalStockNavJson.json").success(function(result){
+    if(result.success == true){
+      result = eval(result);
+      var data = result.data;
       var n = 0;
-      for(var i in data1){
-        $scope.hotArticle[n] = data1[i];
+      for(var i in data){
+        $scope.stockMy[n] = data[i];
         n++;
       }
     }
   }).error(function(){
     console.warn("error");
-    $scope.stockdp = "error";
+    $scope.stockMy = result.message;
   })
 });

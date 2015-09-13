@@ -1,0 +1,29 @@
+{
+  "data": {
+    "total": 30,
+    "list": [
+      {
+        "pubTime": "2015-09-08",
+        "ccnt": 0,
+        "createTime": "2015-09-08 21:12:15",
+        "authorType": "2",
+        "scnt": 0,
+        "authorId": "15cf186a-7fba-11e4-8101-f8bc124d8818",
+        "id": 38551,
+        "freeRead": "央行网站8日晚间消息，中国人民银行新闻发言人就远期售汇宏观审慎管理有关问题答记者问。发言人表示，将银行远期售汇业务纳入宏观审慎政策框架，有利于抑制外汇市场过度波动，防范宏观金融风险，促进金融机构稳健经营。",
+        "title": "央行：远期售汇宏观审慎管理有利于防范宏观金融风险",
+        "browseCount": 396,
+        "source": "央行网站",
+        "onColumn": "DJBD_HONGGUAN",
+        "name": "",
+        "money": 0,
+        "realName": "",
+        "zcnt": 0,
+        "head": ""
+      }
+    ]
+  },
+  "success": true,
+  "errorCode": 0,
+  "message": ""
+}
