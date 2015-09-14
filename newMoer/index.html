@@ -7,6 +7,7 @@
   <script src="./js/jquery-1.9.0.min.js"></script>
   <script src="./js/angular.min.js"></script>
   <script src="./js/controller.js"></script>
+  <script src="./js/moerIndex.js"></script>
 </head>
 <body>
   <div class="header">
@@ -49,9 +50,9 @@
     <div class="header-right">
       <ul>
         <li class="header-search"><a href="#">搜索</a>
-          <div class="headersearch-cont headerhas-dropdown">
+          <div class="headersearch-cont headerhas-dropdown" ng-controller="headerSearch">
             <div class="headersearch-input">
-              <input type="text" placeholder="找个股/用户/文章/问题/群组"/>
+              <input type="text" placeholder="找个股/用户/文章/问题/群组" ng-model="search.key" ng-keydown="searchChange(search.key)"/>
               <button type="button"></button>
             </div>
             <div class="header-dropdown headersearch-down">
@@ -59,34 +60,22 @@
               <div class="headersearch-item">
                 <span>相关股票</span>
                 <ul>
-                  <li><a href="#">安捷伦科技（A）</a></li>
-                  <li><a href="#">京东方A（SZ000725）</a></li>
-                  <li><a href="#">阿里巴巴（BABA）</a></li>
+                  <li ng-if="$index < 3" ng-repeat="s in search.stock"><a ng-href="/stockcode.htm?code=cn_{{s.stockCode}}">{{s.stockName}}&nbsp;(&nbsp;{{s.stockCode}}&nbsp;)</a></li>
                 </ul>
               </div>
               <div class="headersearch-item">
                 <span>相关文章</span>
                 <ul>
-                  <li><a href="#">现在应该买什么 应该注A意哪些风险?  </a></li>
-                  <li><a href="#">八大机构：9月将A围绕3000点波动 上...</a></li>
-                  <li><a href="#">3月新股买A什么之暴风科技</a></li>
+                  <li ng-if="$index < 3" ng-repeat="a in search.article"><a ng-href="/articleDetails.htm?articleId={{a.articleId}}">{{a.title | limitTo:18}}</a></li>
                 </ul>
                 <a href="#" class="headersearch-more">查看更多&gt;&gt;</a>
               </div>
               <div class="headersearch-item">
                 <span>相关用户</span>
                 <ul>
-                  <li class="headersearch-img">
-                    <a href="#"><img src="./images/avatar/avatar7.jpg" alt="#"/></a>
-                    <h6><a href="#">我是用户名</a></h6>
-                  </li>
-                  <li class="headersearch-img">
-                    <a href="#"><img src="./images/avatar/avatar2.jpg" alt="#"/></a>
-                    <h6><a href="#">我是用户名</a></h6>
-                  </li>
-                  <li class="headersearch-img">
-                    <a href="#"><img src="./images/avatar/avatar4.jpg" alt="#"/></a>
-                    <h6><a href="#">我是用户名</a></h6>
+                  <li class="headersearch-img" ng-if="$index < 3" ng-repeat="u in search.user">
+                    <a ng-href="/authorHome.htm?theId={{u.id}}"><img ng-src="http://moerfile.jiemian.com/staticFile{{u.img}}" alt="{{u.name}}"/></a>
+                    <h6><a ng-href="/authorHome.htm?theId={{u.id}}">{{u.name}}</a></h6>
                   </li>
                 </ul>
                 <a href="#" class="headersearch-more">查看更多&gt;&gt;</a>
@@ -102,9 +91,7 @@
                     <a href="#"><img src="./images/avatar/avatar8.jpg" alt="#"/></a>
                     <h6><a href="#">八卦A</a></h6>
                   </li>
-                  <li><a href="#">现在应该买什么 应该注A意哪些风险?  </a></li>
-                  <li><a href="#">八大机构：9月将A围绕3000点波动 上...</a></li>
-                  <li><a href="#">3月新股买A什么之暴风科技?</a></li>
+                  <li ng-if="$index < 3" ng-repeat="q in search.question"><a ng-href="/showQuestionDetail.htm?mQuestion_id={{q.questionId}}">{{q.questionTitle | limitTo:18}}</a></li>
                 </ul>
                 <a href="#" class="headersearch-more">查看更多&gt;&gt;</a>
               </div>

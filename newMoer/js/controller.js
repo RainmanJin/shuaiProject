@@ -40,3 +40,20 @@ app.controller("stockMy",function($scope,$http){
     $scope.stockMy = result.message;
   })
 });
+
+/搜索 JSON
+app.controller("headerSearch",function($scope,$http){
+  $scope.searchKey = "";
+  $scope.search = [];
+  $http.get("./json/search.json").success(function(result){
+    if(result.success == true){
+      var data = result.message;
+      for(var i in data){
+        $scope.search[i] = data[i];
+      }
+    }
+  }).error(function(){
+    console.warn("error");
+    $scope.search = result.success;
+  })
+});

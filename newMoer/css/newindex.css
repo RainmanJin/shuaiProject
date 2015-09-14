@@ -32,7 +32,7 @@ i.userv-red {display:inline-block;width:13px;height:11px;background:url("../imag
 .header .header-search:hover {background-position:-77px -36px;}
 .header .header-search:hover .headersearch-cont.headerhas-dropdown {display:block;}
 .header .header-search>a {padding-left:24px;}
-.header .headersearch-cont.headerhas-dropdown {display:none;position:absolute;width:300px;height:58px;top:0;left:-50px;line-height:1;z-index:30;background:#fff;border-bottom:1px solid #ebebeb;}
+.header .headersearch-cont.headerhas-dropdown {display:block;position:absolute;width:300px;height:58px;top:0;left:-50px;line-height:1;z-index:30;background:#fff;border-bottom:1px solid #ebebeb;}
 .header .headersearch-input {float:left;width:298px;height:32px;border:1px solid #dfdfdf;border-radius:3px;position:absolute;top:12px;overflow:hidden;}
 .header .headersearch-input input {float:left;width:240px;height:32px;padding:0 10px;border:0;outline:none;}
 .header .headersearch-input button {float:left;width:38px;height:32px;background:#fff url("../images/moericon/moerindex-icon.png") no-repeat;background-position:-68px 2px;border:0;outline:none;cursor:pointer;}
@@ -42,7 +42,7 @@ i.userv-red {display:inline-block;width:13px;height:11px;background:url("../imag
 .header .headersearch-item:last-child {border:0;}
 .header .headersearch-item span {font-size:14px;color:#9fa7ac;}
 .header .headersearch-item ul {float:none;margin:4px 0;}
-.header .headersearch-item li {float:none;display:block;padding:10px 0;}
+.header .headersearch-item li {float:none;display:block;margin:0;padding:10px 0;}
 .header .headersearch-item li a {font-size:14px;color:#777c7f;}
 .header .headersearch-item .headersearch-more {margin-bottom:15px;font-size:14px;color:#9fa7ac;}
 .header .headersearch-item .headersearch-img {padding:7px 0;}
@@ -164,7 +164,7 @@ i.userv-red {display:inline-block;width:13px;height:11px;background:url("../imag
 /**** 左侧主内容 ****/
 .cont-title {width:100%;height:30px;line-height:30px;margin-top:25px;border-bottom:2px solid #e9eaec;}
 .cont-title:before,.cont-title:after {content:" ";display:block;clear:both;}
-.cont-title h1 {display:inline-block;height:29px;font-size:14px;padding:0 2px;border-bottom:2px solid #e8451a;}
+.cont-title h1 {display:inline-block;height:29px;font-size:14px;font-weight:bolder;padding:0 2px;border-bottom:2px solid #e8451a;color:#586b72;}
 .moerdynamic-flow {}
 .moerdynamic-flow .moerdynamic-item {padding:20px 0 15px;border-bottom:1px solid #e9eaec;}
 .moerdynamic-flow .moerdynamic-item:before,
@@ -240,14 +240,14 @@ i.userv-red {display:inline-block;width:13px;height:11px;background:url("../imag
 .moerdynamic-flow .dynamic-comment .dynamiccomment-input input {width:540px;height:40px;margin-bottom:10px;padding:0 10px;font-size:12px;color:#5e686d;border:1px solid #eaeaea;border-radius:3px;outline:none;}
 .moerdynamic-flow .dynamic-comment .dynamiccomment-input span {margin-right:10px;font-size:12px;color:#9fa7ac;}
 .moerdynamic-flow .dynamic-comment .dynamiccomment-input button {width:60px;height:24px;border:0;border-radius:3px;background:#e8451a;font-size:12px;color:#fff;outline:none;cursor:pointer;}
-.moerdynamic-flow .dynamiccomment-item {width:530px;margin:0 auto;padding:15px 0;border-bottom:1px solid #e4e4e4;}
+.moerdynamic-flow .dynamiccomment-item {width:560px;margin:0 auto;padding:15px 0;border-bottom:1px solid #e4e4e4;}
 .moerdynamic-flow .dynamiccomment-item:hover .dynamiccomment-footer .dynamiccomment-btn-hover {display:inline-block;}
 .moerdynamic-flow .dynamic-comment .dynamiccomment-item:before,
 .moerdynamic-flow .dynamic-comment .dynamiccomment-item:after {content:" ";display:block;clear:both;}
 .moerdynamic-flow .dynamiccomment-avatar {float:left;width:25px;height:25px;}
 .moerdynamic-flow .dynamiccomment-avatar img {width:25px;height:25px;border-radius:50%;}
 .moerdynamic-flow .dynamiccomment-avatar {}
-.moerdynamic-flow .dynamiccomment-right {float:left;width:495px;margin-left:10px;}
+.moerdynamic-flow .dynamiccomment-right {float:left;width:525px;margin-left:10px;}
 .moerdynamic-flow .dynamiccomment-right h3 {font-size:12px;font-weight:normal;line-height:1;}
 .moerdynamic-flow .dynamiccomment-right h3 a {font-size:inherit;color:#5491ae;}
 .moerdynamic-flow .dynamiccomment-right p {margin-top:5px;font-size:12px;color:#5e686d;line-height:20px;}
@@ -260,7 +260,7 @@ i.userv-red {display:inline-block;width:13px;height:11px;background:url("../imag
 .moerdynamic-flow .dynamiccomment-footer .dynamiccomment-time {font-size:12px;color:#9fa7ac;}
 .moerdynamic-flow .dynamiccomment-footer {}
 .moerdynamic-flow .dynamiccomment-sub {margin-top:5px;text-align:right;}
-.moerdynamic-flow .dynamiccomment-sub input {width:475px;height:40px;margin-bottom:10px;padding:0 10px;font-size:12px;color:#5e686d;border:1px solid #eaeaea;border-radius:3px;outline:none;}
+.moerdynamic-flow .dynamiccomment-sub input {width:505px;height:40px;margin-bottom:10px;padding:0 10px;font-size:12px;color:#5e686d;border:1px solid #eaeaea;border-radius:3px;outline:none;}
 .moerdynamic-flow .dynamiccomment-sub span {margin-right:10px;font-size:12px;color:#9fa7ac;}
 .moerdynamic-flow .dynamiccomment-sub button {width:60px;height:24px;border:0;border-radius:3px;background:#e8451a;font-size:12px;color:#fff;outline:none;cursor:pointer;}
 .moerdynamic-flow .dynamiccomment-more {width:100%;height:45px;line-height:45px;text-align:center;cursor:pointer;font-size:12px;color:#5491ae;}
