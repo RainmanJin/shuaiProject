@@ -49,10 +49,10 @@
     </div>
     <div class="header-right">
       <ul>
-        <li class="header-search"><a href="#">搜索</a>
+        <li class="header-search"><a href="javascript:void(0);">搜索</a>
           <div class="headersearch-cont headerhas-dropdown" ng-controller="headerSearch">
             <div class="headersearch-input">
-              <input type="text" placeholder="找个股/用户/文章/问题/群组" ng-model="search.key" ng-keydown="searchChange(search.key)"/>
+              <input type="text" placeholder="找个股/用户/文章/问题/群组" ng-model="searchKey"/>
               <button type="button"></button>
             </div>
             <div class="header-dropdown headersearch-down">
@@ -156,12 +156,12 @@
         <h1>关注动态</h1>
       </div>
       <div class="moerdynamic-flow">
-        <div class="moerdynamic-item">
+        <div class="moerdynamic-item" eventtype="5" objectid="9015">
           <div class="moerdynamic-header">
             <div class="moerdynamic-down">
               <span></span>
               <div class="moerdynamic-dropdown">
-                <a href="javascript:void(0);" class="moerdynamic-dropdown-collection">收藏</a>
+                <a href="javascript:void(0);" class="moerdynamic-dropdown-collection" collection="Y">收藏</a>
                 <a href="javascript:void(0);" class="moerdynamic-dropdown-report">举报</a>
               </div>
             </div>
@@ -171,7 +171,7 @@
             <h3><a href="#">我是用户名</a></h3>
             <p>发布了一个投资观点 <span>24分钟前</span></p>
           </div>
-          <div class="moerdynamic-body">
+          <div class="moerdynamic-body ">
             <h1><i class="dynamicicon-zd">置顶</i><a href="#">为什么航信转债价格这么高—转债定价的再研究</a></h1>
             <p><span>【摘要】</span>一是现货市场和期货市场做套期保值交易。比如手里持有大宗商品现货，如果担心价格下跌，那么在期货市场上做空，对冲现货下跌风险。二是很多大宗商品对于上市公司的业务而言是原</p>
             <div class="moerdynamic-charge">
@@ -181,11 +181,10 @@
           </div>
           <div class="moerdynamic-footer">
             <div class="moerdynamic-right">
-              <span class="moerdynamic-comment">收起评论</span>
+              <span class="moerdynamic-comment" open="0">12条评论</span>
               <span class="moerdynamic-share">分享</span>
             </div>
             <button type="button" class="moerdynamic-zan">456</button>
-            <button type="button" class="moerdynamic-zan moerdynamic-zan-y">456</button>
             <div class="moerdynamic-zanuser">
               <ul>
                 <li class="moerUsercard">
@@ -219,8 +218,8 @@
                   <div class="dynamiccomment-footer">
                     <div class="dynamiccomment-btn">
                       <span class="dynamiccomment-btn-hover">举报</span>
-                      <span>回复</span>
-                      <span>赞</span>
+                      <span class="dynamiccomment-reply">回复</span>
+                      <span class="dynamiccomment-zan">赞</span>
                     </div>
                     <span class="dynamiccomment-time">100分钟前</span>
                   </div>
@@ -230,7 +229,7 @@
                     <button type="button">评论</button>
                   </div>
                 </div>
-              </div>
+            </div>
               <div class="dynamiccomment-item">
                 <div class="dynamiccomment-avatar">
                   <a href="#"><img src="./images/avatar/avatar8.jpg" alt="#"/></a>
