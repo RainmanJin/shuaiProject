@@ -8,8 +8,10 @@
 </head>
 <body>
   <div class="main" ng-controller="MyCtrl">
-    <h1>{{msg}}</h1>
+    <h1 ng-style="msg.color">{{msg.title}}</h1>
+    <button ng-click="cli()">show||hide</button>
     <p ng-repeat="v in user">{{v}}</p>
+
   </div>
 </body>
 </html>

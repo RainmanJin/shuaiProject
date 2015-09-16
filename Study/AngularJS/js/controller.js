@@ -3,7 +3,10 @@
  */
 
 angular.module("Myapp",[]).controller("MyCtrl",function($scope,$http){
-  $scope.msg = "hello";
+  $scope.msg = {title:"hello",color:"red"};
+  $scope.cli = function(){
+      $scope.msg.color = "blue";
+  };
   $scope.user = [];
   $http.get("./js/mytest.json").success(function(data){
     console.log("123");

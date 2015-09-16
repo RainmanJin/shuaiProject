@@ -1,0 +1,67 @@
+{
+  "data": {
+    "answerCommentForMainAnswerList": [
+      {
+        "mAnswer_createUserId": "100881417",
+        "answerUserName": "勍舜",
+        "mAnswer_questionId": 2005,
+        "mAnswer_mainAnswerId": 6397,
+        "mAnswer_id": 6413,
+        "answerUserHeadImage": "http://moerfile.jiemian.com/staticFile/defavatar/avatar_middle.png",
+        "answerApplaudCount": 0,
+        "mAnswer_replyUserId": "104688529",
+        "mAnswer_content": "明白了，谢谢啦",
+        "mAnswer_createTime": "2015-08-27",
+        "answerRelStatus": {
+          "answerApplaud": 1,
+          "answerApplaudId": 0,
+          "answerCollect": 1,
+          "answerCollectId": 0,
+          "answerId": 6413,
+          "userId": ""
+        },
+        "answerCommentCount": 0,
+        "replyUserName": "山东奥特曼",
+        "replyUserHeadImage": "http://moerfile.jiemian.com/staticFile/O/e764dccf2689e268c43c3a72a85d82d3.png"
+      },
+      {
+        "mAnswer_createUserId": "100881417",
+        "answerUserName": "勍舜123",
+        "mAnswer_questionId": 2005,
+        "mAnswer_mainAnswerId": 6397,
+        "mAnswer_id": 6413,
+        "answerUserHeadImage": "http://moerfile.jiemian.com/staticFile/defavatar/avatar_middle.png",
+        "answerApplaudCount": 0,
+        "mAnswer_replyUserId": "104688529",
+        "mAnswer_content": "sdfsdfs明sdfsdfsdf白sdfsdf了，谢12334dfsd谢啦",
+        "mAnswer_createTime": "2015-08-27",
+        "answerRelStatus": {
+          "answerApplaud": 1,
+          "answerApplaudId": 0,
+          "answerCollect": 1,
+          "answerCollectId": 0,
+          "answerId": 6413,
+          "userId": ""
+        },
+        "answerCommentCount": 0,
+        "replyUserName": "山东奥特曼",
+        "replyUserHeadImage": "http://moerfile.jiemian.com/staticFile/O/e764dccf2689e268c43c3a72a85d82d3.png"
+      }
+    ],
+    "mainMAnswer": {
+      "mAnswer_answerStatus": 2,
+      "mAnswer_replyId": 0,
+      "mAnswer_createUserId": "104688529",
+      "mAnswer_questionId": 2005,
+      "mAnswer_content": "",
+      "mAnswer_isAnonymous": 0,
+      "mAnswer_createTime": "2015-08-27 07:52:51",
+      "mAnswer_id": 6397,
+      "mAnswer_brief": "现在很多股票都跌破了拟定增的价格。这个关联性不是很大。没人有说定增价格就是铁底，再有就是，上市公司会在恰当是的时机来契合相关的规则。",
+      "mAnswer_headimg": ""
+    }
+  },
+  "success": true,
+  "errorCode": 0,
+  "message": ""
+}
