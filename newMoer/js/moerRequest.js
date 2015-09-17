@@ -150,7 +150,7 @@ $(document).on("click",".moerdynamic-comment",function(){
           if(result.success == true){
             result = result.data.answerCommentForMainAnswerList;
             for(var i=0;i<result.length;i++){
-              comment += "<div class='dynamiccomment-item' relpyid='"+ resule[i].mAnswer_id +"'>";
+              comment += "<div class='dynamiccomment-item' relpyid='"+ result[i].mAnswer_id +"'>";
               comment += "<div class='dynamiccomment-avatar'><a href='/authorHome.htm?theId="+ result[i].mAnswer_createUserId +"'><img src='"+ result[i].answerUserHeadImage +"' /></a></div>";
               comment += "<div class='dynamiccomment-right'>";
               comment += "<h3><a href='/authorHome.htm?theId="+ result[i].mAnswer_createUserId +"'>"+ result[i].answerUserName +"</a></h3>";
@@ -177,7 +177,7 @@ $(document).on("click",".moerdynamic-comment",function(){
   }else{
     if(commentopen == 0){
       _this.attr("commentopen","1");
-      comment += "<div class='dynamic-comment'><em></em><div class='dynamiccomment-form'><input type='text' placeholder='写下你的评论...' class='dynamiccomment-input'/><span>取消</span><button type='button' disabled>评论</button></div>";
+      comment += "<div class='dynamic-comment'><em></em><div class='dynamiccomment-form'><input type='text' placeholder='写下你的评论...' class='dynamiccomment-input'/><span class='dynamiccomment-cancel'>取消</span><button type='button' class='dynamiccomment-submit' disabled>评论</button></div>";
       $.ajax({
         url: moerReq+"getArticleCommentsJson.json",
         data: {
@@ -190,7 +190,7 @@ $(document).on("click",".moerdynamic-comment",function(){
           if(result.success == true){
             result = result.data.evaluateList;
             for(var i=0;i<result.length;i++){
-              comment += "<div class='dynamiccomment-item' relpyid='"+ resule[i].mComment_id +"'>";
+              comment += "<div class='dynamiccomment-item' relpyid='"+ result[i].mComment_id +"'>";
               comment += "<div class='dynamiccomment-avatar'><a href='/authorHome.htm?theId="+ result[i].user_id +"'><img src='"+ result[i].user_portraitUrl +"' /></a></div>";
               comment += "<div class='dynamiccomment-right'>";
               comment += "<h3><a href='/authorHome.htm?theId="+ result[i].user_id +"'>"+ result[i].user_name +"</a></h3>";
@@ -278,16 +278,12 @@ $(document).on("click",".dynamiccomment-submit",function(){
   }else{
     var questionid = _this.parents(".moerdynamic-item").attr("questionid");
     var replyContent = _this.siblings(".dynamiccomment-input").val();
-    _this.parents(".moerdynamic-item").children(".moerdynamic-body").children("p").eq(0).children("span").remove();
-    var answerContent = _this.parents(".moerdynamic-item").children(".moerdynamic-body").children("p").eq(0).html();
-    answerContent = answerContent.replace(/<[^>]+>/g,"");
-    answerContent = answerContent.substring(0,20);
     $.ajax({
       url: moerReq+"userCommentAdd.json",
       data:{
         commentType: 1,
         articleId: objectid,
-        content: answerContent,
+        content: replyContent,
         target: 1,
         targetId: 0,
         format: "json"
@@ -317,7 +313,7 @@ $(document).on("click",".dynamiccomment-submit",function(){
 
 //回复评论的回复
 $(document).on("click",".dynamiccomment-reply",function(){
-  var replayComment = "<div class='dynamiccomment-sub'><input class='dynamiccomment-input' type='text' placeholder='写下你的回复...'/><span>取消</span><button type='button' disabled class='dynamiccomment-sub-submit'>评论</button></div>";
+  var replayComment = "<div class='dynamiccomment-sub'><input class='dynamiccomment-input' type='text' placeholder='写下你的回复...'/><button type='button' disabled class='dynamiccomment-sub-submit'>评论</button></div>";
   $(this).parents(".dynamiccomment-footer").after(replayComment);
   $(this).parents(".dynamiccomment-footer").siblings(".dynamiccomment-sub").children("input").focus();
 });
@@ -366,7 +362,39 @@ $(document).on("click",".dynamiccomment-sub-submit",function(){
       }
     });
   }else{
-
+    var questionid = _this.parents(".moerdynamic-item").attr("questionid");
+    var replyContent = _this.siblings(".dynamiccomment-input").val();
+    var replyId = _this.parents(".dynamiccomment-item").attr("relpyid");
+    $.ajax({
+      url: moerReq+"userCommentAdd.json",
+      data:{
+        commentType: 1,
+        articleId: objectid,
+        content: replyContent,
+        target: 2,
+        targetId: replyId,
+        format: "json"
+      },
+      dataType: "json",
+      success: function(result){
+        if(result.success == true){
+          var data = eval(result.data);
+          var comment = "";
+          comment += "<div class='dynamiccomment-item' relpyid='"+ data.mComment_id +"'>";
+          comment += "<div class='dynamiccomment-avatar'><a href='/authorHome.htm?theId="+ data.mComment_createUserId +"'><img src='"+ data.comment_user_img +"' /></a></div>";
+          comment += "<div class='dynamiccomment-right'>";
+          comment += "<h3><a href='/authorHome.htm?theId="+ data.mComment_createUserId +"'>"+ data.comment_user_name +"</a></h3>";
+          comment += "<p>"+ data.mComment_content +"</p>";
+          comment += "<div class='dynamiccomment-footer'>";
+          comment += "<div class='dynamiccomment-btn'><span class='dynamiccomment-btn-hover'>举报</span><span class='dynamiccomment-reply'>回复</span><span class='dynamiccomment-zan'>赞</span></div>";
+          comment += "<span class='dynamiccomment-time'>"+ data.mComment_createTime +"</span>";
+          comment += "</div>";
+          comment += "</div>";
+          comment += "</div>";
+          $(".dynamic-comment").append(comment);
+        }
+      }
+    });
   }
 });
 
