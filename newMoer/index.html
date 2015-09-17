@@ -3,11 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <title>摩尔新首页</title>
+  <meta name="format-detection" content="telephone=no" />
+  <meta content="email=no" name="format-detection" />
   <link rel="stylesheet" href="./css/newindex.css"/>
   <script src="./js/jquery-1.9.0.min.js"></script>
   <script src="./js/angular.min.js"></script>
   <script src="./js/controller.js"></script>
-  <script src="./js/moerIndex.js"></script>
+  <script src="./js/moerRequest.js"></script>
+  <script src="./js/moerInteraction.js"></script>
 </head>
 <body>
   <div class="header">
@@ -42,20 +45,20 @@
                 <button>提问</button>
               </div>
             </div>
-            <a href="#">高手</a>
+            <a href="#">找高手</a>
           </li>
         </ul>
       </div>
     </div>
     <div class="header-right">
       <ul>
-        <li class="header-search"><a href="javascript:void(0);">搜索</a>
+        <li class="header-search"><a href="javascript:void(0);" class="headersearch-btn">搜索</a>
           <div class="headersearch-cont headerhas-dropdown" ng-controller="headerSearch">
-            <div class="headersearch-input">
-              <input type="text" placeholder="找个股/用户/文章/问题/群组" ng-model="searchKey"/>
-              <button type="button"></button>
+            <div class="headersearch-form">
+              <input type="text" placeholder="找个股/用户/文章/问题/群组" ng-model="searchKey" class="headersearch-input" ng-keyup="searchTo($event)"/>
+              <button type="button" ng-click="searchStart()"></button>
             </div>
-            <div class="header-dropdown headersearch-down">
+            <div class="header-dropdown headersearch-down" ng-style="searchdisplay">
               <em></em>
               <div class="headersearch-item">
                 <span>相关股票</span>
@@ -155,7 +158,8 @@
       <div class="cont-title">
         <h1>关注动态</h1>
       </div>
-      <div class="moerdynamic-flow">
+      <div class="moerdynamic-flow" nowpage="1">
+        <div class="moerdynamic-new"></div>
         <div class="moerdynamic-item" eventtype="5" objectid="9015">
           <div class="moerdynamic-header">
             <div class="moerdynamic-down">
@@ -199,6 +203,135 @@
               </ul>
               <span>等</span>
             </div>
+          </div>
+          <div class="dynamic-comment"><em></em><div class="dynamiccomment-form"><input type="text" placeholder="写下你的评论..." class="dynamiccomment-input"><span class="dynamiccomment-cancel">取消</span><button class="dynamiccomment-submit" type="button" disabled>评论</button></div><div class="dynamiccomment-item"><div class="dynamiccomment-avatar"><a href="/authorHome.htm?theId=103145706"><img src="http://moerfile.jiemian.com/staticFile/O/09df16bc779b706c23f02d33a8a71aa6.png"></a></div><div class="dynamiccomment-right"><h3><a href="/authorHome.htm?theId=103145706">山海经</a></h3><p>怎么确定趋势已经确立了？我问了这个问题，但是从来没出现满意的回答。邀请您啦！http://moer.jiemian.com/showQuestionDetail.htm?mQuestion_id=2641</p><div class="dynamiccomment-footer"><div class="dynamiccomment-btn"><span class="dynamiccomment-btn-hover">举报</span><span class="dynamiccomment-reply">回复</span><span class="dynamiccomment-zan">赞</span></div><span class="dynamiccomment-time">2015-09-15</span></div></div></div><div class="dynamiccomment-item"><div class="dynamiccomment-avatar"><a href="/authorHome.htm?theId=103145706"><img src="http://moerfile.jiemian.com/staticFile/O/09df16bc779b706c23f02d33a8a71aa6.png"></a></div><div class="dynamiccomment-right"><h3><a href="/authorHome.htm?theId=103145706">山海经</a></h3><p>文章的话，只能是大V写什么，读者才能看到什么。问答的话，可以读者提问啊，愿意回答，尤其是好好回答的答主，感觉好棒！</p><div class="dynamiccomment-footer"><div class="dynamiccomment-btn"><span class="dynamiccomment-btn-hover">举报</span><span class="dynamiccomment-reply">回复</span><span class="dynamiccomment-zan">赞</span></div><span class="dynamiccomment-time">2015-09-15</span></div></div></div></div>
+        </div>
+        <div class="moerdynamic-item" eventtype="5" objectid="9015">
+          <div class="moerdynamic-header">
+            <div class="moerdynamic-down">
+              <span></span>
+              <div class="moerdynamic-dropdown">
+                <a href="javascript:void(0);" class="moerdynamic-dropdown-collection" collection="Y">收藏</a>
+                <a href="javascript:void(0);" class="moerdynamic-dropdown-report">举报</a>
+              </div>
+            </div>
+            <div class="moerdynamic-avatar">
+              <a href="#"><img src="./images/avatar/avatar2.jpg" alt="#"/></a>
+            </div>
+            <h3><a href="#">我是用户名</a></h3>
+            <p>发布了一个投资观点 <span>24分钟前</span></p>
+          </div>
+          <div class="moerdynamic-body ">
+            <h1><i class="dynamicicon-zd">置顶</i><a href="#">为什么航信转债价格这么高—转债定价的再研究</a></h1>
+            <p><span>【摘要】</span>一是现货市场和期货市场做套期保值交易。比如手里持有大宗商品现货，如果担心价格下跌，那么在期货市场上做空，对冲现货下跌风险。二是很多大宗商品对于上市公司的业务而言是原</p>
+            <div class="moerdynamic-charge">
+              <span class="moerdynamic-charge-num">123456789字</span>
+              <span class="moerdynamic-charge-img">8图</span>
+            </div>
+          </div>
+          <div class="moerdynamic-footer">
+            <div class="moerdynamic-right">
+              <span class="moerdynamic-comment" commentopen="0">12条评论</span>
+              <span class="moerdynamic-share">分享</span>
+            </div>
+            <button type="button" class="moerdynamic-attention moerdynamic-attention-y">已关注</button>
+            <button type="button" class="moerdynamic-attention">关注问题</button>
+          </div>
+        </div>
+        <div class="moerdynamic-item" eventtype="5" objectid="9015">
+          <div class="moerdynamic-header">
+            <div class="moerdynamic-down">
+              <span></span>
+              <div class="moerdynamic-dropdown">
+                <a href="javascript:void(0);" class="moerdynamic-dropdown-collection" collection="Y">收藏</a>
+                <a href="javascript:void(0);" class="moerdynamic-dropdown-report">举报</a>
+              </div>
+            </div>
+            <div class="moerdynamic-avatar">
+              <a href="#"><img src="./images/avatar/avatar2.jpg" alt="#"/></a>
+            </div>
+            <h3><a href="#">我是用户名</a></h3>
+            <p>发布了一个投资观点 <span>24分钟前</span></p>
+          </div>
+          <div class="moerdynamic-body ">
+            <h1><i class="dynamicicon-zd">置顶</i><a href="#">为什么航信转债价格这么高—转债定价的再研究</a></h1>
+            <p><span>【摘要】</span>一是现货市场和期货市场做套期保值交易。比如手里持有大宗商品现货，如果担心价格下跌，那么在期货市场上做空，对冲现货下跌风险。二是很多大宗商品对于上市公司的业务而言是原</p>
+            <div class="moerdynamic-charge">
+              <span class="moerdynamic-charge-num">123456789字</span>
+              <span class="moerdynamic-charge-img">8图</span>
+            </div>
+          </div>
+          <div class="moerdynamic-footer">
+            <div class="moerdynamic-right">
+              <span class="moerdynamic-comment" commentopen="0">12条评论</span>
+              <span class="moerdynamic-share">分享</span>
+            </div>
+            <button type="button" class="moerdynamic-attention moerdynamic-attention-y">已关注</button>
+            <button type="button" class="moerdynamic-attention">关注问题</button>
+          </div>
+        </div>
+        <div class="moerdynamic-item" eventtype="5" objectid="9015">
+          <div class="moerdynamic-header">
+            <div class="moerdynamic-down">
+              <span></span>
+              <div class="moerdynamic-dropdown">
+                <a href="javascript:void(0);" class="moerdynamic-dropdown-collection" collection="Y">收藏</a>
+                <a href="javascript:void(0);" class="moerdynamic-dropdown-report">举报</a>
+              </div>
+            </div>
+            <div class="moerdynamic-avatar">
+              <a href="#"><img src="./images/avatar/avatar2.jpg" alt="#"/></a>
+            </div>
+            <h3><a href="#">我是用户名</a></h3>
+            <p>发布了一个投资观点 <span>24分钟前</span></p>
+          </div>
+          <div class="moerdynamic-body ">
+            <h1><i class="dynamicicon-zd">置顶</i><a href="#">为什么航信转债价格这么高—转债定价的再研究</a></h1>
+            <p><span>【摘要】</span>一是现货市场和期货市场做套期保值交易。比如手里持有大宗商品现货，如果担心价格下跌，那么在期货市场上做空，对冲现货下跌风险。二是很多大宗商品对于上市公司的业务而言是原</p>
+            <div class="moerdynamic-charge">
+              <span class="moerdynamic-charge-num">123456789字</span>
+              <span class="moerdynamic-charge-img">8图</span>
+            </div>
+          </div>
+          <div class="moerdynamic-footer">
+            <div class="moerdynamic-right">
+              <span class="moerdynamic-comment" commentopen="0">12条评论</span>
+              <span class="moerdynamic-share">分享</span>
+            </div>
+            <button type="button" class="moerdynamic-attention moerdynamic-attention-y">已关注</button>
+            <button type="button" class="moerdynamic-attention">关注问题</button>
+          </div>
+        </div>
+        <div class="moerdynamic-item" eventtype="5" objectid="9015">
+          <div class="moerdynamic-header">
+            <div class="moerdynamic-down">
+              <span></span>
+              <div class="moerdynamic-dropdown">
+                <a href="javascript:void(0);" class="moerdynamic-dropdown-collection" collection="Y">收藏</a>
+                <a href="javascript:void(0);" class="moerdynamic-dropdown-report">举报</a>
+              </div>
+            </div>
+            <div class="moerdynamic-avatar">
+              <a href="#"><img src="./images/avatar/avatar2.jpg" alt="#"/></a>
+            </div>
+            <h3><a href="#">我是用户名</a></h3>
+            <p>发布了一个投资观点 <span>24分钟前</span></p>
+          </div>
+          <div class="moerdynamic-body">
+            <h1><i class="dynamicicon-zd">置顶</i><a href="#">为什么航信转债价格这么高—转债定价的再研究</a></h1>
+            <p><span>【摘要】</span>一是现货市场和期货市场做套期保值交易。比如手里持有大宗商品现货，如果担心价格下跌，那么在期货市场上做空，对冲现货下跌风险。二是很多大宗商品对于上市公司的业务而言是原</p>
+            <div class="moerdynamic-charge">
+              <span class="moerdynamic-charge-num">123456789字</span>
+              <span class="moerdynamic-charge-img">8图</span>
+            </div>
+          </div>
+          <div class="moerdynamic-footer">
+            <div class="moerdynamic-right">
+              <span class="moerdynamic-comment" commentopen="0">12条评论</span>
+              <span class="moerdynamic-share">分享</span>
+            </div>
+            <button type="button" class="moerdynamic-attention moerdynamic-attention-y">已关注</button>
+            <button type="button" class="moerdynamic-attention">关注问题</button>
           </div>
         </div>
         <div class="moerdynamic-item">
@@ -562,18 +695,22 @@
     </div>
     <div class="right-content">
       <!-- 右侧用户 start -->
-      <div class="aside-user">
-        <a href="#"><img src="./images/avatar/avatar10.jpg" alt="#"/></a>
+      <div class="aside-user" ng-controller="userInfo">
+        <a href="#"><img ng-src="http://moerfile.jiemian.com/staticFile{{userinfo.head}}" alt="{{userinfo.name}}"/></a>
         <div class="asideuser-right">
-          <h2>我是用户名</h2>
-          <p>宏观、策略、TMT、宏观、策略、TMT、宏观、策略、TMT</p>
+          <h2>
+            {{userinfo.name}}
+            <i ng-if="userinfo.user_level == 1" class="userv-red"></i>
+            <i ng-if="userinfo.user_level == 2" class="userv-blue"></i>
+          </h2>
+          <p>{{userinfo.persion_describe}}</p>
         </div>
         <div class="asideuser-message">
           <ul>
-            <li><a href="#">关注<strong>00001</strong></a></li>
-            <li><a href="#">关注<strong>00002</strong></a></li>
-            <li><a href="#">关注<strong>00003</strong></a></li>
-            <li><a href="#">关注<strong>00004</strong></a></li>
+            <li><a href="#">关注<strong>{{userinfo.follow}}</strong></a></li>
+            <li><a href="#">粉丝<strong>{{userinfo.fans}}</strong></a></li>
+            <li><a href="#">文章<strong>{{userinfo.articleCount}}</strong></a></li>
+            <li><a href="#">问答<strong>{{userinfo.wd}}</strong></a></li>
           </ul>
         </div>
       </div>
@@ -759,76 +896,58 @@
       </div>
       <!-- 热门文章 end -->
       <!-- 收益排行 start -->
-      <div class="aside-block asideblock-ranking">
+      <div class="aside-block asideblock-ranking" ng-controller="moerRanking">
         <div class="aside-tab aside-tab-3">
           <a class="on" href="javascript:void(0);">周收益</a>
           <a href="javascript:void(0);">月收益</a>
           <a href="javascript:void(0);">总收益</a>
         </div>
-        <div class="aside-ranking">
+        <div class="asidetab-cont aside-ranking">
           <ul>
-            <li>
+            <li ng-repeat="Rweek in rankweek">
               <div class="asiderank-avatar moerUsercard">
-                <a href="#"><img src="./images/avatar/avatar6.jpg" alt="#"/></a>
+                <a ng-href="/authorHome.htm?theId={{Rweek.mArticleYie_pubUserId}}"><img ng-src="http://moerfile.jiemian.com/staticFile{{Rweek.img}}" alt="{{Rweek.user_name}}"/></a>
               </div>
               <div class="asiderank-msg">
-                <h2><a href="#">博耳电力：核心业务增长理想 受益于国家智能电网发</a></h2>
+                <h2><a href="#">{{Rweek.mArticleYie_title}}</a></h2>
                 <p>
-                  <em>1298.81<i>%</i></em>
-                  <a href="#">我是用户名</a>
-                  <span>2015-09-01</span>
+                  <em>{{Rweek.mArticleYie_yield}}<i>%</i></em>
+                  <a ng-href="/authorHome.htm?theId={{Rweek.mArticleYie_pubUserId}}">{{Rweek.user_name}}</a>
+                  <span>{{Rweek.mArticleYie_pubTime}}</span>
                 </p>
               </div>
             </li>
-            <li>
+          </ul>
+        </div>
+        <div class="asidetab-cont aside-ranking" style="display:none;">
+          <ul>
+            <li ng-repeat="Rmonth in rankmonth">
               <div class="asiderank-avatar moerUsercard">
-                <a href="#"><img src="./images/avatar/avatar6.jpg" alt="#"/></a>
+                <a ng-href="/authorHome.htm?theId={{Rmonth.mArticleYie_pubUserId}}"><img ng-src="http://moerfile.jiemian.com/staticFile{{Rmonth.img}}" alt="{{Rmonth.user_name}}"/></a>
               </div>
               <div class="asiderank-msg">
-                <h2><a href="#">博耳电力：核心业务增长理想 受能电网发</a></h2>
+                <h2><a href="#">{{Rmonth.mArticleYie_title}}</a></h2>
                 <p>
-                  <em>98.81<i>%</i></em>
-                  <a href="#">我是用户名</a>
-                  <span>2015-09-01</span>
+                  <em>{{Rmonth.mArticleYie_yield}}<i>%</i></em>
+                  <a ng-href="/authorHome.htm?theId={{Rmonth.mArticleYie_pubUserId}}">{{Rmonth.user_name}}</a>
+                  <span>{{Rmonth.mArticleYie_pubTime}}</span>
                 </p>
               </div>
             </li>
-            <li>
+          </ul>
+        </div>
+        <div class="asidetab-cont aside-ranking" style="display:none;">
+          <ul>
+            <li ng-repeat="Ryear in rankyear">
               <div class="asiderank-avatar moerUsercard">
-                <a href="#"><img src="./images/avatar/avatar6.jpg" alt="#"/></a>
+                <a ng-href="/authorHome.htm?theId={{Ryear.mArticleYie_pubUserId}}"><img ng-src="http://moerfile.jiemian.com/staticFile{{Ryear.img}}" alt="{{Ryear.user_name}}"/></a>
               </div>
               <div class="asiderank-msg">
-                <h2><a href="#">博耳电力：核心业务增长理想 受益于国家智能电网发</a></h2>
+                <h2><a href="#">{{Ryear.mArticleYie_title}}</a></h2>
                 <p>
-                  <em>98.81<i>%</i></em>
-                  <a href="#">我是用户名</a>
-                  <span>2015-09-01</span>
-                </p>
-              </div>
-            </li>
-            <li>
-              <div class="asiderank-avatar moerUsercard">
-                <a href="#"><img src="./images/avatar/avatar6.jpg" alt="#"/></a>
-              </div>
-              <div class="asiderank-msg">
-                <h2><a href="#">博耳电力：核心业务增长理想 受益于国家智能电网发</a></h2>
-                <p>
-                  <em>98.81<i>%</i></em>
-                  <a href="#">我是用户名</a>
-                  <span>2015-09-01</span>
-                </p>
-              </div>
-            </li>
-            <li>
-              <div class="asiderank-avatar moerUsercard">
-                <a href="#"><img src="./images/avatar/avatar6.jpg" alt="#"/></a>
-              </div>
-              <div class="asiderank-msg">
-                <h2><a href="#">博耳电力：核心业务增长理想 受能电网发</a></h2>
-                <p>
-                  <em>98.81<i>%</i></em>
-                  <a href="#">我是用户名</a>
-                  <span>2015-09-01</span>
+                  <em>{{Ryear.mArticleYie_yield}}<i>%</i></em>
+                  <a ng-href="/authorHome.htm?theId={{Ryear.mArticleYie_pubUserId}}">{{Ryear.user_name}}</a>
+                  <span>{{Ryear.mArticleYie_pubTime}}</span>
                 </p>
               </div>
             </li>
@@ -837,42 +956,26 @@
       </div>
       <!-- 收益排行 end -->
       <!-- 市场动态财经要闻 start -->
-      <div class="aside-block asideblock-news">
+      <div class="aside-block asideblock-news" ng-controller="marketNews">
         <div class="aside-tab aside-tab-2">
           <a class="on" href="javascript:void(0);">市场动态</a>
           <a href="javascript:void(0);">财经要闻</a>
         </div>
-        <div class="aside-news">
-          <div class="asidenews-item">
+        <div class="asidetab-cont aside-news">
+          <div class="asidenews-item" ng-if="$index < 6" ng-repeat="m in market">
             <i><em></em></i>
-            <span>5分钟前</span>
-            <h2><a href="#">沪指探底回升，跌幅收窄至3.21%</a></h2>
-            <p>振芯科技8月24日晚间披露中报显示，公司2015年上半年实现归属于上市公司股东的净利润4117.17万元，同比增长265.43%；并拟向全体股东每10股转增10股。</p>
+            <span>{{m.marketDynamic_createTime}}</span>
+            <h2><a href="#">{{m.marketDynamic_title | limitTo:28}}</a></h2>
+            <p ng-show="$index < 1">{{m.marketDynamic_content}}</p>
           </div>
-          <div class="asidenews-item">
+          <div class="asidenews-gradient"> </div>
+        </div>
+        <div class="asidetab-cont aside-news" style="display:none;">
+          <div class="asidenews-item" ng-if="$index < 6" ng-repeat="f in finance">
             <i><em></em></i>
-            <span>5分钟前</span>
-            <h2><a href="#">沪指探底回升，跌幅收窄至3.21%</a></h2>
-          </div>
-          <div class="asidenews-item">
-            <i><em></em></i>
-            <span>5分钟前</span>
-            <h2><a href="#">沪指探底回升，跌幅收窄至3.21%</a></h2>
-          </div>
-          <div class="asidenews-item">
-            <i><em></em></i>
-            <span>5分钟前</span>
-            <h2><a href="#">沪指探底回升，跌幅收窄至3.21%</a></h2>
-          </div>
-          <div class="asidenews-item">
-            <i><em></em></i>
-            <span>5分钟前</span>
-            <h2><a href="#">沪指探底回升，跌幅收窄至3.21%</a></h2>
-          </div>
-          <div class="asidenews-item">
-            <i><em></em></i>
-            <span>5分钟前</span>
-            <h2><a href="#">沪指探底回升，跌幅收窄至3.21%</a></h2>
+            <span>{{f.createTime}}</span>
+            <h2><a href="#">{{f.title | limitTo:28}}</a></h2>
+            <p ng-show="$index < 1">{{f.freeRead}}</p>
           </div>
           <div class="asidenews-gradient"> </div>
         </div>
