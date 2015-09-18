@@ -194,12 +194,12 @@ i.userv-red {display:inline-block;width:13px;height:11px;background:url("../imag
 .moerdynamic-flow .moerdynamic-header .moerdynamic-down:hover .moerdynamic-dropdown {display:block;}
 .moerdynamic-flow .moerdynamic-body {}
 .moerdynamic-flow .moerdynamic-body:before,.moerdynamic-flow .moerdynamic-body:after {content:" ";display:block;clear:both;}
-.moerdynamic-flow .moerdynamic-body h1 {margin-top:6px;font-size:18px;color:#5e686d;}
+.moerdynamic-flow .moerdynamic-body h1 {margin-top:6px;margin-bottom:10px;font-size:18px;color:#5e686d;}
 .moerdynamic-flow .moerdynamic-body h1 i.dynamicicon-zd {display:inline-block;margin-right:5px;height:20px;line-height:20px;padding:0 10px;background:#e8451a;text-align:center;color:#fff;font-size:12px;font-style:normal;font-weight:normal;border-radius:3px;}
 .moerdynamic-flow .moerdynamic-body h1 a {font-size:inherit;color:inherit;}
-.moerdynamic-flow .moerdynamic-body p {margin-top:10px;font-size:14px;color:#777c7f;line-height:24px;}
+.moerdynamic-flow .moerdynamic-body p {margin-bottom:10px;font-size:14px;color:#777c7f;line-height:24px;}
 .moerdynamic-flow .moerdynamic-body p span {font-size:inherit;color:#5491ae;}
-.moerdynamic-flow .moerdynamic-body p img {width:135px;height:90px;margin-right:10px;float:left;}
+.moerdynamic-flow .moerdynamic-body.moerdynamic-body-hasimg img {width:135px;height:90px;margin-right:10px;float:left;}
 .moerdynamic-flow .moerdynamic-body .moerdynamic-charge {padding-left:15px;margin:10px 0;font-size:0;background:url("../images/moericon/moerdynamic-charge.png") no-repeat left center;}
 .moerdynamic-flow .moerdynamic-body .moerdynamic-charge span {font-size:12px;color:#5491ae;}
 .moerdynamic-flow .moerdynamic-body .moerdynamic-charge .moerdynamic-charge-num {}
@@ -208,7 +208,9 @@ i.userv-red {display:inline-block;width:13px;height:11px;background:url("../imag
 .moerdynamic-flow .moerdynamic-footer {}
 .moerdynamic-flow .moerdynamic-footer:before,.moerdynamic-flow .moerdynamic-footer:after {content:"";display:block;clear:both;}
 .moerdynamic-flow .moerdynamic-right {float:right;}
+.moerdynamic-flow .moerdynamic-right a,
 .moerdynamic-flow .moerdynamic-right span {padding-left:17px;margin-left:15px;font-size:12px;color:#9fa7ac;background:url("../images/moericon/moerindex-icon.png") no-repeat;cursor:pointer;}
+.moerdynamic-flow .moerdynamic-right .moerdynamic-answer,
 .moerdynamic-flow .moerdynamic-right .moerdynamic-comment {background-position:-235px -150px;}
 .moerdynamic-flow .moerdynamic-right .moerdynamic-share {background-position:-348px -150px;}
 .moerdynamic-flow .moerdynamic-zan {float:left;height:24px;margin-right:5px;padding:0 7px;border:1px solid #dfe1e4;border-radius:3px;background:#fff url("../images/moericon/moerindex-icon.png") no-repeat;background-position:-102px -105px;font-family:Arial,sans-serif;font-size:14px;font-weight:bolder;color:#9fa7ac;cursor:pointer;outline:none;text-indent:17px;}
@@ -416,13 +418,13 @@ i.userv-red {display:inline-block;width:13px;height:11px;background:url("../imag
 .aside-stock .asidestock-my thead {}
 .aside-stock .asidestock-my thead tr {line-height:27px;}
 .aside-stock .asidestock-my thead td {font-size:14px;color:#82878a;}
-.aside-stock .asidestock-my thead td:nth-child(1) {width:160px;}
-.aside-stock .asidestock-my thead td:nth-child(2) {width:110px;}
+.aside-stock .asidestock-my thead td:nth-child(1) {width:150px;}
+.aside-stock .asidestock-my thead td:nth-child(2) {width:100px;}
 .aside-stock .asidestock-my thead td:nth-child(3) {width:70px;text-align:right;}
 .aside-stock .asidestock-my tbody {}
 .aside-stock .asidestock-my tbody tr {line-height:30px;}
-.aside-stock .asidestock-my tbody td:nth-child(1) {width:160px;font-size:14px;color:#4d5559;}
-.aside-stock .asidestock-my tbody td:nth-child(2) {width:110px;font-size:14px;font-family:Arial, sans-serif;color:#4d5559;}
+.aside-stock .asidestock-my tbody td:nth-child(1) {width:150px;font-size:14px;color:#4d5559;}
+.aside-stock .asidestock-my tbody td:nth-child(2) {width:100px;font-size:14px;font-family:Arial, sans-serif;color:#4d5559;}
 .aside-stock .asidestock-my tbody td:nth-child(3) {width:70px;text-align:right;font-size:14px;}
 .aside-stock .asidestock-more {margin-top:11px;height:27px;line-height:27px;border:1px solid #eaeaea;background:#f6f6f6;text-align:center;font-size:14px;color:#82878a;cursor:pointer;}
 .aside-stock .asidestock-form {margin-top:15px;height:30px;}
@@ -449,8 +451,13 @@ i.userv-red {display:inline-block;width:13px;height:11px;background:url("../imag
 .aside-block-article {margin-top:45px;}
 .aside-block-article:before,.aside-block-article:after {content:" ";display:block;clear:both;}
 .aside-article {width:100%;}
-.aside-article .asidearticle-first {width:400px;height:228px;font-size:0;}
+.aside-article .asidearticle-first {width:400px;height:228px;font-size:0;position:relative;}
 .aside-article .asidearticle-first img {width:400px;height:228px;}
+.aside-article .asidearticle-first .asidearticle-info {width:360px;height:55px;padding:0 20px;position:absolute;bottom:0;background:rgba(60,60,62,.5);}
+.aside-article .asidearticle-first .asidearticle-info em {display:inline-block;height:18px;line-height:18px;margin-top:-10px;padding:0 8px;font-size:12px;font-style:normal;color:#fff;background:#e6461a;border-radius:3px;}
+.aside-article .asidearticle-first .asidearticle-info p {font-size:14px;color:#fff;}
+.aside-article .asidearticle-first .asidearticle-info p a {font-size:inherit;color:inherit;}
+.aside-article .asidearticle-first .asidearticle-info span {margin:0;font-size:12px;color:#9fa7ac;}
 .aside-article ul {display:block;width:360px;margin:0 auto;}
 .aside-article li {padding:13px 0 11px 0;border-bottom:1px solid #ececec;}
 .aside-article li:last-child {border:0;}

@@ -3,7 +3,6 @@
  */
 
 var moerReq = "http://moer.jiemian.com/";
-var userId = "100808726";
 
 //点赞事件
 $(document).on("click",".moerdynamic-zan",function(){
@@ -25,7 +24,11 @@ $(document).on("click",".moerdynamic-zan",function(){
         dataType: "json",
         success:function(result){
           if(result.rs.success == true){
+            if(!isNaN(_this.html())){
             _this.addClass("moerdynamic-zan-y").html(Number(_this.html())+1);
+            }else{
+              _this.addClass("moerdynamic-zan-y").html("1");
+            }
           }
         }
       })
@@ -38,30 +41,42 @@ $(document).on("click",".moerdynamic-zan",function(){
         dataType: "json",
         success:function(result){
           if(result.rs.success == true){
-            _this.removeClass("moerdynamic-zan-y").html(Number(_this.html())-1);
+            if(Number(_this.html()) == 1){
+              _this.removeClass("moerdynamic-zan-y").html("赞");
+            }else{
+              _this.removeClass("moerdynamic-zan-y").html(Number(_this.html())-1);
+            }
           }
         }
       })
     }
   }else{
     var artDozan = "Y";
-    if(_this.hasClass("moerdynamic-zan-y") == false){
+    if(_this.hasClass("moerdynamic-zan-y") == true){
       artDozan = "N";
     }
     $.ajax({
       url: moerReq+"wapcommon_doZan.json",
       data:{
         targetId:objectid,
-        idDoZan: artDozan,
+        isDoZan: artDozan,
         zanType:1
       },
       dataType: "json",
       success:function(result){
         if(result.success == true){
-          if(artDozan == Y){
-            _this.addClass("moerdynamic-zan-y").html(Number(_this.html())+1);
+          if(artDozan == "Y"){
+            if(!isNaN(_this.html())){
+              _this.addClass("moerdynamic-zan-y").html(Number(_this.html())+1);
+            }else{
+              _this.addClass("moerdynamic-zan-y").html("1");
+            }
           }else{
-            _this.removeClass("moerdynamic-zan-y").html(Number(_this.html())-1);
+            if(Number(_this.html()) == 1){
+              _this.removeClass("moerdynamic-zan-y").html("赞");
+            }else{
+              _this.removeClass("moerdynamic-zan-y").html(Number(_this.html())-1);
+            }
           }
         }
       }
@@ -224,6 +239,7 @@ $(document).on("focus",".dynamiccomment-input",function(){
 });
 $(document).on("click",".dynamiccomment-cancel",function(){
   $(this).hide().siblings("button").hide();
+  $(this).siblings("input").val("");
 });
 $(document).on("keyup",".dynamiccomment-input",function(){
   var thisVal = $(this).val();
@@ -235,10 +251,12 @@ $(document).on("keyup",".dynamiccomment-input",function(){
 });
 $(document).on("click",".dynamiccomment-submit",function(){
   var _this = $(this);
+  _this.attr("disabled","disabled");
   var eventtype = _this.parents(".moerdynamic-item").attr("eventtype");
   var objectid = _this.parents(".moerdynamic-item").attr("objectid");
   if (eventtype == 3 || eventtype == 5) {
     var questionid = _this.parents(".moerdynamic-item").attr("questionid");
+    var actionuid = _this.parents(".moerdynamic-item").attr("actionuid");
     var replyContent = _this.siblings(".dynamiccomment-input").val();
     _this.parents(".moerdynamic-item").children(".moerdynamic-body").children("p").eq(0).children("span").remove();
     var answerContent = _this.parents(".moerdynamic-item").children(".moerdynamic-body").children("p").eq(0).html();
@@ -250,13 +268,15 @@ $(document).on("click",".dynamiccomment-submit",function(){
         mAnswer_mainAnswerId: objectid,
         mAnswer_isAnonymous: 0,
         mAnswer_questionId: questionid,
-        mAnswer_replyUserId: userId,
+        mAnswer_replyUserId: actionuid,
+        mAnswer_replyId:objectid,
         mAnswer_content: replyContent,
         answerContent: answerContent,
         format: "json"
       },
       dataType: "json",
       success: function(result){
+        _this.removeAttr("disabled");
         if(result.success == true){
           var data = eval(result.data);
           var comment = "";
@@ -271,7 +291,12 @@ $(document).on("click",".dynamiccomment-submit",function(){
           comment += "</div>";
           comment += "</div>";
           comment += "</div>";
-          $(".dynamic-comment").append(comment);
+          if($(".dynamic-comment .dynamiccomment-item").length > 0){
+            $(".dynamic-comment .dynamiccomment-item").eq(0).before(comment);
+          }else{
+            $(".dynamic-comment").append(comment);
+          }
+          _this.siblings(".dynamiccomment-input").val("");
         }
       }
     });
@@ -290,13 +315,14 @@ $(document).on("click",".dynamiccomment-submit",function(){
       },
       dataType: "json",
       success: function(result){
+        _this.removeAttr("disabled");
         if(result.success == true){
           var data = eval(result.data);
           var comment = "";
           comment += "<div class='dynamiccomment-item' relpyid='"+ data.mComment_id +"'>";
-          comment += "<div class='dynamiccomment-avatar'><a href='/authorHome.htm?theId="+ data.mComment_createUserId +"'><img src='"+ data.comment_user_img +"' /></a></div>";
+          comment += "<div class='dynamiccomment-avatar'><a href='/authorHome.htm?theId="+ data.mComment_createUserId +"'><img src='"+ data.muser_imgSmall +"' /></a></div>";
           comment += "<div class='dynamiccomment-right'>";
-          comment += "<h3><a href='/authorHome.htm?theId="+ data.mComment_createUserId +"'>"+ data.comment_user_name +"</a></h3>";
+          comment += "<h3><a href='/authorHome.htm?theId="+ data.mComment_createUserId +"'>"+ data.mComment_createUser +"</a></h3>";
           comment += "<p>"+ data.mComment_content +"</p>";
           comment += "<div class='dynamiccomment-footer'>";
           comment += "<div class='dynamiccomment-btn'><span class='dynamiccomment-btn-hover'>举报</span><span class='dynamiccomment-reply'>回复</span><span class='dynamiccomment-zan'>赞</span></div>";
@@ -304,7 +330,12 @@ $(document).on("click",".dynamiccomment-submit",function(){
           comment += "</div>";
           comment += "</div>";
           comment += "</div>";
-          $(".dynamic-comment").append(comment);
+          if($(".dynamic-comment .dynamiccomment-item").length > 0){
+            $(".dynamic-comment .dynamiccomment-item").eq(0).before(comment);
+          }else{
+            $(".dynamic-comment").append(comment);
+          }
+          _this.siblings(".dynamiccomment-input").val("");
         }
       }
     });
@@ -319,6 +350,7 @@ $(document).on("click",".dynamiccomment-reply",function(){
 });
 $(document).on("click",".dynamiccomment-sub-submit",function(){
   var _this = $(this);
+  _this.attr("disabled","disabled");
   var eventtype = _this.parents(".moerdynamic-item").attr("eventtype");
   var objectid = _this.parents(".moerdynamic-item").attr("objectid");
   if (eventtype == 3 || eventtype == 5) {
@@ -343,6 +375,7 @@ $(document).on("click",".dynamiccomment-sub-submit",function(){
       },
       dataType: "json",
       success: function(result){
+        _this.removeAttr("disabled");
         if(result.success == true){
           var data = eval(result.data);
           var comment = "";
@@ -357,7 +390,9 @@ $(document).on("click",".dynamiccomment-sub-submit",function(){
           comment += "</div>";
           comment += "</div>";
           comment += "</div>";
-          $(".dynamic-comment").append(comment);
+          $(".dynamic-comment .dynamiccomment-item").eq(0).before(comment);
+          _this.siblings(".dynamiccomment-input").val("");
+        }else{
         }
       }
     });
@@ -377,13 +412,14 @@ $(document).on("click",".dynamiccomment-sub-submit",function(){
       },
       dataType: "json",
       success: function(result){
+        _this.removeAttr("disabled");
         if(result.success == true){
           var data = eval(result.data);
           var comment = "";
           comment += "<div class='dynamiccomment-item' relpyid='"+ data.mComment_id +"'>";
-          comment += "<div class='dynamiccomment-avatar'><a href='/authorHome.htm?theId="+ data.mComment_createUserId +"'><img src='"+ data.comment_user_img +"' /></a></div>";
+          comment += "<div class='dynamiccomment-avatar'><a href='/authorHome.htm?theId="+ data.mComment_createUserId +"'><img src='"+ data.muser_imgSmall +"' /></a></div>";
           comment += "<div class='dynamiccomment-right'>";
-          comment += "<h3><a href='/authorHome.htm?theId="+ data.mComment_createUserId +"'>"+ data.comment_user_name +"</a></h3>";
+          comment += "<h3><a href='/authorHome.htm?theId="+ data.mComment_createUserId +"'>"+ data.mComment_createUser +"</a></h3>";
           comment += "<p>"+ data.mComment_content +"</p>";
           comment += "<div class='dynamiccomment-footer'>";
           comment += "<div class='dynamiccomment-btn'><span class='dynamiccomment-btn-hover'>举报</span><span class='dynamiccomment-reply'>回复</span><span class='dynamiccomment-zan'>赞</span></div>";
@@ -391,7 +427,8 @@ $(document).on("click",".dynamiccomment-sub-submit",function(){
           comment += "</div>";
           comment += "</div>";
           comment += "</div>";
-          $(".dynamic-comment").append(comment);
+          $(".dynamic-comment .dynamiccomment-item").eq(0).before(comment);
+          _this.siblings(".dynamiccomment-input").val("");
         }
       }
     });
@@ -433,7 +470,7 @@ $(document).on("click",".moerdynamic-attention",function(){
 
 //查看是否有新动态
 $(document).ready(function(){
-  var t = self.setInterval(function(){hasNewMessage()},10000);
+  var t = self.setInterval(function(){hasNewMessage()},100000);
   function hasNewMessage(){
     var toptimeline = $(".moerdynamic-flow .moerdynamic-item").eq(0).attr("feedtime");
     $.ajax({
@@ -487,7 +524,8 @@ $(document).scroll(function(){
         pageNo: nowpage,
         foottimeline: feedtime
       },
-      dataType: "json",
+      async: false,
+//      dataType: "json",
       success: function(result){
         if(result != ""){
           $(".moerdynamic-flow").append(result);
@@ -497,4 +535,16 @@ $(document).scroll(function(){
       }
     });
   }
+});
+
+$(document).ready(function(){
+	$.ajax({
+      url: moerReq+"indexfeed.json",
+      async: false,
+      success: function(result){
+        if(result != ""){
+          $(".moerdynamic-flow").append(result);
+        }
+      }
+    });
 });
