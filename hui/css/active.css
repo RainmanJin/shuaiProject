@@ -1,0 +1,28 @@
+
+*{margin:0;padding:0;font-family:"Microsoft Yahei",Tahoma,Arial,Roboto,"Droid Sans","Helvetica Neue","Droid Sans Fallback","Heiti SC",sans-self;}
+body{font-size:62.5%;}
+a{text-decoration:none;}
+
+.container {width:100%;padding-bottom:19px;background:#fafafa;}
+.container:before,
+.container:after {content:" ";display:block;clear:both;}
+
+.banner {}
+.banner img {width:100%;}
+
+.active-feed {}
+.active-feed .active-item {margin:19px 19px 0;padding:20px;border:1px solid #e1e1e1;background:#fff;overflow:hidden;}
+.active-feed .active-item img {width:100%;}
+.active-feed .active-item h3 {margin-top:6px;font-size:1.6rem;color:#343434;}
+.active-feed .active-item h3 a {font-size:inherit;color:inherit;}
+.active-feed .active-item h4 {margin-top:4px;font-size:1.2rem;font-weight:normal;color:#65965f;}
+.active-feed .active-item p {margin-top:6px;font-size:1.2rem;color:#9e9e9e;}
+.active-feed .active-item .activeitem-operate {margin-top:10px;height:35px;line-height:35px;}
+.active-feed .active-item .activeitem-operate:before,
+.active-feed .active-item .activeitem-operate:after {content:" ";display:block;clear:both;}
+.active-feed .active-item h5 {font-size:1.4rem;color:#d47a3b;}
+.active-feed .active-item h5 span {font-size:1.2rem;}
+.active-feed .active-item h5 i {margin-left:10px;font-size:1.2rem;color:#9f9f9f;text-decoration:line-through;}
+.active-feed .active-item h5 {}
+.active-feed .active-item h5 {}
+.active-feed .active-item button {float:right;height:35px;padding:0 10px;font-size:1.2rem;color:#fff;border:0;border-radius:5px;background:#d47a3b;outline:none;}
