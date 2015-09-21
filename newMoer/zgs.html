@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="moerApp">
+<head>
+  <meta charset="UTF-8">
+  <title>摩尔新首页</title>
+  <meta name="format-detection" content="telephone=no" />
+  <meta content="email=no" name="format-detection" />
+  <link rel="stylesheet" href="./css/newindex.css"/>
+  <script src="./js/jquery-1.9.0.min.js"></script>
+  <script src="./js/angular.min.js"></script>
+  <script src="./js/controller.js"></script>
+  <script src="./js/moerRequest.js"></script>
+  <script src="./js/moerInteraction.js"></script>
+</head>
+<body>
+  <div class="header">
+    <div class="header-left">
+      <div class="logo">
+        <img src="./images/moer-new-logo.png" alt="#"/>
+      </div>
+      <div class="header-nav">
+        <ul>
+          <li class=""><a href="#">首页</a></li>
+          <li><a href="#">自选股</a></li>
+          <li class="headernav-div">
+            <i></i>
+            <div class="headerhas-dropdown"><a href="#">投资观点</a>
+              <div class="header-dropdown headertzgd-down">
+                <em></em>
+                <ul>
+                  <li><a href="#">推荐</a></li>
+                  <li><a href="#">分类</a></li>
+                  <li><a href="#">排行榜</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="headerhas-dropdown"><a href="#">问答</a>
+              <div class="header-dropdown headerwd-down">
+                <em></em>
+                <ul>
+                  <li><a href="#">问答发现</a></li>
+                  <li><a href="#">话题广场</a></li>
+                  <li><a href="#">所有问题</a></li>
+                </ul>
+                <button>提问</button>
+              </div>
+            </div>
+            <a href="#">找高手</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="header-right">
+      <ul>
+        <li class="header-search"><a href="javascript:void(0);" class="headersearch-btn">搜索</a>
+          <div class="headersearch-cont headerhas-dropdown" ng-controller="headerSearch">
+            <div class="headersearch-form">
+              <input type="text" placeholder="找个股/用户/文章/问题/群组" ng-model="searchKey" class="headersearch-input" ng-keyup="searchTo($event)"/>
+              <button type="button" ng-click="searchStart()"></button>
+            </div>
+            <div class="header-dropdown headersearch-down" ng-style="searchdisplay">
+              <em></em>
+              <div class="headersearch-item">
+                <span>相关股票</span>
+                <ul>
+                  <li ng-if="$index < 3" ng-repeat="s in search.stock"><a ng-href="/stockcode.htm?code=cn_{{s.stockCode}}">{{s.stockName}}&nbsp;(&nbsp;{{s.stockCode}}&nbsp;)</a></li>
+                </ul>
+              </div>
+              <div class="headersearch-item">
+                <span>相关文章</span>
+                <ul>
+                  <li ng-if="$index < 3" ng-repeat="a in search.article"><a ng-href="/articleDetails.htm?articleId={{a.articleId}}">{{a.title | limitTo:18}}</a></li>
+                </ul>
+                <a href="#" class="headersearch-more">查看更多&gt;&gt;</a>
+              </div>
+              <div class="headersearch-item">
+                <span>相关用户</span>
+                <ul>
+                  <li class="headersearch-img" ng-if="$index < 3" ng-repeat="u in search.user">
+                    <a ng-href="/authorHome.htm?theId={{u.id}}"><img ng-src="http://moerfile.jiemian.com/staticFile{{u.img}}" alt="{{u.name}}"/></a>
+                    <h6><a ng-href="/authorHome.htm?theId={{u.id}}">{{u.name}}</a></h6>
+                  </li>
+                </ul>
+                <a href="#" class="headersearch-more">查看更多&gt;&gt;</a>
+              </div>
+              <div class="headersearch-item">
+                <span>相关问答</span>
+                <ul>
+                  <li class="headersearch-img">
+                    <a href="#"><img src="./images/avatar/avatar8.jpg" alt="#"/></a>
+                    <h6><a href="#">八卦A</a></h6>
+                  </li>
+                  <li class="headersearch-img">
+                    <a href="#"><img src="./images/avatar/avatar8.jpg" alt="#"/></a>
+                    <h6><a href="#">八卦A</a></h6>
+                  </li>
+                  <li ng-if="$index < 3" ng-repeat="q in search.question"><a ng-href="/showQuestionDetail.htm?mQuestion_id={{q.questionId}}">{{q.questionTitle | limitTo:18}}</a></li>
+                </ul>
+                <a href="#" class="headersearch-more">查看更多&gt;&gt;</a>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="header-app headerhas-dropdown"><a href="#">客户端</a>
+          <div class="header-dropdown headerapp-down">
+            <em></em>
+            <h4>下载摩尔金融客户端</h4>
+            <img src="../moerStatics/images/erweima.fw.png" alt="#"/>
+            <button>iPhone&nbsp;下载</button>
+            <button>Android&nbsp;下载</button>
+          </div>
+        </li>
+        <li class="header-notice headerhas-dropdown"><a href="#"></a><i></i>
+          <div class="header-dropdown headernotice-down">
+            <em></em>
+            <ul class="headernotice-cont">
+              <li>
+                <a href="#">007刚毕业</a><span>回答了问题</span><a href="#">股票投资方法通常有哪几种？</a>
+                <a href="#">007刚毕业</a><span>回答了问题</span><a href="#">股票投资方法通常有哪几种？</a>
+              </li>
+              <li>
+                <a href="#">007刚毕业</a><span>回答了问题</span><a href="#">股票投资方法通常有哪几种？</a>
+              </li>
+              <li>
+                <a href="#">007刚毕业</a><span>回答了问题</span><a href="#">股票投资方法通常有哪几种？</a>
+              </li>
+              <li>
+                <a href="#">007刚毕业</a><span>回答了问题</span><a href="#">股票投资方法通常有哪几种？</a>
+              </li>
+              <li>
+                <a href="#">007刚毕业</a><span>回答了问题</span><a href="#">股票投资方法通常有哪几种？</a>
+              </li>
+            </ul>
+            <a href="#" class="header-notice-more">查看更多</a>
+          </div>
+        </li>
+        <li class="header-msg"><a href="#"></a><i></i></li>
+      </ul>
+      <div class="header-user headerhas-dropdown">
+        <a href="#"><em></em>我是用户名<i class="userv-blue"></i><i class="userv-red"></i></a>
+        <div class="header-dropdown headeruser-down">
+          <em></em>
+          <ul>
+            <li><a href="#">我的主页</a></li>
+            <li><a href="#">我的发布</a></li>
+            <li><a href="#">我的购物车</a></li>
+            <li><a href="#">管理订单</a></li>
+            <li><a href="#">购买记录</a></li>
+            <li><a href="#">账户设置</a></li>
+            <li><a href="#">退出账号</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="zgstab-slide">
+      <ul>
+        <li>周收益排行</li>
+        <li>月收益排行</li>
+        <li>总收益排行</li>
+      </ul>
+    </div>
+    <div class="left-content">
+      <div class="profit-cont">
+        <div class="profit-item">
+          <div class="profit-avatar">
+            <a href="#"><img src="./images/avatar/avatar4.jpg" alt="#"/></a>
+          </div>
+          <div class="profit-message">
+            <h3><a href="#">我是用户名</a></h3>
+            <h4>
+              <span>粉丝</span>
+              <strong>456</strong>
+              <span>文章</span>
+              <strong>789</strong>
+              <span>问答</span>
+              <strong>123</strong>
+            </h4>
+            <p></p>
+          </div>
+          <div class="profit-info">
+            <button type="button" class="profitatten-btn">关注</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="right-content"></div>
+  </div>
+</body>
+</html>
