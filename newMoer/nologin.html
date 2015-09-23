@@ -6,13 +6,33 @@
   <meta name="format-detection" content="telephone=no"/>
   <meta content="email=no" name="format-detection"/>
   <link rel="stylesheet" href="./css/newindex.css"/>
+  <link rel="stylesheet" href="./css/jquery.fullPage.css"/>
+  <link rel="stylesheet" href="./css/moerNologin.css"/>
   <script src="./js/jquery-1.9.0.min.js"></script>
-  <script src="./js/angular.min.js"></script>
-  <script src="./js/controller.js"></script>
-  <script src="./js/moerRequest.js"></script>
-  <script src="./js/moerInteraction.js"></script>
+  <script src="./js/jquery.fullPage.min.js"></script>
+  <script>
+    $(function(){
+      $("#moer-nologin").fullpage({
+        'navigation': true,
+        'css3': true,
+        'scrollingSpeed': 1000,
+        'continuousVertical':true
+      });
+    });
+  </script>
 </head>
 <body>
-
+  <div id="moer-nologin">
+    <div class="section nologin-item1">
+    </div>
+    <div class="section nologin-item2">
+    </div>
+    <div class="section nologin-item3">
+    </div>
+    <div class="section nologin-item4">
+    </div>
+    <div class="section nologin-item5">
+    </div>
+  </div>
 </body>
 </html>

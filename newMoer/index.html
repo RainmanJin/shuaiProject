@@ -50,7 +50,7 @@
         </ul>
       </div>
     </div>
-    <div class="header-right">
+    <div class="header-right" ng-controller="headerMsg">
       <ul>
         <li class="header-search"><a href="javascript:void(0);" class="headersearch-btn">搜索</a>
           <div class="headersearch-cont headerhas-dropdown" ng-controller="headerSearch">
@@ -96,7 +96,7 @@
                   </li>
                   <li ng-if="$index < 3" ng-repeat="q in search.question"><a ng-href="/showQuestionDetail.htm?mQuestion_id={{q.questionId}}">{{q.questionTitle | limitTo:18}}</a></li>
                 </ul>
-                <a href="#" class="headersearch-more">查看更多&gt;&gt;</a>
+                <a href="/usersysmsg.htm" class="headersearch-more">查看更多&gt;&gt;</a>
               </div>
             </div>
           </div>
@@ -110,31 +110,37 @@
             <button>Android&nbsp;下载</button>
           </div>
         </li>
-        <li class="header-notice headerhas-dropdown"><a href="#"></a><i></i>
-          <div class="header-dropdown headernotice-down">
+        <li class="header-notice headerhas-dropdown"><a href="#"></a><i class="header-count">{{msg}}</i>
+          <div class="header-dropdown headernotice-down" ng-if="msg > 0">
             <em></em>
             <ul class="headernotice-cont">
-              <li>
-                <a href="#">007刚毕业</a><span>回答了问题</span><a href="#">股票投资方法通常有哪几种？</a>
-                <a href="#">007刚毕业</a><span>回答了问题</span><a href="#">股票投资方法通常有哪几种？</a>
-              </li>
-              <li>
-                <a href="#">007刚毕业</a><span>回答了问题</span><a href="#">股票投资方法通常有哪几种？</a>
-              </li>
-              <li>
-                <a href="#">007刚毕业</a><span>回答了问题</span><a href="#">股票投资方法通常有哪几种？</a>
-              </li>
-              <li>
-                <a href="#">007刚毕业</a><span>回答了问题</span><a href="#">股票投资方法通常有哪几种？</a>
-              </li>
-              <li>
-                <a href="#">007刚毕业</a><span>回答了问题</span><a href="#">股票投资方法通常有哪几种？</a>
+              <li ng-repeat="msglist in msgCount">
+                <a ng-href="authorHome.htm?theId={{msglist.actUserId}}">{{msglist.actUserName}}</a>
+                <span ng-if="msglist.actType == 1">回答了您的问题</span>
+                <span ng-if="msglist.actType == 2">回答了问题</span>
+                <span ng-if="msglist.actType == 3">评论了您的回答</span>
+                <span ng-if="msglist.actType == 4">赞了您的回答</span>
+                <span ng-if="msglist.actType == 5">回复了您的评论</span>
+                <span ng-if="msglist.actType == 6">评论了您的文章</span>
+                <span ng-if="msglist.actType == 7">评论了您的回复</span>
+                <span ng-if="msglist.actType == 8">收藏了您的文章</span>
+                <span ng-if="msglist.actType == 9">赞了您的文章</span>
+                <span ng-if="msglist.actType == 10">评论了您的活动</span>
+                <span ng-if="msglist.actType == 11">收藏了您的活动</span>
+                <span ng-if="msglist.actType == 12">赞了您的活动</span>
+                <span ng-if="msglist.actType == 13">评论了您的回复</span>
+                <a  ng-href="/showQuestionDetail.htm?mQuestion_id={{msglist.actObjectId}}" ng-if="msglist.objectType < 4">
+                  {{msglist.objectContent}}
+                </a>
+                <a  ng-href="/showQuestionDetail.htm?mQuestion_id={{msglist.actObjectId}}" ng-if="msglist.objectType > 3">
+                  {{msglist.message}}
+                </a>
               </li>
             </ul>
             <a href="#" class="header-notice-more">查看更多</a>
           </div>
         </li>
-        <li class="header-msg"><a href="#"></a><i></i></li>
+        <li class="header-msg"><a href="/cs.htm"></a><i ng-if="letter > 0" class="header-count">{{letter}}</i></li>
       </ul>
       <div class="header-user headerhas-dropdown">
         <a href="#"><em></em>我是用户名<i class="userv-blue"></i><i class="userv-red"></i></a>
@@ -143,7 +149,7 @@
           <ul>
             <li><a href="#">我的主页</a></li>
             <li><a href="#">我的发布</a></li>
-            <li><a href="#">我的购物车</a></li>
+            <li class="header-shopping"><a href="#">我的购物车<i ng-if="shopping > 0" class="header-count">{{shopping}}</i></a></li>
             <li><a href="#">管理订单</a></li>
             <li><a href="#">购买记录</a></li>
             <li><a href="#">账户设置</a></li>
@@ -154,6 +160,10 @@
     </div>
   </div>
   <div class="container">
+    <div class="opinionTop">
+      <div class="opinionSubmit"></div>
+      <div class="returnTop"></div>
+    </div>
     <div class="left-content">
       <div class="cont-title">
         <h1>关注动态</h1>
@@ -733,9 +743,8 @@
           </div>
           <div class="asidestock-my">
             <div class="aside-tab aside-tab-4" ng-controller="stockMy">
-              <a class="on" href="javascript:void(0);">我的自选股1</a>
-              <a href="javascript:void(0);">我的自选股2</a>
-              <a href="javascript:void(0);">我的自选股3</a>
+              <a class="on" href="javascript:void(0);" ng-if="$index == 0" ng-repeat="stock in stockMy track by $index">{{stock | limitTo : 4}}</a>
+              <a href="javascript:void(0);" ng-if="0 < $index && $index < 3" ng-repeat="stock in stockMy track by $index">{{stock | limitTo : 4}}</a>
               <a href="#">更多</a>
             </div>
             <table>
@@ -818,42 +827,14 @@
           <a href="#" class="asidetitle-more">更多回答</a>
           <h1>热门问答</h1>
         </div>
-        <div class="aside-wd">
+        <div class="aside-wd" ng-controller="hotQuestion">
           <ul>
-            <li>
-              <p><a href="#">注册制对未来半年的影响?</a></p>
-              <div class="moerUsercard"><a href="#"><img src="./images/avatar/avatar1.jpg" alt="#"/></a></div>
-              <div class="moerUsercard"><a href="#"><img src="./images/avatar/avatar2.jpg" alt="#"/></a></div>
-              <div class="moerUsercard"><a href="#"><img src="./images/avatar/avatar3.jpg" alt="#"/></a></div>
-              <span>5123个回答</span>
-            </li>
-            <li>
-              <p><a href="#">中国放松房地产外资准入，是否利好地产股?小韭菜是否可以据此博一波反弹，收回点血本?</a></p>
-              <div class="moerUsercard"><a href="#"><img src="./images/avatar/avatar4.jpg" alt="#"/></a></div>
-              <div class="moerUsercard"><a href="#"><img src="./images/avatar/avatar5.jpg" alt="#"/></a></div>
-              <div class="moerUsercard"><a href="#"><img src="./images/avatar/avatar6.jpg" alt="#"/></a></div>
-              <span>5123个回答</span>
-            </li>
-            <li>
-              <p><a href="#">手里有宗申动力，6月29日已经停牌，复牌怎么办?</a></p>
-              <div class="moerUsercard"><a href="#"><img src="./images/avatar/avatar7.jpg" alt="#"/></a></div>
-              <div class="moerUsercard"><a href="#"><img src="./images/avatar/avatar8.jpg" alt="#"/></a></div>
-              <div class="moerUsercard"><a href="#"><img src="./images/avatar/avatar9.jpg" alt="#"/></a></div>
-              <span>5123个回答</span>
-            </li>
-            <li>
-              <p><a href="#">8月21日，浙富控股已经连续两个涨停，今天跑吗?</a></p>
-              <div class="moerUsercard"><a href="#"><img src="./images/avatar/avatar10.jpg" alt="#"/></a></div>
-              <div class="moerUsercard"><a href="#"><img src="./images/avatar/avatar3.jpg" alt="#"/></a></div>
-              <div class="moerUsercard"><a href="#"><img src="./images/avatar/avatar6.jpg" alt="#"/></a></div>
-              <span>5123个回答</span>
-            </li>
-            <li>
-              <p><a href="#">单身女生，每个月花在衣服和化妆品上的费用为5000左右，用来投资的话该怎么选择?</a></p>
-              <div class="moerUsercard"><a href="#"><img src="./images/avatar/avatar9.jpg" alt="#"/></a></div>
-              <div class="moerUsercard"><a href="#"><img src="./images/avatar/avatar2.jpg" alt="#"/></a></div>
-              <div class="moerUsercard"><a href="#"><img src="./images/avatar/avatar4.jpg" alt="#"/></a></div>
-              <span>5123个回答</span>
+            <li ng-if="$index < 5" ng-repeat="wd in hotquestion">
+              <p><a ng-href="/showQuestionDetail.htm?mQuestion_id={{wd.mQuestion_id}}">{{wd.mQuestion_title}}</a></p>
+              <!--<div class="moerUsercard"><a href="#"><img src="./images/avatar/avatar1.jpg" alt="#"/></a></div>-->
+              <!--<div class="moerUsercard"><a href="#"><img src="./images/avatar/avatar2.jpg" alt="#"/></a></div>-->
+              <!--<div class="moerUsercard"><a href="#"><img src="./images/avatar/avatar3.jpg" alt="#"/></a></div>-->
+              <span>共{{wd.mQuestion_extend2}}个回答</span>
             </li>
           </ul>
         </div>

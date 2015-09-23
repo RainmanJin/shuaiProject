@@ -6,7 +6,7 @@ var app = angular.module("moerApp",[]);
 
 app.controller("userInfo",function($scope,$http){
   $scope.userinfo = [];
-  $http.get("./json/businessCard.json").success(function(result){
+  $http.get("/businessCard.json").success(function(result){
     if(result.success == true){
       $scope.userinfo = eval(result.data);
     }
@@ -16,7 +16,7 @@ app.controller("userInfo",function($scope,$http){
 //自选股大盘指数 JSON
 app.controller("stockIndex",function($scope,$http){
   $scope.stockdp = [];
-  $http.get("./json/wapcommon_findStockIndexJson.json").success(function(result){
+  $http.get("/wapcommon_findStockIndexJson.json").success(function(result){
     if(result.success == true){
       result = eval(result);
       var data = result.data;
@@ -35,15 +35,10 @@ app.controller("stockIndex",function($scope,$http){
 //自选股组合 JSON
 app.controller("stockMy",function($scope,$http){
   $scope.stockMy = [];
-  $http.get("./json/frontindex_showOptionalStockNavJson.json").success(function(result){
+  $http.get("/frontindex_showOptionalStockNavJson.json").success(function(result){
     if(result.success == true){
       result = eval(result);
-      var data = result.data;
-      var n = 0;
-      for(var i in data){
-        $scope.stockMy[n] = data[i];
-        n++;
-      }
+      $scope.stockMy = result.data;
     }
   }).error(function(){
     console.warn("error");
@@ -72,7 +67,7 @@ app.controller("headerSearch",function($scope,$http){
     }else{
       $scope.searchdisplay = {display:"none"};
     }
-    $http.get("./json/search.json").success(function(result){
+    $http.get("/search.json").success(function(result){
       if(result.success == true){
         var data = result.message;
         for(var i in data){
@@ -92,7 +87,7 @@ app.controller("headerSearch",function($scope,$http){
 app.controller("marketNews",function($scope,$http){
   $scope.market = [];
   $scope.finance = [];
-  $http.get("./json/marketDyna_getMarketIndexDynaListJson.json").success(function(result){
+  $http.get("/marketDyna_getMarketIndexDynaListJson.json").success(function(result){
     if(result.success == true){
       var data = eval(result.data.list);
       for(var i=0;i<data.length;i++){
@@ -102,7 +97,7 @@ app.controller("marketNews",function($scope,$http){
   }).error(function(){
     console.warn("error");
   });
-  $http.get("./json/investment_findIndexFinanceListJson.json").success(function(result){
+  $http.get("/investment_findIndexFinanceListJson.json").success(function(result){
     if(result.success == true){
       var data = eval(result.data.list);
       for(var i=0;i<data.length;i++){
@@ -114,18 +109,62 @@ app.controller("marketNews",function($scope,$http){
   });
 });
 
+//排行榜
 app.controller("moerRanking",function($scope,$http){
   $scope.rankweek = [];
-  $scope.rankmonth = $scope.rankweek;
-  $scope.rankyear = $scope.rankweek;
-  $http.get("./json/frontindex_articleRankingJson.json").success(function(result){
+  $scope.rankmonth = [];
+  $scope.rankyear = [];
+  $http.get("/frontindex_articleRankingJson.json?day=7").success(function(result){
     if(result.success == true){
       var data = eval(result.data);
       var i = 0;
-      for(var k in data){
-        $scope.rankweek[i] = data[k];
+      for(var w in data){
+        $scope.rankweek[i] = data[w];
         i++;
       }
+    }
+  }).error(function(){});
+  $http.get("/frontindex_articleRankingJson.json?day=30").success(function(result){
+    if(result.success == true){
+      var data = eval(result.data);
+      var i = 0;
+      for(var m in data){
+        $scope.rankmonth[i] = data[m];
+        i++;
+      }
+    }
+  }).error(function(){});
+  $http.get("/frontindex_articleRankingJson.json?day=365").success(function(result){
+    if(result.success == true){
+      var data = eval(result.data);
+      var i = 0;
+      for(var y in data){
+        $scope.rankyear[i] = data[y];
+        i++;
+      }
+    }
+  }).error(function(){});
+});
+
+//热门问题
+app.controller("hotQuestion",function($scope,$http){
+  $scope.hotquestion = [];
+  $http.get("/findHotQuestion.json").success(function(result){
+    if(result.success == true){
+      $scope.hotquestion = result.data.list;
+    }
+  }).error(function(){});
+});
+
+//顶部导航
+app.controller("headerMsg",function($scope,$http){
+  $http.get("/promptInfo.json").success(function(result){
+    if(result.success == true){
+      var data = eval(result.data);
+      $scope.shopping = data.shoppingCnt;
+      $scope.letter = data.letterCount;
+      $scope.msg = data.msgCount;
+      $scope.msgCount = data.msgList;
     }
   }).error(function(){});
 });

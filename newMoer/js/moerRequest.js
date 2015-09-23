@@ -345,8 +345,10 @@ $(document).on("click",".dynamiccomment-submit",function(){
 //回复评论的回复
 $(document).on("click",".dynamiccomment-reply",function(){
   var replayComment = "<div class='dynamiccomment-sub'><input class='dynamiccomment-input' type='text' placeholder='写下你的回复...'/><button type='button' disabled class='dynamiccomment-sub-submit'>评论</button></div>";
-  $(this).parents(".dynamiccomment-footer").after(replayComment);
-  $(this).parents(".dynamiccomment-footer").siblings(".dynamiccomment-sub").children("input").focus();
+  if($(this).parents(".dynamiccomment-footer").siblings(".dynamiccomment-sub").length < 1){
+    $(this).parents(".dynamiccomment-footer").after(replayComment);
+    $(this).parents(".dynamiccomment-footer").siblings(".dynamiccomment-sub").children("input").focus();
+  }
 });
 $(document).on("click",".dynamiccomment-sub-submit",function(){
   var _this = $(this);

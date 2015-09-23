@@ -24,6 +24,36 @@ $(document).on("click",".aside-tab a",function(){
   $(this).addClass("on").siblings().removeClass("on");
   $(this).parents(".aside-block").children(".asidetab-cont").hide().eq(index).show();
 });
+$(document).on("click",".asidestock-indexmore",function(){
+  if($(this).attr("open") == "open"){
+    $(this).siblings("ul").animate({
+      height:60
+    },500);
+    $(this).removeAttr("open");
+  }else{
+    $(this).attr("open","open");
+    $(this).siblings("ul").animate({
+      height: 140
+    },500);
+  }
+});
+
+//返回顶部
+$(document).on("click",".returnTop",function(){
+  $('html,body').animate({scrollTop:0},700);
+});
+$(document).scroll(function(){
+  if($(this).scrollTop()>50){
+    $(".opinionTop").show("slow");
+  }else{
+    $(".opinionTop").hide("slow");
+  }
+  if($(this).scrollTop() > 3100){
+    $(".aside-block-stock").css({"position":"fixed","top":60,"background":"#fff"});
+  }else{
+    $(".aside-block-stock").css({"position":"static","background":"transparent"});
+  }
+});
 
 //找高手、筛选下拉
 $(document).on("click",".zgstab-select span.zgstab-span",function(){
@@ -52,6 +82,10 @@ $(document).on("click",".zgs-tab li",function(){
 //页面加载完成后--加载收益率
 $(document).ready(function(){
   profitYield();
+  console.log($(".right-content").height());
+});
+angular.element(window).bind('load', function() {
+  console.warn($(".right-content").height());
 });
 
 //加载收益率

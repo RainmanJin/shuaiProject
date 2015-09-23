@@ -1,0 +1,69 @@
+{
+  "data": {
+    "shoppingCnt": 0,
+    "letterCount": 0,
+    "msgList": [
+      {
+        "actObjectId": "7417",
+        "actType": "1",
+        "actUserId": 100808726,
+        "actUserName": "雪落无痕baby",
+        "createTime": "2015-09-18 11:40:55",
+        "createUserId": 100808726,
+        "extend1": "",
+        "extend2": "",
+        "id": 133561,
+        "isAnonymousAct": "N",
+        "isRead": "Y",
+        "message": "",
+        "objectContent": "",
+        "objectType": "2",
+        "toUserId": "100808726",
+        "updateTime": "",
+        "updateUserId": 0
+      },
+      {
+        "actObjectId": "4305",
+        "actType": "2",
+        "actUserId": 100808726,
+        "actUserName": "雪落无痕baby",
+        "createTime": "2015-09-18 10:51:44",
+        "createUserId": 100808726,
+        "extend1": "",
+        "extend2": "",
+        "id": 133553,
+        "isAnonymousAct": "N",
+        "isRead": "Y",
+        "message": "",
+        "objectContent": "",
+        "objectType": "2",
+        "toUserId": "100808726",
+        "updateTime": "",
+        "updateUserId": 0
+      },
+      {
+        "actObjectId": "8597",
+        "actType": "3",
+        "actUserId": 100808726,
+        "actUserName": "雪落无痕baby",
+        "createTime": "2015-09-17 20:05:50",
+        "createUserId": 100808726,
+        "extend1": "",
+        "extend2": "",
+        "id": 133524,
+        "isAnonymousAct": "N",
+        "isRead": "Y",
+        "message": "eee",
+        "objectContent": "【摘要】-->求大神指点",
+        "objectType": "2",
+        "toUserId": "100808726",
+        "updateTime": "",
+        "updateUserId": 0
+      }
+    ],
+    "msgCount": 20
+  },
+  "success": true,
+  "errorCode": 0,
+  "message": ""
+}
