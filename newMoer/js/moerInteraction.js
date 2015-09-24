@@ -42,16 +42,22 @@ $(document).on("click",".asidestock-indexmore",function(){
 $(document).on("click",".returnTop",function(){
   $('html,body').animate({scrollTop:0},700);
 });
+var rHeight = "";
+$(document).ready(function(){
+  rHeight = $(".right-content").height();
+  var fTop = $(".footer").offset().top;
+  $(".right-content").height(fTop+125);
+});
 $(document).scroll(function(){
   if($(this).scrollTop()>50){
     $(".opinionTop").show("slow");
   }else{
     $(".opinionTop").hide("slow");
   }
-  if($(this).scrollTop() > 3100){
-    $(".aside-block-stock").css({"position":"fixed","top":60,"background":"#fff"});
+  if($(this).scrollTop() > rHeight){
+    $(".aside-block-stock").css({"position":"fixed","top":30});
   }else{
-    $(".aside-block-stock").css({"position":"static","background":"transparent"});
+    $(".aside-block-stock").css({"position":"static"});
   }
 });
 
@@ -82,10 +88,6 @@ $(document).on("click",".zgs-tab li",function(){
 //页面加载完成后--加载收益率
 $(document).ready(function(){
   profitYield();
-  console.log($(".right-content").height());
-});
-angular.element(window).bind('load', function() {
-  console.warn($(".right-content").height());
 });
 
 //加载收益率
