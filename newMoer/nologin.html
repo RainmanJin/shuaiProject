@@ -7,14 +7,14 @@
   <meta content="email=no" name="format-detection"/>
   <link rel="stylesheet" href="./css/newindex.css"/>
   <link rel="stylesheet" href="./css/jquery.fullPage.css"/>
-  <link rel="stylesheet" href="./css/moerNologin.css"/>
   <script src="./js/jquery-1.9.0.min.js"></script>
   <script src="./js/jquery.fullPage.min.js"></script>
+  <script src="./js/moerSign.js"></script>
   <script>
     $(function(){
       $("#moer-nologin").fullpage({
         'navigation': true,
-        'css3': true,
+//        'css3': true,
         'scrollingSpeed': 1000,
         'continuousVertical':true
       });
@@ -29,7 +29,8 @@
         <h3><sup>“</sup>分享有价值的投资观点<sub>”</sub></h3>
       </div>
       <div class="loginitem1-cont">
-        <div class="loginitem1-form">
+        <div class="loginitem1-form loginitem1-sign">
+          <h4><a href="#">登录<i></i></a>注册帐号</h4>
           <input type="text" class="loginitem1-name" placeholder="用户名"/>
           <input type="number" class="loginitem1-phone" placeholder="手机号"/>
           <input type="password" class="loginitem1-passwd" placeholder="密码（至少6位）"/>
@@ -38,9 +39,10 @@
           <button type="button" class="loginitem1-submit">注册</button>
         </div>
         <div class="loginitem1-third">
-          <button type="button" class="loginitem1-qq"></button>
-          <button type="button" class="loginitem1-wb"></button>
-          <button type="button" class="loginitem1-wx"></button>
+          <h4>社交账户登录</h4>
+          <button type="button" class="loginitem1-qq">QQ</button>
+          <button type="button" class="loginitem1-wb">微博</button>
+          <button type="button" class="loginitem1-wx">微信</button>
         </div>
       </div>
       <div class="loginitem1-footer">
@@ -52,13 +54,46 @@
         <h2>摩尔金融是什么？</h2>
         <h3>汇聚顶尖专业人士，为您提供个性化的投资服务，在这与投资高手为伍!</h3>
       </div>
+      <div class="loginitem2-list">
+        <div class="loginitem2-list1">
+          <h3><span>6000</span>篇 独家投资观点</h3>
+        </div>
+        <div class="loginitem2-list2">
+          <h3><span>700</span>位 顶尖撰稿人加入</h3>
+        </div>
+        <div class="loginitem2-list3">
+          <h3><span>201</span>% 股票平均收益</h3>
+        </div>
+      </div>
+      <div class="loginitem2-writer"></div>
     </div>
     <div class="section nologin-item3">
       <div class="loginitem3-title">
         <h2><sup>“</sup>在摩尔金融你可以问高手<sub>”</sub></h2>
       </div>
+      <div class="loginitem3-wd">
+
+      </div>
     </div>
     <div class="section nologin-item4">
+      <div class="loginitem4-title">
+        <h2>在摩尔金融你可成为撰稿人</h2>
+      </div>
+      <div class="loginitem4-writer">
+        <div class="loginitem4-list">
+          <h5>平台0收费，撰稿人自由发布、定价及销售，收入快速到账。</h5>
+        </div>
+        <div class="loginitem4-list">
+          <h5>多平台推广您的文章，全面覆盖web，APP，微信，微博等。</h5>
+        </div>
+        <div class="loginitem4-list">
+          <h5>摩尔金融为专业投资者服务，避免杂音，定位精准，能为您快速开拓新客户。</h5>
+        </div>
+        <div class="loginitem4-list">
+          <h5>欢迎专业人士，民间高手、媒体从业者、行业研究员等各界人士成为撰稿人。</h5>
+        </div>
+      </div>
+      <a href="#" class="loginitem4-link">成为撰稿人 <i></i></a>
     </div>
     <div class="section nologin-item5">
     </div>
@@ -67,17 +102,19 @@
         <h2><sup>“</sup>准备好与投资高手为伍了吗<sub>”</sub></h2>
       </div>
       <div class="loginitem6-form">
-        <input type="text" class="loginitem6-name"/>
-        <input type="number" class="loginitem6-phone"/>
-        <input type="password" class="loginitem6-passwd"/>
-        <input type="text" class="loginitem6-requied"/>
-        <a href="javascript:void(0);">免费获取验证码</a>
-        <button type="button">注册</button>
+        <h4><a href="#">登录<i></i></a>注册帐号</h4>
+        <input type="text" class="loginitem6-name" placeholder="用户名"/>
+        <input type="number" class="loginitem6-phone" placeholder="手机号"/>
+        <input type="password" class="loginitem6-passwd" placeholder="密码（至少6位）"/>
+        <input type="text" class="loginitem6-requied" placeholder="激活码"/>
+        <a href="javascript:void(0);" class="loginitem6-reqbtn">免费获取验证码</a>
+        <button type="button" class="loginitem6-submit">注册</button>
       </div>
       <div class="loginitem6-third">
-        <button type="button" class="loginitem6-qq"></button>
-        <button type="button" class="loginitem6-wb"></button>
-        <button type="button" class="loginitem6-wx"></button>
+        <h5>社交账户登录</h5>
+        <button type="button" class="loginitem6-qq">QQ</button>
+        <button type="button" class="loginitem6-wb">微博</button>
+        <button type="button" class="loginitem6-wx">微信</button>
       </div>
     </div>
   </div>
