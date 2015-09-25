@@ -1,0 +1,10 @@
+接口：findAnswerListByApplaudCount
+
+{"createUserName":"启明",
+"questionId":281,
+"questionTitle":"今天（7,29）跌停板3成仓抄了大西洋（600558），明天如何操作?",
+"mAnswer_id":711,
+"zanCount":25,
+"createUserHead":"/O/d99dc4e30bb54a2561a97c1b8c7bb352.png",
+"createUserId":"103390317"
+}
