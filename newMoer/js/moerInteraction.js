@@ -3,20 +3,18 @@
  */
 
 $(document).on("click",".headersearch-btn",function(){
-  $(".headersearch-cont").show();
+  $(".headersearch-cont").slideDown();
   $(".headersearch-input").focus();
 });
-$(".headersearch-input").on({
-  "blur": function () {
-    $(this).val("");
-    $(".headersearch-cont").hide();
-    $(".header-dropdown").hide();
-  },
-  "keydown": function (e) {
-    var search_name = $("#search_text").val();
-    if(e.keyCode==13){
-      location.href = "search.htm?searchName="+search_name;
-    }
+$(document).on("blur",".headersearch-input",function() {
+  $(this).val("");
+  $(".headersearch-cont").slideUp();
+  $(".header-dropdown").hide();
+});
+$(document).on("keydown",".headersearch-input",function(e){
+  var search_name = $("#search_text").val();
+  if(e.keyCode==13){
+    location.href = "search.htm?searchName="+search_name;
   }
 });
 $(document).on("click",".aside-tab a",function(){

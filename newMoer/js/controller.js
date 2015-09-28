@@ -53,7 +53,7 @@ app.controller("headerSearch",function($scope,$http){
   $scope.searchdisplay = {display:"none"};
   $scope.searchStart = function(){
     alert("提交内容"+$scope.searchKey);
-  }
+  };
   $scope.searchTo = function(e){
     var keycode = window.event?e.keyCode:e.which;
     if(keycode==13){

@@ -25,7 +25,7 @@ $(document).on("click",".moerdynamic-zan",function(){
         success:function(result){
           if(result.rs.success == true){
             if(!isNaN(_this.html())){
-            _this.addClass("moerdynamic-zan-y").html(Number(_this.html())+1);
+            	_this.addClass("moerdynamic-zan-y").html(Number(_this.html())+1);
             }else{
               _this.addClass("moerdynamic-zan-y").html("1");
             }
@@ -472,7 +472,7 @@ $(document).on("click",".moerdynamic-attention",function(){
 
 //查看是否有新动态
 $(document).ready(function(){
-  var t = self.setInterval(function(){hasNewMessage()},100000);
+  var t = self.setInterval(function(){hasNewMessage()},60000);
   function hasNewMessage(){
     var toptimeline = $(".moerdynamic-flow .moerdynamic-item").eq(0).attr("feedtime");
     $.ajax({
@@ -501,7 +501,7 @@ $(document).on("click",".moerdynamic-new",function(){
     data: {
       toptimeline: toptimeline
     },
-    dataType: "json",
+    //dataType: "json",
     success: function(result){
       if(result != ""){
         _this.after(result);
@@ -550,3 +550,21 @@ $(document).ready(function(){
       }
     });
 });
+function showOrHideContent(obj){
+	var stat = $(obj).attr("stat");
+	var aid = $(obj).attr("timestamp");
+	if(stat == 1){
+		$("#content_1_"+aid).hide();
+		$("#headimg_"+aid).hide();
+		$("#content_2_"+aid).show();
+		$("#" +"packup_"+aid).text("收起");
+		$("#" +"packup_"+aid).attr("stat",2);
+	}else {
+		$("#content_1_"+aid).show();
+		$("#headimg_"+aid).css({"float":"left","margin-right":"15px","display":"inline"});
+		$("#content_2_"+aid).hide();
+		$("#" +"packup_"+aid).text("展开全部");
+		$("#" +"packup_"+aid).attr("stat",1);
+	}
+}
+

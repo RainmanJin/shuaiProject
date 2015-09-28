@@ -30,7 +30,7 @@ input[type="number"]{-moz-appearance:textfield;}
 .header .header-right li {display:inline-block;margin-right:10px;font-size:14px;color:#586b72;}
 .header .header-right li a {display:inline-block;font-size:inherit;color:inherit;}
 .header .header-right .header-user {float:right;border-left:1px solid #ebebeb;}
-.header .header-right .header-user a {display:block;padding:0 20px;height:100%;font-size:14px;color:#596a72;cursor:pointer;}
+.header .header-right .header-user a {display:block;min-width:115px;padding:0 20px;height:100%;font-size:14px;color:#596a72;cursor:pointer;text-align:center;}
 .header .header-right .header-user a em {display:inline-block;margin-right:5px;width:16px;height:16px;background:url("../images/moericon/moerindex-icon.png") no-repeat -359px -4px;position:relative;top:2px;}
 .header i.header-count {position:absolute;top:15px;right:5px;display:block;height:16px;line-height:16px;text-align:center;padding:0 4px;border-radius:8px;font-size:12px;color:#fff;font-style:normal;font-family:Arial,sans-serif;background:#ec6947;}
 .header li.header-shopping {position:relative;}
@@ -41,7 +41,7 @@ input[type="number"]{-moz-appearance:textfield;}
 .header .header-search:hover {background-position:-77px -36px;}
 /*.header .header-search:hover .headersearch-cont.headerhas-dropdown {display:block;}*/
 .header .header-search>a {padding-left:24px;}
-.header .headersearch-cont.headerhas-dropdown {display:none;position:absolute;width:300px;height:58px;top:0;left:-50px;line-height:1;z-index:30;background:#fff;border-bottom:1px solid #ebebeb;}
+.header .headersearch-cont.headerhas-dropdown {display:none;position:absolute;width:300px;height:58px;top:0;left:-30px;line-height:1;z-index:30;background:#fff;border-bottom:1px solid #ebebeb;}
 .header .headersearch-form {float:left;width:298px;height:32px;border:1px solid #dfdfdf;border-radius:3px;position:absolute;top:12px;overflow:hidden;}
 .header .headersearch-form input {float:left;width:240px;height:32px;padding:0 10px;border:0;outline:none;}
 .header .headersearch-form button {float:left;width:38px;height:32px;background:#fff url("../images/moericon/moerindex-icon.png") no-repeat;background-position:-68px 2px;border:0;outline:none;cursor:pointer;}
